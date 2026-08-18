@@ -1,0 +1,258 @@
+instruction,domain,intent,sub_intent,tool,response_mode,entity_product,entity_merchant,entity_brand,entity_category,entity_price_min,entity_price_max,entity_location,entity_radius,planner_action,workflow_type,planner_actions,planner_action_count,tool_sequence
+Any offers in Stuttgart.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Stuttgart,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Any offers on Galaxy S25.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Galaxy S25,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Any today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Can you find offers in Hamburg.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Hamburg,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Can you find offers on AirPods Pro.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,AirPods Pro,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Can you find today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display offers in Berlin.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Berlin,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display offers in Cologne.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Cologne,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display offers in Frankfurt.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display offers on Cheese.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Cheese,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display offers on Chicken Breast.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Chicken Breast,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display offers on PlayStation 5.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,PlayStation 5,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers in Berlin.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Berlin,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers in Cologne.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Cologne,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers in Frankfurt.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers in Stuttgart.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Stuttgart,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers on AirPods Pro.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,AirPods Pro,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers on Butter.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Butter,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers on Coffee Beans.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Coffee Beans,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers on Eggs.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Eggs,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Find offers on Milk.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Milk,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+I'm looking for offers in Frankfurt.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+I'm looking for offers in Hamburg.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Hamburg,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+I'm looking for offers on AirPods Pro.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,AirPods Pro,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+I'm looking for offers on Butter.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Butter,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+I'm looking for offers on Chicken Breast.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Chicken Breast,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+I'm looking for offers on Coffee Beans.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Coffee Beans,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List offers in Dresden.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Dresden,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List offers in Frankfurt REWE,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,REWE,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List offers in Leipzig DM,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,DM,,,,Leipzig,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List offers in Munich REWE,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,REWE,,,,Munich,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List offers on Milk ,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Milk,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need offers in Berlin.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Berlin,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need offers in Hamburg.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Hamburg,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need offers on Butter.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Butter,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need offers on Coffee Beans.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Coffee Beans,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need offers on MacBook Air.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,MacBook Air,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need offers on Orange Juice.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Orange Juice,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Search for offers in Cologne.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Cologne,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Search for offers in Frankfurt.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Search for offers in Hamburg.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Hamburg,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Search for offers on Milk.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Milk,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Search for offers on Rice.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Rice,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Search for today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show offers in Berlin.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Berlin,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show offers in Cologne.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Cologne,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show offers in Frankfurt.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show offers on Cheese.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Cheese,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show offers on Pasta.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Pasta,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show offers on PlayStation 5.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,PlayStation 5,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+What are offers in Frankfurt.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+What are offers on Eggs.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,Eggs,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+What are offers on PlayStation 5.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,PlayStation 5,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+What are today's offers.,OFFER,SEARCH,SEARCH,merchant_search,hybrid,,,,,,,,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Any Adidas Galaxy S25 offers under €500 in Leipzig.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Galaxy S25,,Adidas,,,500,Leipzig,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Any LG offers under €500 in Stuttgart.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,LG,,,500,Stuttgart,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Any Nutella offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Nutella,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Any Samsung offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Samsung,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Any Chicken Breast offers in Hamburg.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Chicken Breast,,,,,,Hamburg,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Any Sony offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Sony,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Can you find Galaxy S25 offers under €500 in Stuttgart.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Galaxy S25,,samsung,,,500,Stuttgart,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Can you find Apple offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Apple,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Can you find HP offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,HP,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Can you find Lenovo offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Lenovo,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Can you find Sony offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Sony,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Display Coffee offers under €50 in Leipzig.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Coffee,,,,,50,Leipzig,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Display Dell offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Dell,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Display HP Running Shoes offers under €200 in Stuttgart.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Running Shoes,,HP,,,200,Stuttgart,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Display LG offers under €100 in Berlin.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,LG,,,100,Berlin,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Display Nutella offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Nutella,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Display Puma offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Puma,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Find iPhone 16 offers under €1000 in Cologne.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,iPhone 16,,Apple,,,1000,Cologne,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Find woodland offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,woodland,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Find Apple Watch offers under €50 in Munich.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Watch,,Apple,,,50,Munich,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Find Sony offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Sony,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+I'm looking for Dell offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Dell,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+I'm looking for Sneakers offers under €200 in Munich.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Sneakers,,,,,200,Munich,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List Coffee Beans offers under €25 in Cologne.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Coffee Beans,,,,,25,Cologne,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+List Coke offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Coke,,Cola,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+List Apple Watch offers under €100 in Munich.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Apple Watch,,Nike,,,100,Munich,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+List iPhone 16 offers under €500 in Dresden.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,iPhone 16,,Apple,,,500,Dresden,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+List Nivea offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Nivea,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Need Adidas offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Adidas,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Show me offers on Under Armour.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Under Armour,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Need White Pasta offers under €100 in Hamburg.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,White Pasta,,,,,100,Hamburg,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Need Sony offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Sony,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Search for Pasta offers under €50 in Munich.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Pasta,,,,,50,Munich,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Search for Lenovo offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Lenovo,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Search for Coffee Beans offers under €25 in Leipzig.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,Coffee Beans,,,,,25,Leipzig,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+Show H&M offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,H&M,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Show PlayStation 5 offers under €50 in Frankfurt.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,PlayStation 5,,,,,50,Frankfurt,,SEARCH_OFFERS,single,SEARCH_OFFERS,1,merchant_search
+What are H&M offers under €100 in Frankfurt.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,H&M,,,100,Frankfurt,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+What are AirPods Pro offers under €100 in Frankfurt.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,AirPods Pro,,Apple,,,100,Frankfurt,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+What are Nutella offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Nutella,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+What are Puma offers.,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Puma,,,,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+What are Samsung offers under €500,OFFER,SEARCH,SEARCH_BY_BRAND,merchant_search,hybrid,,,Samsung,,,500,,,SEARCH_OFFERS_BY_BRAND,single,SEARCH_OFFERS_BY_BRAND,1,merchant_search
+Any fashion deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Fashion,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Any groceries deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Groceries,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Can you find beauty deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Beauty,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Can you find sports deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Sports,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Display beauty deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Beauty,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Display food deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Food,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Display home deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Home,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Display sports deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Sports,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Find fashion deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Fashion,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Find food deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Food,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+I'm looking for fashion deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Fashion,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+List beauty deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Beauty,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+List fashion deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Fashion,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+List food deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Food,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+List sports deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Sports,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Need fashion deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Fashion,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Need food deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Food,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Need sports deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Sports,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Search for fashion deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Fashion,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Search for food deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Food,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Search for groceries deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Groceries,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Search for home deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Home,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Show beauty deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Beauty,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+What are food deals.,OFFER,SEARCH,SEARCH_BY_CATEGORY,merchant_search,hybrid,,,,Food,,,,,SEARCH_OFFERS_BY_CATEGORY,single,SEARCH_OFFERS_BY_CATEGORY,1,merchant_search
+Any offers from Kiosk.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Kiosk,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Any offers from dm.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,dm,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Can you find offers from dm.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,dm,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Display offers from dm.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,dm,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Find offers from Kaufland.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Kaufland,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+I'm looking for offers from Kaufland.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Kaufland,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+I'm looking for offers from McDonald's.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,McDonald's,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+I'm looking for offers from MediaMarkt.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,MediaMarkt,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+I'm looking for offers from REWE.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,REWE,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+I'm looking for offers from Starbucks.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Starbucks,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+I'm looking for offers from dm.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,dm,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+List offers from Edeka.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Edeka,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+List offers from H&M.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,H&M,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+List offers from MediaMarkt.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,MediaMarkt,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Search for offers from Kaufland.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Kaufland,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Search for offers from MediaMarkt.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,MediaMarkt,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Search for offers from Rossmann.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Rossmann,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Show offers from Amazon.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Amazon,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Show offers from IKEA.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,IKEA,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+What are offers from Amazon.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Amazon,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+What are offers from Lidl.,OFFER,SEARCH,SEARCH_BY_MERCHANT,merchant_search,hybrid,,Lidl,,,,,,,SEARCH_OFFERS_BY_MERCHANT,single,SEARCH_OFFERS_BY_MERCHANT,1,merchant_search
+Any offers under €30.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,30,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Any offers under €500.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,500,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Can you find offers under €10.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,10,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Can you find offers under €100.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,100,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Can you find offers under €30.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,30,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Can you find offers under €5.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,5,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Can you find offers under €500.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,500,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Display offers under €10.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,10,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Display offers under €100.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,100,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Display offers under €1000.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,1000,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Display offers under €5.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,5,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Display offers under €50.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,50,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Find offers under €20.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,20,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Find offers under €5.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,5,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+I'm looking for offers under €10.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,10,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+I'm looking for offers under €50.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,50,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+List offers under €5.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,5,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Need offers under €100.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,100,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Need offers under €30.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,30,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Need offers under €5.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,5,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Need offers under €50.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,50,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Search for offers under €100.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,100,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Search for offers under €50.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,50,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Show offers under €30.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,30,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Show offers under €5.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,5,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+What are offers under €20.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,20,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+What are offers under €30.,OFFER,SEARCH,SEARCH_BY_PRICE,merchant_search,hybrid,,,,,,30,,,SEARCH_OFFERS_BY_PRICE,single,SEARCH_OFFERS_BY_PRICE,1,merchant_search
+Compare Dell and LG offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Dell and Sony offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Apple and Lenovo offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Samsung and Dell offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Oneplus and Apple offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare LG and HP offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Cadbury and Milka offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Lenovo and Realme offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Lenovo and Sony offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Nivea and Kaufmann offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Adidas and Nike offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Rolex and Titan offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Asus and HP offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Puma and adidas offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Puma and Skechers offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Samsung and Apple offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Samsung and Google pixel offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Chocos and Milka offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare Google pixels and Apple offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare H&M and Zara offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Compare H&M and CK offers.,OFFER,COMPARE,COMPARE_OFFERS,merchant_search,hybrid,,,,,,,,,COMPARE_OFFERS,single,COMPARE_OFFERS,1,merchant_search
+Is the offer on Apple Watch still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Apple Watch,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Cheese still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Cheese,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Coffee Beans still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Coffee Beans,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Coffee still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Coffee,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on MacBook Air still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,MacBook Air,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Milk still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Milk,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Orange Juice still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Orange Juice,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on PlayStation 5 still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,PlayStation 5,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Rice still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Rice,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Running Shoes still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Running Shoes,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on Sneakers still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,Sneakers,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Is the offer on iPhone 16 still available?,OFFER,CHECK,CHECK_AVAILABILITY,merchant_search,hybrid,iPhone 16,,,,,,,,CHECK_OFFER_AVAILABILITY,single,CHECK_OFFER_AVAILABILITY,1,merchant_search
+Show today's Lidl offers and navigate me there.,OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Lidl,,,,,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Find offers in Berlin then take me to the store.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,,Berlin,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Any REWE offers today and guide me to the nearest one.,OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,REWE,,,,,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Search for milk offers and start navigation.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Milk,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Find frozen pizza offers below €3 and navigate me there.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,Frozen Food,,3,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν NAVIGATE,3,offer_engine ‚άν offer_engine ‚άν google_maps
+Show Aldi offers in Munich and take me there.,OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Aldi,,,,,Munich,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Find chocolate offers and only show ones under €2.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Chocolate,,,,,2,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE,2,offer_engine ‚άν offer_engine
+Show snack offers and filter below €5.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,Snacks,,5,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE,2,offer_engine ‚άν offer_engine
+Get today's offers and keep only the cheapest under €1.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,1,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE,2,offer_engine ‚άν offer_engine
+Find Nutella offers and filter under €4.,OFFER,SEARCH,SEARCH_BY_BRAND,offer_engine,hybrid,,,Nutella,,,4,,,SEARCH_OFFERS_BY_BRAND,sequential,SEARCH_OFFERS_BY_BRAND ‚άν FILTER_PRICE,2,offer_engine ‚άν offer_engine
+Show coffee offers and compare the best two.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Coffee,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν COMPARE_OFFERS,2,offer_engine ‚άν offer_engine
+Find washing powder offers and compare prices.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Washing Powder,,,Household,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν COMPARE_OFFERS,2,offer_engine ‚άν offer_engine
+Get Samsung offers and compare them.,OFFER,SEARCH,SEARCH_BY_BRAND,offer_engine,hybrid,,,Samsung,,,,,,SEARCH_OFFERS_BY_BRAND,sequential,SEARCH_OFFERS_BY_BRAND ‚άν COMPARE_OFFERS,2,offer_engine ‚άν offer_engine
+Show offers in Hamburg and compare the cheapest.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,,Hamburg,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν COMPARE_OFFERS,2,offer_engine ‚άν offer_engine
+Find AirPods offers and check if they're available.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,AirPods,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν CHECK_OFFER_AVAILABILITY,2,offer_engine ‚άν offer_engine
+Show Galaxy S25 offers and check availability in Leipzig.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Galaxy S25,,,,,,Leipzig,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν CHECK_OFFER_AVAILABILITY,2,offer_engine ‚άν offer_engine
+Show today's offers and then display my Payback card.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν DISPLAY_CARD,2,offer_engine ‚άν wallet_api
+Find Netto ice cream offers below €3 and open my Payback card.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Ice Cream,Netto,,Frozen Desserts,,3,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν DISPLAY_CARD,3,offer_engine ‚άν offer_engine ‚άν wallet_api
+Show drink offers and display my Payback card.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,Beverages,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν DISPLAY_CARD,2,offer_engine ‚άν wallet_api
+"Find ice cream offers, keep ones under €3, then show my Payback card.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,Ice Cream,,,,,3,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν DISPLAY_CARD,3,offer_engine ‚άν offer_engine ‚άν wallet_api
+"Show Lidl offers, filter below €10, and open my Payback card.",OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Lidl,,,,10,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν FILTER_PRICE ‚άν DISPLAY_CARD,3,offer_engine ‚άν offer_engine ‚άν wallet_api
+"Show today's offers, then display my Payback card and my current points.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν DISPLAY_CARD ‚άν FETCH_POINTS,3,offer_engine ‚άν wallet_api ‚άν loyalty_api
+Show milk offers and add the cheapest to my shopping list.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Milk,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν ADD_TO_LIST,2,offer_engine ‚άν shopping_list_api
+Find bread offers and add them to my list.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,Bread,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν ADD_TO_LIST,2,offer_engine ‚άν shopping_list_api
+Show Aldi offers under €2 and add the cheapest to my shopping list.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,Aldi,,,,2,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν ADD_TO_LIST,3,offer_engine ‚άν offer_engine ‚άν shopping_list_api
+Get today's snack offers and add them to my list.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,Snacks,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν ADD_TO_LIST,2,offer_engine ‚άν shopping_list_api
+Find the nearest Kaufland offers and navigate me there.,OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Kaufland,,,,,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Show REWE offers and check availability.,OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,REWE,,,,,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν CHECK_OFFER_AVAILABILITY,2,offer_engine ‚άν offer_engine
+Show dairy offers and compare the cheapest two.,OFFER,SEARCH,SEARCH_BY_CATEGORY,offer_engine,hybrid,,,,Dairy,,,,,SEARCH_OFFERS_BY_CATEGORY,sequential,SEARCH_OFFERS_BY_CATEGORY ‚άν COMPARE_OFFERS,2,offer_engine ‚άν offer_engine
+Find electronics offers and check availability.,OFFER,SEARCH,SEARCH_BY_CATEGORY,offer_engine,hybrid,,,,Electronics,,,,,SEARCH_OFFERS_BY_CATEGORY,sequential,SEARCH_OFFERS_BY_CATEGORY ‚άν CHECK_OFFER_AVAILABILITY,2,offer_engine ‚άν offer_engine
+Show beverage offers in Cologne and navigate me there.,OFFER,SEARCH,SEARCH_BY_CATEGORY,offer_engine,hybrid,,,,Beverages,,,Cologne,,SEARCH_OFFERS_BY_CATEGORY,sequential,SEARCH_OFFERS_BY_CATEGORY ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Find Coca-Cola offers and add the cheapest to my list.,OFFER,SEARCH,SEARCH_BY_BRAND,offer_engine,hybrid,,,Coca-Cola,,,,,,SEARCH_OFFERS_BY_BRAND,sequential,SEARCH_OFFERS_BY_BRAND ‚άν ADD_TO_LIST,2,offer_engine ‚άν shopping_list_api
+Show Adidas offers and compare them.,OFFER,SEARCH,SEARCH_BY_BRAND,offer_engine,hybrid,,,Adidas,,,,,,SEARCH_OFFERS_BY_BRAND,sequential,SEARCH_OFFERS_BY_BRAND ‚άν COMPARE_OFFERS,2,offer_engine ‚άν offer_engine
+Find Nike offers in Berlin and navigate there.,OFFER,SEARCH,SEARCH_BY_BRAND,offer_engine,hybrid,,,Nike,,,,Berlin,,SEARCH_OFFERS_BY_BRAND,sequential,SEARCH_OFFERS_BY_BRAND ‚άν NAVIGATE,2,offer_engine ‚άν google_maps
+Show offers under €5 and compare the top two.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,5,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν COMPARE_OFFERS,3,offer_engine ‚άν offer_engine ‚άν offer_engine
+Find offers below €10 and add the cheapest to my list.,OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,10,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν ADD_TO_LIST,3,offer_engine ‚άν offer_engine ‚άν shopping_list_api
+"Find pizza offers under €4, compare them, and navigate to the cheapest.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,Pizza,,,,,4,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν COMPARE_OFFERS ‚άν NAVIGATE,4,offer_engine ‚άν offer_engine ‚άν offer_engine ‚άν google_maps
+"Show Lidl offers, filter under €3, and take me to the store.",OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Lidl,,,,3,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν FILTER_PRICE ‚άν NAVIGATE,3,offer_engine ‚άν offer_engine ‚άν google_maps
+"Find milk offers, add the cheapest to my list, then navigate to the store.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,Milk,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν ADD_TO_LIST ‚άν NAVIGATE,3,offer_engine ‚άν shopping_list_api ‚άν google_maps
+"Show today's offers, compare them, and display my Payback card.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν COMPARE_OFFERS ‚άν DISPLAY_CARD,3,offer_engine ‚άν offer_engine ‚άν wallet_api
+"Find ice cream offers at Netto below €3, compare them, add the cheapest to my list and show my Payback card.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,Ice Cream,Netto,,Frozen Desserts,,3,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν ADD_TO_LIST ‚άν DISPLAY_CARD,4,offer_engine ‚άν offer_engine ‚άν shopping_list_api ‚άν wallet_api
+"Show Lidl offers, filter under €5, compare them and navigate me to the store.",OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Lidl,,,,5,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν FILTER_PRICE ‚άν COMPARE_OFFERS ‚άν NAVIGATE,4,offer_engine ‚άν offer_engine ‚άν offer_engine ‚άν google_maps
+"Find milk offers, check availability, add to my list and take me there.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,Milk,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν CHECK_OFFER_AVAILABILITY ‚άν ADD_TO_LIST ‚άν NAVIGATE,4,offer_engine ‚άν offer_engine ‚άν shopping_list_api ‚άν google_maps
+"Show today's offers in Berlin, filter below €10, compare and display my Payback card.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,10,Berlin,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν FILTER_PRICE ‚άν COMPARE_OFFERS ‚άν DISPLAY_CARD,4,offer_engine ‚άν offer_engine ‚άν offer_engine ‚άν wallet_api
+"Find Aldi snack offers under €2, compare them, navigate there and show my points.",OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Aldi,,Snacks,,2,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν COMPARE_OFFERS ‚άν NAVIGATE ‚άν FETCH_POINTS,4,offer_engine ‚άν offer_engine ‚άν google_maps ‚άν loyalty_api
+"Show REWE dairy offers, filter under €4, add the cheapest to my list and navigate there.",OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,REWE,,Dairy,,4,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν FILTER_PRICE ‚άν ADD_TO_LIST ‚άν NAVIGATE,4,offer_engine ‚άν offer_engine ‚άν shopping_list_api ‚άν google_maps
+"Find coffee offers, compare them and add the cheapest to my shopping list.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,Coffee,,,,,,,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν COMPARE_OFFERS ‚άν ADD_TO_LIST,3,offer_engine ‚άν offer_engine ‚άν shopping_list_api
+"Show Kaufland offers, check availability and navigate me there.",OFFER,SEARCH,SEARCH_BY_MERCHANT,offer_engine,hybrid,,Kaufland,,,,,,,SEARCH_OFFERS_BY_MERCHANT,sequential,SEARCH_OFFERS_BY_MERCHANT ‚άν CHECK_OFFER_AVAILABILITY ‚άν NAVIGATE,3,offer_engine ‚άν offer_engine ‚άν google_maps
+"Find electronics offers under €200, compare and check availability.",OFFER,SEARCH,SEARCH_BY_CATEGORY,offer_engine,hybrid,,,,Electronics,,200,,,SEARCH_OFFERS_BY_CATEGORY,sequential,SEARCH_OFFERS_BY_CATEGORY ‚άν COMPARE_OFFERS ‚άν CHECK_OFFER_AVAILABILITY,3,offer_engine ‚άν offer_engine ‚άν offer_engine
+"Show Nutella offers, filter under €3 and add to my list.",OFFER,SEARCH,SEARCH_BY_BRAND,offer_engine,hybrid,,,Nutella,,,3,,,SEARCH_OFFERS_BY_BRAND,sequential,SEARCH_OFFERS_BY_BRAND ‚άν FILTER_PRICE ‚άν ADD_TO_LIST,3,offer_engine ‚άν offer_engine ‚άν shopping_list_api
+"Find offers in Munich, compare them and navigate to the cheapest.",OFFER,SEARCH,SEARCH,offer_engine,hybrid,,,,,,,Munich,,SEARCH_OFFERS,sequential,SEARCH_OFFERS ‚άν COMPARE_OFFERS ‚άν NAVIGATE,3,offer_engine ‚άν offer_engine ‚άν google_maps
+"Show beverage offers under €1, add cheapest to list and display my card.",OFFER,SEARCH,SEARCH_BY_CATEGORY,offer_engine,hybrid,,,,Beverages,,1,,,SEARCH_OFFERS_BY_CATEGORY,sequential,SEARCH_OFFERS_BY_CATEGORY ‚άν ADD_TO_LIST ‚άν DISPLAY_CARD,3,offer_engine ‚άν shopping_list_api ‚άν wallet_api

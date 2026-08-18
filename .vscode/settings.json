@@ -1,0 +1,7 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/py12.venv/Scripts/python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/noah_backend",
+    "${workspaceFolder}/py12.venv/Lib/site-packages"
+  ]
+}

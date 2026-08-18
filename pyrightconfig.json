@@ -1,0 +1,8 @@
+{
+  "venvPath": ".",
+  "venv": "py12.venv",
+  "extraPaths": [
+    "noah_backend",
+    "py12.venv/Lib/site-packages"
+  ]
+}

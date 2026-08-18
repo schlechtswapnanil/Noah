@@ -1,0 +1,129 @@
+instruction,domain,intent,sub_intent,tool,response_mode,entity_product,entity_merchant,entity_brand,entity_category,entity_price_min,entity_price_max,entity_location,entity_radius,planner_action,workflow_type,planner_actions,planner_action_count,tool_sequence
+Show me my profile,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+What's my account info,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Open my profile page,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show my personal details,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+What's my email on file,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,email,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Display my account information,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Can I see my profile,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show my user profile,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+What's my registered phone number,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,phone,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show me my name and email,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,name_email,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Open account details,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+View my profile,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+What info do you have about me,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show my account summary,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Display my personal info,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+What's on my profile,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Can you show my details,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show me who I am in the app,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Open my personal page,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show my registered address,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,address,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+What's my membership info,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,membership,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+View account overview,ACCOUNT,PROFILE,PROFILE,firestore,functional,,,,,,,,,SHOW_PROFILE,single,SHOW_PROFILE,1,firestore
+Show me my purchase history,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I buy last week,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my recent orders,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I purchase at REWE,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,REWE,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my last 10 purchases,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What have I bought this month,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my shopping history,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I buy yesterday,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my order history from Lidl,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,Lidl,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I purchase in June,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show me everything I bought last month,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+List my recent transactions,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What was my last purchase,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my spending history,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I buy at Aldi last week,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,Aldi,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my purchase history for this year,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What have I bought recently,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my last five orders,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I buy on my last visit to REWE,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,REWE,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my complete purchase history,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+List all my past purchases,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+What did I buy two weeks ago,ACCOUNT,PURCHASE_HISTORY,PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,single,SHOW_PURCHASE_HISTORY,1,firestore
+Show my recent store visits,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Which stores have I visited this month,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show my visit history,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+When did I last visit REWE,ACCOUNT,VISITS,VISITS,firestore,hybrid,,REWE,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show me the merchants I've checked into,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+What stores did I visit last week,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show my check-in history,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+When was my last visit to Lidl,ACCOUNT,VISITS,VISITS,firestore,hybrid,,Lidl,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show all my store visits this year,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Which merchants have I been to recently,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show my visit log,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Where have I shopped this month,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show me my store check-ins,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+When did I last go to Aldi,ACCOUNT,VISITS,VISITS,firestore,hybrid,,Aldi,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show my visit history for REWE,ACCOUNT,VISITS,VISITS,firestore,hybrid,,REWE,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+List the stores I've visited,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show my recent check-ins,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Where did I shop last week,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show all merchants I've visited,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+What's my visit frequency at REWE,ACCOUNT,VISITS,VISITS,firestore,hybrid,,REWE,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Show my shopping location history,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+When did I last check in somewhere,ACCOUNT,VISITS,VISITS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,single,SHOW_VISIT_HISTORY,1,firestore
+Open my settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show app settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+I want to change my notification preferences,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,notifications,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open account settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show me privacy settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,privacy,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Change my language settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,language,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open notification settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,notifications,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show my preferences,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+I want to update my settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open the settings menu,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show me app preferences,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Change my password settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,password,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open security settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,security,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show data privacy options,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,privacy,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Adjust my notification settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,notifications,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open my account preferences,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show settings for my account,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Change display settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,display,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open app configuration,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show me my privacy options,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,privacy,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Update my communication preferences,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,notifications,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Open general settings,ACCOUNT,SETTINGS,SETTINGS,firestore,functional,,,,,,,,,OPEN_SETTINGS,single,OPEN_SETTINGS,1,firestore
+Show my profile and then open settings.,ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+"Show me my account info, then take me to settings.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+Open my profile and change my notification settings.,ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,notifications,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+"Display my personal details, then show app settings.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+Show my profile page and open privacy settings.,ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,privacy,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+"View my account overview, then adjust my preferences.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+Show my details and open the settings menu.,ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+"What's my profile info, and open settings for me.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+"Show me who I am, then take me to account settings.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+"Display my account summary, then open security settings.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_SETTINGS,firestore,hybrid,,,,security,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → OPEN_SETTINGS,2,firestore → firestore
+Show my purchase history and then my store visits.,ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"What did I buy last week, and which stores did I visit?",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"Show my recent orders, then show my visit history.",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+List my past purchases and my recent check-ins.,ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"Show my shopping history, then my store visit log.",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"What have I bought this month, and where have I shopped?",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"Show my order history, then show which merchants I visited.",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"Display my purchases from REWE, then my visits there too.",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,REWE,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+Show my complete purchase history and my visit history.,ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+"What did I buy recently, and what stores did I check into?",ACCOUNT,MULTI_STEP_TASK,PURCHASE_HISTORY_AND_VISITS,firestore,hybrid,,,,,,,,,SHOW_PURCHASE_HISTORY,sequential,SHOW_PURCHASE_HISTORY → SHOW_VISIT_HISTORY,2,firestore → firestore
+Show my profile and then my purchase history.,ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Display my account info, then show what I've bought.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Show me my details, then my recent orders.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"View my profile, then show my shopping history.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Show my personal info, then my last purchases.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"What's my account overview, and what did I buy last week?",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Show my profile page, then my order history.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Display my account summary, then my purchase history.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Show me who I am, then what I've purchased recently.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+"Open my profile, then show my complete purchase history.",ACCOUNT,MULTI_STEP_TASK,PROFILE_AND_PURCHASE_HISTORY,firestore,hybrid,,,,,,,,,SHOW_PROFILE,sequential,SHOW_PROFILE → SHOW_PURCHASE_HISTORY,2,firestore → firestore
+Show my visit history and then open settings.,ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Which stores have I visited, then take me to settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Show my check-in history, then open my preferences.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Display my store visits, then change my notification settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,notifications,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Show my visit log, then open account settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Where have I shopped this month, then open settings for me.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Show my recent visits, then adjust my privacy settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,privacy,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"List the stores I've visited, then open app settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Show my visit frequency, then open security settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,security,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore
+"Display my shopping location history, then open settings.",ACCOUNT,MULTI_STEP_TASK,VISITS_AND_SETTINGS,firestore,hybrid,,,,,,,,,SHOW_VISIT_HISTORY,sequential,SHOW_VISIT_HISTORY → OPEN_SETTINGS,2,firestore → firestore

@@ -1,0 +1,111 @@
+instruction,domain,intent,sub_intent,tool,response_mode,entity_product,entity_merchant,entity_brand,entity_category,entity_price_min,entity_price_max,entity_location,entity_radius,requires_memory,requires_rag,requires_recommendation,planner_action,workflow_type,planner_actions,planner_action_count,tool_sequence
+Show me my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Display my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Open my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Can you show my Payback card?,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Bring up my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+I want to see my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Open the Payback card in my wallet.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Show my Payback loyalty card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Display the Payback card I have saved.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Pull up my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Where is my Payback card?,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Can you open my Payback card?,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+I need my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Show me the Payback card from my wallet.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Bring up my loyalty card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Display my loyalty card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Open my stored Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Let me see my Payback card.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Show the card I use for Payback.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Open the Payback card for me.,WALLET,SHOW,SHOW_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,single,DISPLAY_CARD,1,wallet_api
+Show me the barcode for my Payback card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Display my Payback barcode.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Open the Payback barcode.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+I need to scan my Payback card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Show the barcode I can scan at checkout.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Bring up my Payback QR code.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Display the QR code for my Payback card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Can you show my loyalty barcode?,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Open my Payback scanning code.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+I need my Payback code for the cashier.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Show my Payback code.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Display the barcode on my loyalty card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Give me the Payback QR code.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Bring up the code for my Payback card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+I want to scan my Payback card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Open the barcode for my saved Payback card.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Show the scannable code for Payback.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Can you pull up my Payback barcode?,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+"I am at checkout, show my Payback code.",WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Display my Payback card barcode now.,WALLET,SHOW,SHOW_BARCODE,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD_BARCODE,single,DISPLAY_CARD_BARCODE,1,wallet_api
+Show me all my loyalty cards.,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+What cards do I have in my wallet?,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+List my saved loyalty cards.,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Show all the cards I have saved.,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Which loyalty cards are in my wallet?,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Open my wallet cards.,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Display my stored loyalty cards.,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+What loyalty cards have I added?,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Show my available loyalty cards.,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Can I see all my saved cards?,WALLET,SHOW,LIST_CARDS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,LIST_WALLET_CARDS,single,LIST_WALLET_CARDS,1,wallet_api
+Select my Payback card.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Make Payback my active loyalty card.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Choose my Payback card.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Use my Payback card.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Set Payback as the selected card.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Select Payback from my wallet.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Make my Payback card active.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Choose Payback for checkout.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Set my Payback card as the current card.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Use the Payback card from my wallet.,WALLET,SHOW,SELECT_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,single,SELECT_WALLET_CARD,1,wallet_api
+Add my Payback card to my wallet.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+I want to add a Payback card.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Save my Payback card in the wallet.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Can I add my Payback loyalty card?,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Add a new loyalty card to my wallet.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Store my Payback card in the app.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+I need to add another loyalty card.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Add my loyalty card.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Save a new Payback card.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Put my Payback card into the wallet.,WALLET,MANAGE,ADD_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,ADD_WALLET_CARD,single,ADD_WALLET_CARD,1,wallet_api
+Remove my Payback card from the wallet.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Delete my Payback card.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Take my Payback card out of the wallet.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+I don't want my Payback card saved anymore.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Remove the Payback loyalty card.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Delete the stored Payback card.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Can you remove a loyalty card?,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Remove my saved Payback card.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+I want to delete my Payback card from PayTo.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Get rid of my Payback card from the wallet.,WALLET,MANAGE,REMOVE_CARD,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,REMOVE_WALLET_CARD,single,REMOVE_WALLET_CARD,1,wallet_api
+Show me the details of my Payback card.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+What details do you have for my Payback card?,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Open the details for my Payback card.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Show my saved Payback card information.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Can I see the information stored for my Payback card?,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Display my Payback card details.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+What information is saved for my loyalty card?,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Show the details of my loyalty card.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Open the saved card information.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Tell me which Payback card I have saved.,WALLET,CHECK,CARD_DETAILS,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SHOW_CARD_DETAILS,single,SHOW_CARD_DETAILS,1,wallet_api
+Show my Payback card and then display its barcode.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Open my Payback card and show me the barcode.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Bring up my Payback card and make the barcode visible.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Show my loyalty card and then open its barcode.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Open Payback and display the code I need to scan.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+"I need my Payback card, then show me the scanning code.",WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Display my Payback card and its barcode for checkout.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Pull up my Payback card and show the QR code.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+"Open my saved Payback card, then show the barcode.",WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Show my Payback card first and then its scannable code.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,DISPLAY_CARD,sequential,DISPLAY_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Select my Payback card and display it.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD,2,wallet_api > wallet_api
+Choose Payback and then show my card.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD,2,wallet_api > wallet_api
+Make Payback active and open the card.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD,2,wallet_api > wallet_api
+Select my Payback loyalty card and show it.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD,2,wallet_api > wallet_api
+Use Payback and display the card for me.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD,2,wallet_api > wallet_api
+Set Payback as my card and bring it up.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD,2,wallet_api > wallet_api
+Choose the Payback card and show its barcode.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Select Payback and open the barcode.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Make my Payback card active and show its code.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api
+Use my Payback card and display the scanning code.,WALLET,SHOW,CARD_WORKFLOW,wallet_api,functional,,,,LOYALTY_CARD,,,,,True,False,False,SELECT_WALLET_CARD,sequential,SELECT_WALLET_CARD > DISPLAY_CARD_BARCODE,2,wallet_api > wallet_api

@@ -1,0 +1,151 @@
+instruction,domain,intent,sub_intent,tool,response_mode,entity_product,entity_merchant,entity_brand,entity_category,entity_price_min,entity_price_max,entity_location,entity_radius,planner_action,workflow_type,planner_actions,planner_action_count,tool_sequence
+Hi,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hello there,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hey Noah,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+"Hi Noah, how are you",CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Good morning,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Good evening,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hey what's up,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Yo,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hiya,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hello,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Morning,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hey there,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+"Hi, is anyone there",CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hello Noah,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+"Hey Noah, you there",CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Good afternoon,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hi hi,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Hey buddy,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Sup,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Greetings,CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+"Hello, nice to meet you",CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+"Hey, how's it going",CHAT,GREETING,GREETING,none,text,,,,,,,,,REPLY_GREETING,single,REPLY_GREETING,1,none
+Bye,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Goodbye,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+See you later,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Talk to you soon,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+I'm leaving now,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Catch you later,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Bye Noah,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+See ya,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"Gotta go, bye",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Farewell,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"Take care, bye",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"I'm off, see you",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Later,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Bye for now,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+See you tomorrow,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"Alright, bye",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"That's all, goodbye",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"I'm done for now, bye",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+"Closing the app, bye",CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Ttyl,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Goodnight,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Peace out,CHAT,GOODBYE,GOODBYE,none,text,,,,,,,,,REPLY_GOODBYE,single,REPLY_GOODBYE,1,none
+Thanks,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thank you,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thanks a lot,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Appreciate it,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thanks so much,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thank you very much,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"That's helpful, thanks",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"Cool, thanks",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"Perfect, thank you",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thanks Noah,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Much appreciated,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"Great, thanks for that",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"Awesome, thank you",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thanks for the help,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"You're a lifesaver, thanks",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"Nice one, thanks",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thank you so much for that,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thanks a bunch,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Cheers,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+"That was helpful, thank you",CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+Thanks for helping me out,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+I appreciate the help,CHAT,THANKS,THANKS,none,text,,,,,,,,,REPLY_THANKS,single,REPLY_THANKS,1,none
+How are you doing today,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What's your favorite food,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,food,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Do you like shopping,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,shopping,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Tell me a joke,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,joke,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What's the weather like,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,weather,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+How's your day going,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Are you a real person,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What can you do,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,capabilities,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Do you sleep,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What's your name,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Are you an AI,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Tell me something interesting,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What's the meaning of life,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,philosophy,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Do you like Payback,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,loyalty_programs,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What do you think about frozen pizza,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,food,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Can we just chat for a bit,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Tell me about yourself,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Do you have feelings,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What's up with you,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+How old are you,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+Do you get bored,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,identity,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+What's your opinion on discounts,CHAT,SMALL_TALK,SMALL_TALK,none,text,,,,discounts,,,,,REPLY_SMALL_TALK,single,REPLY_SMALL_TALK,1,none
+asdkjfh,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+what,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+huh,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+I don't know what I want,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+um,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+blah blah blah,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+random text here,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+can you do the thing,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+do that other stuff,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+idk,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+whatever,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+nothing,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+never mind,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+skip,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+test test,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+hello???,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+???,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+this doesn't make sense,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+banana,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+asdf1234,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+random query,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+gibberish input,CHAT,UNKNOWN,UNKNOWN,none,text,,,,,,,,,HANDLE_UNKNOWN,single,HANDLE_UNKNOWN,1,none
+"Hi, how are you doing today?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hello, what's your favorite food?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,food,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hey Noah, tell me a joke.",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,joke,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hi there, what's the weather like?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,weather,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hello, do you like shopping?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,shopping,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hey, what can you do?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,capabilities,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Good morning, tell me something interesting.",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hi, are you a real person?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,identity,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hey Noah, what's your name?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,identity,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Hello there, do you have feelings?",CHAT,MULTI_STEP_TASK,GREETING_AND_SMALL_TALK,none,text,,,,identity,,,,,REPLY_GREETING,sequential,REPLY_GREETING → REPLY_SMALL_TALK,2,none → none
+"Thanks a lot, bye!",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Thank you so much, see you later.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Appreciate it, gotta go now.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Thanks Noah, talk to you soon.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"That was helpful, thanks, goodbye.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Thanks for the help, bye for now.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Much appreciated, catch you later.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Thank you, I'm off now.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Cheers, see ya.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"Thanks a bunch, take care.",CHAT,MULTI_STEP_TASK,THANKS_AND_GOODBYE,none,text,,,,,,,,,REPLY_THANKS,sequential,REPLY_THANKS → REPLY_GOODBYE,2,none → none
+"That's interesting, thanks for telling me.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Nice, thanks for sharing that.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Cool answer, thank you.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Ha, good one, thanks.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Interesting, appreciate the info.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"That's a good joke, thanks Noah.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Wow, thanks for explaining that.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Good to know, thank you.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"That's helpful info, thanks a lot.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"Nice chat, thank you.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_THANKS,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_THANKS,2,none → none
+"That's cool, anyway I have to go, bye.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Interesting, but I need to leave now, goodbye.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Nice talking to you, see you later.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Cool joke, alright I'm off, bye.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Good to know, gotta run, bye.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"That's fun, talk to you soon.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Nice chat Noah, goodbye for now.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Alright, that's enough chatting, bye.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Good one, anyway bye for now.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none
+"Interesting stuff, catch you later.",CHAT,MULTI_STEP_TASK,SMALL_TALK_AND_GOODBYE,none,text,,,,,,,,,REPLY_SMALL_TALK,sequential,REPLY_SMALL_TALK → REPLY_GOODBYE,2,none → none

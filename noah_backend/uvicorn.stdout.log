@@ -1,0 +1,45 @@
+INFO:     127.0.0.1:60269 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53514 - "GET /api/chat HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:53514 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59055 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50791 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50791 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62351 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49921 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59960 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61043 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57402 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51972 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51971 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52032 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52033 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52034 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52071 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52070 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52069 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52123 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60324 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60324 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59155 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57935 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54153 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61264 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53669 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53669 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49757 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64350 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52739 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51328 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64336 - "POST /api/chat HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:62444 - "POST /api/chat HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:56472 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49351 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49351 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52784 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59880 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58922 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58923 - "POST /api/chat HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58926 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58949 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64319 - "POST /api/chat HTTP/1.1" 200 OK

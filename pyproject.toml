@@ -1,6 +1,9 @@
 [tool.pyrefly]
-pythonPath = "c:/Users/dipne/OneDrive/Documents/Uni Hamburg/4th Sem/Noah/py12.venv/Scripts/python.exe"
-site-package-path = [
-    "c:/Users/dipne/OneDrive/Documents/Uni Hamburg/4th Sem/Noah/py12.venv/Lib/site-packages",
+python-interpreter-path = "c:/Users/dipne/OneDrive/Documents/Uni Hamburg/4th Sem/Noah/py12.venv/Scripts/python.exe"
+search-path = [
     "c:/Users/dipne/OneDrive/Documents/Uni Hamburg/4th Sem/Noah/noah_backend"
 ]
+site-package-path = [
+    "c:/Users/dipne/OneDrive/Documents/Uni Hamburg/4th Sem/Noah/py12.venv/Lib/site-packages"
+]
+

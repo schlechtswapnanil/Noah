@@ -8,80 +8,80 @@
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 146.0
+        "support": 162.0
       },
       "CHAT": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 169.0
+        "support": 188.0
       },
       "KNOWLEDGE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 144.0
+        "support": 129.0
       },
       "MERCHANT": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 226.0
+        "support": 190.0
       },
       "NAVIGATION": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 125.0
+        "support": 130.0
       },
       "OFFER": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 165.0
+        "support": 177.0
       },
       "PRODUCT": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 265.0
+        "support": 321.0
       },
       "RECOMMENDATION": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 176.0
+        "support": 153.0
       },
       "SHOPPING": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 184.0
+        "support": 231.0
       },
       "SYSTEM": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 113.0
+        "support": 136.0
       },
       "WALLET": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 287.0
+        "support": 283.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 2000.0
+        "support": 2100.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 2000.0
+        "support": 2100.0
       }
     }
   },
@@ -94,309 +94,309 @@
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 40.0
+        "support": 42.0
       },
       "BUILD_LIST": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 54.0
+        "support": 49.0
       },
       "CHECK": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 55.0
+        "support": 40.0
       },
       "COMPARE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 43.0
+        "support": 41.0
       },
       "FAQ": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 47.0
+        "support": 41.0
       },
       "FEEDBACK": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 35.0
+        "support": 40.0
       },
       "FIND_CHEAPEST_BASKET": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 39.0
+        "support": 63.0
       },
       "GOODBYE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 26.0
+        "support": 46.0
       },
       "GREETING": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 35.0
+        "support": 37.0
       },
       "HELP": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 42.0
+        "support": 49.0
       },
       "MANAGE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 87.0
+        "support": 80.0
       },
       "OPEN_CARD": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 155.0
+        "support": 152.0
       },
       "OPTIMIZE_ROUTE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 46.0
+        "support": 66.0
       },
       "PAYTO_INFORMATION": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 57.0
+        "support": 46.0
       },
       "PROFILE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 39.0
+        "support": 29.0
       },
       "PURCHASE_HISTORY": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 40.0
+        "support": 47.0
       },
       "RECOMMEND": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 176.0
+        "support": 153.0
       },
       "REPORT_BUG": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 36.0
+        "support": 47.0
       },
       "ROUTE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 125.0
+        "support": 130.0
       },
       "SEARCH": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 431.0
+        "support": 493.0
       },
       "SETTINGS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 35.0
+        "support": 43.0
       },
       "SHOW": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 172.0
+        "support": 165.0
       },
       "SMALL_TALK": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 38.0
+        "support": 31.0
       },
       "SPLIT_BASKET": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 45.0
+        "support": 53.0
       },
       "THANKS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 34.0
+        "support": 36.0
       },
       "UNKNOWN": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 36.0
+        "support": 38.0
       },
       "VISITS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 32.0
+        "support": 43.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 2000.0
+        "support": 2100.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 2000.0
+        "support": 2100.0
       }
     }
   },
   "sub_intent": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "weighted_f1": 1.0,
+    "accuracy": 0.9990476190476191,
+    "macro_f1": 0.9991843971631206,
+    "weighted_f1": 0.9990531746031747,
     "classification_report": {
       "ADD_CARD": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 46.0
+        "support": 32.0
       },
       "APP_HELP": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 40.0
+        "support": 42.0
       },
       "BUILD_LIST": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 54.0
+        "support": 49.0
       },
       "CASHBACK": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 36.0
+        "support": 44.0
       },
       "CHECK_AVAILABILITY": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 55.0
+        "support": 40.0
       },
       "COMPARE_PRODUCTS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 43.0
+        "support": 41.0
       },
       "CONTACT": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 44.0
+        "support": 37.0
       },
       "DETAILS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 42.0
+        "support": 44.0
       },
       "DIRECTIONS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 42.0
+        "support": 49.0
       },
       "FAQ": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 47.0
+        "support": 41.0
       },
       "FEEDBACK": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 35.0
+        "support": 40.0
       },
       "FIND_CHEAPEST_BASKET": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 39.0
+        "support": 63.0
       },
       "GOODBYE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 26.0
+        "support": 46.0
       },
       "GREETING": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 35.0
+        "support": 37.0
       },
       "HELP": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 42.0
+        "support": 49.0
       },
       "LIST_CARDS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 45.0
+        "support": 51.0
       },
       "MERCHANT": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 54.0
+        "support": 31.0
       },
       "NEARBY": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 62.0
+        "support": 43.0
       },
       "OFFER": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 41.0
+        "support": 27.0
       },
       "OPENING_HOURS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 41.0
+        "support": 33.0
       },
       "OPEN_CARD": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 59.0
+        "support": 44.0
       },
       "OPEN_MAP": {
         "precision": 1.0,
@@ -408,164 +408,164 @@
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 46.0
+        "support": 66.0
       },
       "PAYTO_INFORMATION": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 57.0
+        "support": 46.0
       },
       "PERSONALIZED": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 43.0
+        "support": 46.0
       },
       "PRODUCT": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 38.0
+        "support": 49.0
       },
       "PROFILE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 39.0
+        "support": 29.0
       },
       "PURCHASE_HISTORY": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 40.0
+        "support": 47.0
       },
       "REMOVE_CARD": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 41.0
+        "support": 48.0
       },
       "REPORT_BUG": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 36.0
+        "support": 47.0
       },
       "ROUTE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 46.0
+        "support": 44.0
       },
       "SEARCH": {
         "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 80.0
+        "recall": 0.9736842105263158,
+        "f1-score": 0.9866666666666667,
+        "support": 76.0
       },
       "SEARCH_BY_BRAND": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 31.0
+        "support": 52.0
       },
       "SEARCH_BY_CATEGORY": {
-        "precision": 1.0,
+        "precision": 0.9512195121951219,
         "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 51.0
+        "f1-score": 0.975,
+        "support": 39.0
       },
       "SEARCH_BY_PRICE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 42.0
+        "support": 106.0
       },
       "SETTINGS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 35.0
+        "support": 43.0
       },
       "SHOW_BARCODE": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 33.0
+        "support": 35.0
       },
       "SHOW_DISCOUNTS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 38.0
+        "support": 35.0
       },
       "SHOW_OFFERS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 52.0
+        "support": 46.0
       },
       "SHOW_POINTS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 31.0
+        "support": 34.0
       },
       "SHOW_REWARDS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 32.0
+        "support": 39.0
       },
       "SMALL_TALK": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 38.0
+        "support": 31.0
       },
       "SPLIT_BASKET": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 45.0
+        "support": 53.0
       },
       "THANKS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 34.0
+        "support": 36.0
       },
       "UNKNOWN": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 36.0
+        "support": 38.0
       },
       "VISITS": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 32.0
+        "support": 43.0
       },
       "WEEKLY_FLYER": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 39.0
+        "support": 52.0
       },
-      "accuracy": 1.0,
+      "accuracy": 0.9990476190476191,
       "macro avg": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 2000.0
+        "precision": 0.9989621172807474,
+        "recall": 0.9994400895856663,
+        "f1-score": 0.9991843971631206,
+        "support": 2100.0
       },
       "weighted avg": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 2000.0
+        "precision": 0.9990940766550522,
+        "recall": 0.9990476190476191,
+        "f1-score": 0.9990531746031747,
+        "support": 2100.0
       }
     }
   },
@@ -580,9 +580,9 @@
     "weighted_f1": 1.0
   },
   "entity_category": {
-    "accuracy": 0.974,
-    "macro_f1": 0.8439435336976321,
-    "weighted_f1": 0.9740521857923498
+    "accuracy": 0.9990476190476191,
+    "macro_f1": 0.99346128759356,
+    "weighted_f1": 0.999081395860184
   },
   "requires_memory": {
     "accuracy": 1.0,
@@ -600,41 +600,53 @@
     "weighted_f1": 1.0
   },
   "workflow_type": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "weighted_f1": 1.0,
+    "accuracy": 0.9995238095238095,
+    "macro_f1": 0.9986163610608941,
+    "weighted_f1": 0.9995226341313258,
     "classification_report": {
+      "multi_step": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 323.0
+      },
       "sequential": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 62.0
+        "support": 9.0
       },
       "single": {
         "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 1938.0
+        "recall": 0.9895833333333334,
+        "f1-score": 0.9947643979057592,
+        "support": 96.0
       },
-      "accuracy": 1.0,
-      "macro avg": {
-        "precision": 1.0,
+      "single_step": {
+        "precision": 0.9994022713687986,
         "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 2000.0
+        "f1-score": 0.9997010463378176,
+        "support": 1672.0
+      },
+      "accuracy": 0.9995238095238095,
+      "macro avg": {
+        "precision": 0.9998505678421996,
+        "recall": 0.9973958333333334,
+        "f1-score": 0.9986163610608941,
+        "support": 2100.0
       },
       "weighted avg": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 2000.0
+        "precision": 0.9995240941564909,
+        "recall": 0.9995238095238095,
+        "f1-score": 0.9995226341313258,
+        "support": 2100.0
       }
     }
   },
   "planner_actions": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "weighted_f1": 1.0
+    "accuracy": 0.9990476190476191,
+    "macro_f1": 0.9991284013605443,
+    "weighted_f1": 0.999048185941043
   },
   "planner_action_count": {
     "accuracy": 1.0,

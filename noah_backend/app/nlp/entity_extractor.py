@@ -13,8 +13,11 @@ KNOWN_PRODUCTS = [
     "frozen pizza", "frozen pizzas", "ice creams", "ice cream", "vegan cheese", "oat milk",
     "almond milk", "olive oil", "pizza", "milk", "bread", "butter",
     "eggs", "coffee", "cereal", "pasta", "salmon", "chocolate", "apples", "bananas",
-    "mayonnaise", "mayo", "ketchup", "mustard", "cheese", "yogurt"
+    "mayonnaise", "mayo", "ketchup", "mustard", "cheese", "yogurt",
+    "doner", "döner", "kebab", "döner kebab", "doner kebab", "shawarma", "falafel",
+    "currywurst", "burger", "sandwich", "salad", "sushi", "croissant", "bagel"
 ]
+
 
 
 def _number(value: str) -> float:
@@ -113,7 +116,9 @@ def extract_entities(instruction: str) -> dict:
         )
         if generic_product:
             value = generic_product.group(1).strip(" ,.")
+            value = re.sub(r"^(?:a|an|the|some)\s+", "", value, flags=re.IGNORECASE).strip(" ,.")
             if value and value.lower() not in {"the", "a", "an", "some"}:
                 entities["product"] = value.title()
 
     return entities
+

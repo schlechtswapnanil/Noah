@@ -148,6 +148,32 @@ def test_rag_retriever_pdf_and_web():
     assert len(web_results) > 0
 
 
+def test_chat_find_doner_under_5_euros():
+    response = client.post("/api/chat", json={"instruction": "Find me a doner under 5 euros near me"})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["domain"] == "PRODUCT"
+    assert data["intent"] == "SEARCH"
+    assert data["sub_intent"] == "SEARCH_BY_PRICE"
+    assert "SEARCH_PRODUCT_BY_PRICE" in data["planner_actions"]
+    assert OFFERHOPPER_MCP_TOOL in data["tool_sequence"]
+    assert data["entity_product"] == "Doner"
+    assert data["entity_price_max"] == 5.0
+    assert data["entity_location"] == "CURRENT_LOCATION"
+    assert data["offerhopperData"] is not None or len(data["response"]) > 10
+
+
+def test_chat_kebab_search_price():
+    response = client.post("/api/chat", json={"instruction": "Where can I get a kebab under 6 euros near me?"})
+    assert response.status_code == 200
+    data = response.json()
+    assert "SEARCH_PRODUCT_BY_PRICE" in data["planner_actions"]
+    assert OFFERHOPPER_MCP_TOOL in data["tool_sequence"]
+    assert data["entity_product"] == "Kebab"
+    assert data["entity_price_max"] == 6.0
+    assert data["entity_location"] == "CURRENT_LOCATION"
+
+
 if __name__ == "__main__":
     tests = [
         test_health,
@@ -155,6 +181,8 @@ if __name__ == "__main__":
         test_chat_loyalty_barcode,
         test_chat_product_search,
         test_chat_fetch_mayonnaise_offerhopper,
+        test_chat_find_doner_under_5_euros,
+        test_chat_kebab_search_price,
         test_chat_navigation,
         test_chat_offerhopper_basket,
         test_chat_offerhopper_route_optimization,
@@ -174,4 +202,5 @@ if __name__ == "__main__":
             print(f"FAILED: {t.__name__} -> {e}")
 
     print(f"\nTotal: {len(tests)}, Passed: {passed}, Failed: {len(tests) - passed}")
+
 

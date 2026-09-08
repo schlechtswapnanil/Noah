@@ -63,7 +63,11 @@ def chat(
         entities_dict = prediction.get("entities", {})
         items = entities_dict.get("product") or instruction
         location = entities_dict.get("location") or "CURRENT_LOCATION"
-        offerhopper_data = call_offerhopper_mcp(items=items, location=location)
+        # An empty dict means the MCP call failed.  Emit null instead so the
+        # Flutter dispatcher does not open an empty route card, and so the
+        # response layer says the price service was unreachable rather than
+        # promising results that never arrived.
+        offerhopper_data = call_offerhopper_mcp(items=items, location=location) or None
         plan["offerhopperData"] = offerhopper_data
 
     # --------------------------------------------------------

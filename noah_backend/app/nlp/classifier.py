@@ -1,147 +1,86 @@
-from .entity_extractor import extract_entities, KNOWN_PRODUCTS
-from ..planner.action_registry import ACTION_TO_TOOL
+"""Route a user instruction to a PayTo action plan.
+
+One model predicts ``(sub_intent, planner_actions)``; the rest of the response
+is looked up from that route.  Two properties follow:
+
+* the label tuple is always self-consistent - ``domain``, ``intent``, ``tool``,
+  ``response_mode`` and ``tool_sequence`` cannot contradict the plan;
+* when the winning route is below the calibrated confidence floor, Noah routes
+  to UNKNOWN and asks instead of acting.  Firing the wrong action costs the user
+  an opened card, a launched map or a paid MCP call; a clarifying question costs
+  a tap.
+"""
+
+from __future__ import annotations
+
+import logging
+import re
+
+from .entity_extractor import extract_entities
+from .model_loader import UNKNOWN_ROUTE
+from .routing import score_routes
+
+logger = logging.getLogger(__name__)
+
+# "and then", "danach" - an explicit ordering marker is what separates a
+# sequential plan from a merely multi-step one.  It is a property of the
+# sentence, not of the route, so it is derived per request rather than read
+# from the registry (which stores whichever value the route's first row had).
+_SEQUENCE_MARKER = re.compile(
+    r"\b(?:and\s+then|then|after\s+that|afterwards|"
+    r"und\s+dann|dann|danach|anschließend|anschliessend)\b",
+    re.IGNORECASE,
+)
+
+RESPONSE_FIELDS = [
+    "domain", "intent", "sub_intent", "tool", "response_mode",
+    "requires_memory", "requires_rag", "requires_recommendation",
+    "workflow_type", "planner_actions", "planner_action_count", "tool_sequence",
+]
 
 
-BOOLEAN_FIELDS = {
-    "requires_memory",
-    "requires_rag",
-    "requires_recommendation",
-}
+def _workflow_type(instruction: str, actions: list) -> str:
+    if len(actions) > 1:
+        return "sequential" if _SEQUENCE_MARKER.search(instruction or "") else "multi_step"
+    return "single_step"
 
 
-def classify(
-    instruction: str,
-    models: dict
-):
-    lowered = instruction.lower()
-    result = {}
+def _unknown() -> dict:
+    result = {field: UNKNOWN_ROUTE[field] for field in RESPONSE_FIELDS}
+    result["planner_actions"] = []
+    result["tool_sequence"] = []
+    return result
 
-    # --------------------------------------------------------
-    # SVM predictions
-    # --------------------------------------------------------
 
-    for field, model in models.items():
+def classify(instruction: str, models: dict) -> dict:
+    """Predict the route for `instruction` and expand it to response fields."""
+    model = models.get("model")
+    registry = models.get("registry") or {}
+    threshold = float(models.get("threshold", 0.4))
 
-        prediction = model.predict(
-            [instruction]
-        )[0]
+    if model is None or not registry:
+        logger.warning("Route model unavailable; falling back to a clarifying question.")
+        result = _unknown()
+        result["entities"] = extract_entities(instruction)
+        return result
 
-        if field in BOOLEAN_FIELDS:
+    routes, confidences = score_routes(model, registry, [instruction])
+    route, confidence = str(routes[0]), float(confidences[0])
 
-            prediction = (
-                str(prediction).lower()
-                == "true"
-            )
-
-        elif prediction == "NULL":
-
-            prediction = None
-
-        result[field] = prediction
-
-    # --------------------------------------------------------
-    # Entity extraction
-    # --------------------------------------------------------
-
-    result["entities"] = extract_entities(
-        instruction
-    )
-
-    # --------------------------------------------------------
-    # Planner actions
-    # --------------------------------------------------------
-
-    raw_actions = result.get(
-        "planner_actions"
-    )
-
-    if isinstance(raw_actions, str):
-
-        actions = [
-            x.strip()
-            for x in raw_actions.split("|")
-            if x.strip()
-        ]
-
+    entry = registry.get(route)
+    if entry is None or confidence < threshold:
+        # Confidence stays out of the response body: the wire contract in
+        # tests/test_response_contract.py is frozen.  Log it instead.
+        logger.info("declining route %s (confidence %.3f < %.3f)", route, confidence, threshold)
+        result = _unknown()
     else:
-        actions = []
+        result = {field: entry[field] for field in RESPONSE_FIELDS}
+        result["planner_actions"] = list(entry["planner_actions"])
+        result["tool_sequence"] = list(entry["tool_sequence"])
+        result["planner_action_count"] = len(result["planner_actions"])
+        result["workflow_type"] = _workflow_type(instruction, result["planner_actions"])
 
-    # Preserve an explicit final navigation request even when the sequence SVM
-    # predicts only its product-search prefix (a sparse multi-step phrasing).
-    navigation_terms = ("navigate", "directions", "take me there", "open the map", "open maps")
-    navigation_actions = {"OPEN_GOOGLE_MAPS", "GET_DIRECTIONS", "PLAN_ROUTE"}
-    if (actions and any(term in lowered for term in navigation_terms)
-            and not navigation_actions.intersection(actions)):
-        actions.append("OPEN_GOOGLE_MAPS")
-        result["workflow_type"] = "sequential"
-
-    # Basket optimisation needs a different data source from a single-product
-    # search. The supervised model can classify phrases such as "cheapest way
-    # to buy" as SEARCH_PRODUCT, so prefer the basket action when the request
-    # explicitly asks for the lowest total across a multi-item grocery list.
-    basket_optimisation_terms = (
-        "cheapest basket",
-        "cheapest way to buy",
-        "cheapest way to get",
-        "lowest total",
-        "lowest basket cost",
-        "most cost-effective",
-        "optimal shopping route",
-        "split my grocery basket",
-        "split my basket",
-    )
-    grocery_item_markers = ("milk", "bread", "butter", "eggs", "coffee", "pasta", "olive oil", "salmon")
-    has_multi_item_basket = sum(marker in lowered for marker in grocery_item_markers) >= 2
-    
-    # German merchants for exclusion
-    german_merchants = ("rewe", "netto", "lidl", "aldi", "kaufland", "edeka", "penny", "müller", "mueller", "dm", "rossmann", "globus", "hit")
-    is_offers_on_grocery = (
-        ("offers on" in lowered or "offers for" in lowered) 
-        and any(item in lowered for item in KNOWN_PRODUCTS + list(grocery_item_markers))
-        and not any(merchant in lowered for merchant in german_merchants)
-    )
-    
-    if any(term in lowered for term in basket_optimisation_terms) or is_offers_on_grocery:
-        if "route" in lowered:
-            actions = ["OPTIMIZE_SHOPPING_ROUTE"]
-        elif "split" in lowered:
-            actions = ["SPLIT_BASKET_ACROSS_MERCHANTS"]
-        elif has_multi_item_basket or "basket" in lowered or is_offers_on_grocery:
-            actions = ["FIND_CHEAPEST_BASKET"]
-        result["workflow_type"] = "single"
-
-    # Preserve explicit sequential clauses even when a sparse multi-step class
-    # is not selected by the supervised model.
-    if "then" in lowered:
-        if any(card in lowered for card in ("netto plus", "lidl plus", "rewe bonus", "edeka card", "payback", "deutschlandcard")) and "OPEN_WALLET_CARD" not in actions:
-            actions.append("OPEN_WALLET_CARD")
-        if any(term in lowered for term in ("route", "navigate", "directions")) and "OPEN_GOOGLE_MAPS" not in actions:
-            actions.append("OPEN_GOOGLE_MAPS")
-        if len(actions) > 1:
-            result["workflow_type"] = "sequential"
-
-    # Ensure PayTo / App information & FAQ questions route to RAG
-    if any(phrase in lowered for phrase in ("what is payto", "how does payto", "does payto", "about payto", "payto faq", "privacy policy", "payto store", "who created payto")):
-        result["requires_rag"] = True
-        result["domain"] = "KNOWLEDGE"
-        result["intent"] = "PAYTO_INFORMATION"
-        result["sub_intent"] = "PAYTO_INFORMATION"
-        result["tool"] = "rag_engine"
-        actions = ["ANSWER_PAYTO_QUESTION"]
-        result["workflow_type"] = "single"
-
-    result["planner_actions"] = actions
-    result["planner_action_count"] = len(actions)
-
-    # --------------------------------------------------------
-    # Tool sequence (synchronized with action registry)
-    # --------------------------------------------------------
-    if actions:
-        result["tool_sequence"] = [
-            ACTION_TO_TOOL.get(action, result.get("tool", "none"))
-            for action in actions
-        ]
-    else:
-        result["tool_sequence"] = []
-
+    # The plan tells the extractor what kind of request this is: a wallet or
+    # navigation action has no product to read out of the sentence.
+    result["entities"] = extract_entities(instruction, result["planner_actions"])
     return result

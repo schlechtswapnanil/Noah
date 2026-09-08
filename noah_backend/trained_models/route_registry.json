@@ -1,0 +1,1186 @@
+{
+  "ADD_CARD»ADD_LOYALTY_CARD": {
+    "domain": "WALLET",
+    "intent": "MANAGE",
+    "sub_intent": "ADD_CARD",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "ADD_LOYALTY_CARD"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "ADD_CARD»ADD_LOYALTY_CARD|LIST_WALLET_CARDS": {
+    "domain": "WALLET",
+    "intent": "MANAGE",
+    "sub_intent": "ADD_CARD",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "ADD_LOYALTY_CARD",
+      "LIST_WALLET_CARDS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "wallet_tool",
+      "wallet_tool"
+    ]
+  },
+  "APP_HELP»PROVIDE_APP_HELP": {
+    "domain": "KNOWLEDGE",
+    "intent": "APP_HELP",
+    "sub_intent": "APP_HELP",
+    "tool": "rag_engine",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": true,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "PROVIDE_APP_HELP"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "rag_engine"
+    ]
+  },
+  "BUILD_LIST»BUILD_SHOPPING_LIST": {
+    "domain": "SHOPPING",
+    "intent": "BUILD_LIST",
+    "sub_intent": "BUILD_LIST",
+    "tool": "planner",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "BUILD_SHOPPING_LIST"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "planner"
+    ]
+  },
+  "CASHBACK»SEARCH_CASHBACK": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "CASHBACK",
+    "tool": "offers_tool",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_CASHBACK"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offers_tool"
+    ]
+  },
+  "CHECK_AVAILABILITY»CHECK_PRODUCT_AVAILABILITY": {
+    "domain": "PRODUCT",
+    "intent": "CHECK",
+    "sub_intent": "CHECK_AVAILABILITY",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "CHECK_PRODUCT_AVAILABILITY"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "COMPARE_PRODUCTS»COMPARE_PRODUCTS": {
+    "domain": "PRODUCT",
+    "intent": "COMPARE",
+    "sub_intent": "COMPARE_PRODUCTS",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "COMPARE_PRODUCTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "CONTACT»GET_MERCHANT_CONTACT": {
+    "domain": "MERCHANT",
+    "intent": "SHOW",
+    "sub_intent": "CONTACT",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "GET_MERCHANT_CONTACT"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "merchant_api"
+    ]
+  },
+  "DETAILS»GET_MERCHANT_DETAILS": {
+    "domain": "MERCHANT",
+    "intent": "SHOW",
+    "sub_intent": "DETAILS",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "GET_MERCHANT_DETAILS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "merchant_api"
+    ]
+  },
+  "DIRECTIONS»GET_DIRECTIONS": {
+    "domain": "NAVIGATION",
+    "intent": "ROUTE",
+    "sub_intent": "DIRECTIONS",
+    "tool": "maps_tool",
+    "response_mode": "navigation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "GET_DIRECTIONS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "maps_tool"
+    ]
+  },
+  "DIRECTIONS»GET_DIRECTIONS|OPEN_GOOGLE_MAPS": {
+    "domain": "NAVIGATION",
+    "intent": "ROUTE",
+    "sub_intent": "DIRECTIONS",
+    "tool": "maps_tool",
+    "response_mode": "navigation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "GET_DIRECTIONS",
+      "OPEN_GOOGLE_MAPS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "maps_tool",
+      "maps_tool"
+    ]
+  },
+  "FAQ»ANSWER_FAQ": {
+    "domain": "KNOWLEDGE",
+    "intent": "FAQ",
+    "sub_intent": "FAQ",
+    "tool": "rag_engine",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": true,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "ANSWER_FAQ"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "rag_engine"
+    ]
+  },
+  "FEEDBACK»SUBMIT_FEEDBACK": {
+    "domain": "SYSTEM",
+    "intent": "FEEDBACK",
+    "sub_intent": "FEEDBACK",
+    "tool": "planner",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SUBMIT_FEEDBACK"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "planner"
+    ]
+  },
+  "FIND_CHEAPEST_BASKET»FIND_CHEAPEST_BASKET": {
+    "domain": "SHOPPING",
+    "intent": "FIND_CHEAPEST_BASKET",
+    "sub_intent": "FIND_CHEAPEST_BASKET",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "FIND_CHEAPEST_BASKET"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "FIND_CHEAPEST_BASKET»FIND_CHEAPEST_BASKET|OPTIMIZE_SHOPPING_ROUTE": {
+    "domain": "SHOPPING",
+    "intent": "FIND_CHEAPEST_BASKET",
+    "sub_intent": "FIND_CHEAPEST_BASKET",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "FIND_CHEAPEST_BASKET",
+      "OPTIMIZE_SHOPPING_ROUTE"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "offerhopper_mcp",
+      "offerhopper_mcp"
+    ]
+  },
+  "GOODBYE»NULL": {
+    "domain": "CHAT",
+    "intent": "GOODBYE",
+    "sub_intent": "GOODBYE",
+    "tool": "none",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [],
+    "planner_action_count": 0,
+    "tool_sequence": []
+  },
+  "GREETING»NULL": {
+    "domain": "CHAT",
+    "intent": "GREETING",
+    "sub_intent": "GREETING",
+    "tool": "none",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [],
+    "planner_action_count": 0,
+    "tool_sequence": []
+  },
+  "HELP»SHOW_HELP": {
+    "domain": "SYSTEM",
+    "intent": "HELP",
+    "sub_intent": "HELP",
+    "tool": "planner",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SHOW_HELP"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "planner"
+    ]
+  },
+  "LIST_CARDS»LIST_WALLET_CARDS": {
+    "domain": "WALLET",
+    "intent": "SHOW",
+    "sub_intent": "LIST_CARDS",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "LIST_WALLET_CARDS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "MERCHANT»RECOMMEND_MERCHANTS": {
+    "domain": "RECOMMENDATION",
+    "intent": "RECOMMEND",
+    "sub_intent": "MERCHANT",
+    "tool": "recommendation_engine",
+    "response_mode": "recommendation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "RECOMMEND_MERCHANTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "recommendation_engine"
+    ]
+  },
+  "NEARBY»SEARCH_NEARBY_MERCHANTS": {
+    "domain": "MERCHANT",
+    "intent": "SEARCH",
+    "sub_intent": "NEARBY",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_NEARBY_MERCHANTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "merchant_api"
+    ]
+  },
+  "NEARBY»SEARCH_NEARBY_MERCHANTS|OPEN_GOOGLE_MAPS": {
+    "domain": "MERCHANT",
+    "intent": "SEARCH",
+    "sub_intent": "NEARBY",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "SEARCH_NEARBY_MERCHANTS",
+      "OPEN_GOOGLE_MAPS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "merchant_api",
+      "maps_tool"
+    ]
+  },
+  "OFFER»RECOMMEND_OFFERS": {
+    "domain": "RECOMMENDATION",
+    "intent": "RECOMMEND",
+    "sub_intent": "OFFER",
+    "tool": "offers_tool",
+    "response_mode": "recommendation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "RECOMMEND_OFFERS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offers_tool"
+    ]
+  },
+  "OPENING_HOURS»GET_OPENING_HOURS": {
+    "domain": "MERCHANT",
+    "intent": "SHOW",
+    "sub_intent": "OPENING_HOURS",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "GET_OPENING_HOURS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "merchant_api"
+    ]
+  },
+  "OPENING_HOURS»GET_OPENING_HOURS|GET_DIRECTIONS": {
+    "domain": "MERCHANT",
+    "intent": "SHOW",
+    "sub_intent": "OPENING_HOURS",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "GET_OPENING_HOURS",
+      "GET_DIRECTIONS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "merchant_api",
+      "maps_tool"
+    ]
+  },
+  "OPEN_CARD»OPEN_WALLET_CARD": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "OPEN_CARD",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "OPEN_WALLET_CARD"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "OPEN_CARD»OPEN_WALLET_CARD|DISPLAY_BARCODE": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "OPEN_CARD",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "OPEN_WALLET_CARD",
+      "DISPLAY_BARCODE"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "wallet_tool",
+      "wallet_tool"
+    ]
+  },
+  "OPEN_MAP»OPEN_GOOGLE_MAPS": {
+    "domain": "NAVIGATION",
+    "intent": "ROUTE",
+    "sub_intent": "OPEN_MAP",
+    "tool": "maps_tool",
+    "response_mode": "navigation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "OPEN_GOOGLE_MAPS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "maps_tool"
+    ]
+  },
+  "OPTIMIZE_ROUTE»OPTIMIZE_SHOPPING_ROUTE": {
+    "domain": "SHOPPING",
+    "intent": "OPTIMIZE_ROUTE",
+    "sub_intent": "OPTIMIZE_ROUTE",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "OPTIMIZE_SHOPPING_ROUTE"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "OPTIMIZE_ROUTE»OPTIMIZE_SHOPPING_ROUTE|OPEN_GOOGLE_MAPS": {
+    "domain": "SHOPPING",
+    "intent": "OPTIMIZE_ROUTE",
+    "sub_intent": "OPTIMIZE_ROUTE",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "OPTIMIZE_SHOPPING_ROUTE",
+      "OPEN_GOOGLE_MAPS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "offerhopper_mcp",
+      "maps_tool"
+    ]
+  },
+  "PAYTO_INFORMATION»ANSWER_PAYTO_QUESTION": {
+    "domain": "KNOWLEDGE",
+    "intent": "PAYTO_INFORMATION",
+    "sub_intent": "PAYTO_INFORMATION",
+    "tool": "rag_engine",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": true,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "ANSWER_PAYTO_QUESTION"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "rag_engine"
+    ]
+  },
+  "PERSONALIZED»GET_PERSONALIZED_RECOMMENDATIONS": {
+    "domain": "RECOMMENDATION",
+    "intent": "RECOMMEND",
+    "sub_intent": "PERSONALIZED",
+    "tool": "recommendation_engine",
+    "response_mode": "recommendation",
+    "requires_memory": true,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "GET_PERSONALIZED_RECOMMENDATIONS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "recommendation_engine"
+    ]
+  },
+  "PRODUCT»RECOMMEND_PRODUCTS": {
+    "domain": "RECOMMENDATION",
+    "intent": "RECOMMEND",
+    "sub_intent": "PRODUCT",
+    "tool": "recommendation_engine",
+    "response_mode": "recommendation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "RECOMMEND_PRODUCTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "recommendation_engine"
+    ]
+  },
+  "PROFILE»SHOW_PROFILE": {
+    "domain": "ACCOUNT",
+    "intent": "PROFILE",
+    "sub_intent": "PROFILE",
+    "tool": "firestore",
+    "response_mode": "hybrid",
+    "requires_memory": true,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SHOW_PROFILE"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "firestore"
+    ]
+  },
+  "PURCHASE_HISTORY»SHOW_PURCHASE_HISTORY": {
+    "domain": "ACCOUNT",
+    "intent": "PURCHASE_HISTORY",
+    "sub_intent": "PURCHASE_HISTORY",
+    "tool": "firestore",
+    "response_mode": "hybrid",
+    "requires_memory": true,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SHOW_PURCHASE_HISTORY"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "firestore"
+    ]
+  },
+  "REMOVE_CARD»REMOVE_LOYALTY_CARD": {
+    "domain": "WALLET",
+    "intent": "MANAGE",
+    "sub_intent": "REMOVE_CARD",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "REMOVE_LOYALTY_CARD"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "REMOVE_CARD»REMOVE_LOYALTY_CARD|LIST_WALLET_CARDS": {
+    "domain": "WALLET",
+    "intent": "MANAGE",
+    "sub_intent": "REMOVE_CARD",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "REMOVE_LOYALTY_CARD",
+      "LIST_WALLET_CARDS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "wallet_tool",
+      "wallet_tool"
+    ]
+  },
+  "REPORT_BUG»REPORT_BUG": {
+    "domain": "SYSTEM",
+    "intent": "REPORT_BUG",
+    "sub_intent": "REPORT_BUG",
+    "tool": "planner",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "REPORT_BUG"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "planner"
+    ]
+  },
+  "ROUTE»PLAN_ROUTE": {
+    "domain": "NAVIGATION",
+    "intent": "ROUTE",
+    "sub_intent": "ROUTE",
+    "tool": "maps_tool",
+    "response_mode": "navigation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "PLAN_ROUTE"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "maps_tool"
+    ]
+  },
+  "ROUTE»PLAN_ROUTE|OPEN_GOOGLE_MAPS": {
+    "domain": "NAVIGATION",
+    "intent": "ROUTE",
+    "sub_intent": "ROUTE",
+    "tool": "maps_tool",
+    "response_mode": "navigation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "PLAN_ROUTE",
+      "OPEN_GOOGLE_MAPS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "maps_tool",
+      "maps_tool"
+    ]
+  },
+  "ROUTE»PLAN_ROUTE|OPEN_WALLET_CARD": {
+    "domain": "NAVIGATION",
+    "intent": "ROUTE",
+    "sub_intent": "ROUTE",
+    "tool": "maps_tool",
+    "response_mode": "navigation",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "PLAN_ROUTE",
+      "OPEN_WALLET_CARD"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "maps_tool",
+      "wallet_tool"
+    ]
+  },
+  "SEARCH_BY_BRAND»SEARCH_PRODUCT_BY_BRAND": {
+    "domain": "PRODUCT",
+    "intent": "SEARCH",
+    "sub_intent": "SEARCH_BY_BRAND",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_PRODUCT_BY_BRAND"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "SEARCH_BY_CATEGORY»SEARCH_PRODUCT_BY_CATEGORY": {
+    "domain": "PRODUCT",
+    "intent": "SEARCH",
+    "sub_intent": "SEARCH_BY_CATEGORY",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_PRODUCT_BY_CATEGORY"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "SEARCH_BY_PRICE»SEARCH_PRODUCT_BY_PRICE": {
+    "domain": "PRODUCT",
+    "intent": "SEARCH",
+    "sub_intent": "SEARCH_BY_PRICE",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_PRODUCT_BY_PRICE"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "SEARCH_BY_PRICE»SEARCH_PRODUCT_BY_PRICE|OPEN_GOOGLE_MAPS": {
+    "domain": "PRODUCT",
+    "intent": "SEARCH",
+    "sub_intent": "SEARCH_BY_PRICE",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "SEARCH_PRODUCT_BY_PRICE",
+      "OPEN_GOOGLE_MAPS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "offerhopper_mcp",
+      "maps_tool"
+    ]
+  },
+  "SEARCH»SEARCH_MERCHANT": {
+    "domain": "MERCHANT",
+    "intent": "SEARCH",
+    "sub_intent": "SEARCH",
+    "tool": "merchant_api",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_MERCHANT"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "merchant_api"
+    ]
+  },
+  "SEARCH»SEARCH_PRODUCT": {
+    "domain": "PRODUCT",
+    "intent": "SEARCH",
+    "sub_intent": "SEARCH",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_PRODUCT"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "SETTINGS»OPEN_SETTINGS": {
+    "domain": "ACCOUNT",
+    "intent": "SETTINGS",
+    "sub_intent": "SETTINGS",
+    "tool": "planner",
+    "response_mode": "hybrid",
+    "requires_memory": true,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "OPEN_SETTINGS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "planner"
+    ]
+  },
+  "SHOW_BARCODE»DISPLAY_BARCODE": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "SHOW_BARCODE",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "DISPLAY_BARCODE"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "SHOW_BARCODE»DISPLAY_BARCODE|OPEN_WALLET_CARD": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "SHOW_BARCODE",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "DISPLAY_BARCODE",
+      "OPEN_WALLET_CARD"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "wallet_tool",
+      "wallet_tool"
+    ]
+  },
+  "SHOW_DISCOUNTS»SEARCH_DISCOUNTS": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "SHOW_DISCOUNTS",
+    "tool": "offers_tool",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_DISCOUNTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offers_tool"
+    ]
+  },
+  "SHOW_OFFERS»SEARCH_OFFERS": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "SHOW_OFFERS",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SEARCH_OFFERS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "SHOW_OFFERS»SEARCH_OFFERS|DISPLAY_BARCODE": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "SHOW_OFFERS",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "SEARCH_OFFERS",
+      "DISPLAY_BARCODE"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "offerhopper_mcp",
+      "wallet_tool"
+    ]
+  },
+  "SHOW_OFFERS»SEARCH_OFFERS|OPEN_WALLET_CARD": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "SHOW_OFFERS",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "SEARCH_OFFERS",
+      "OPEN_WALLET_CARD"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "offerhopper_mcp",
+      "wallet_tool"
+    ]
+  },
+  "SHOW_POINTS»DISPLAY_POINTS": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "SHOW_POINTS",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "DISPLAY_POINTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "SHOW_POINTS»DISPLAY_POINTS|DISPLAY_REWARDS": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "SHOW_POINTS",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "DISPLAY_POINTS",
+      "DISPLAY_REWARDS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "wallet_tool",
+      "wallet_tool"
+    ]
+  },
+  "SHOW_REWARDS»DISPLAY_REWARDS": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "SHOW_REWARDS",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "DISPLAY_REWARDS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "wallet_tool"
+    ]
+  },
+  "SHOW_REWARDS»DISPLAY_REWARDS|OPEN_WALLET_CARD": {
+    "domain": "WALLET",
+    "intent": "OPEN_CARD",
+    "sub_intent": "SHOW_REWARDS",
+    "tool": "wallet_tool",
+    "response_mode": "functional",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "sequential",
+    "planner_actions": [
+      "DISPLAY_REWARDS",
+      "OPEN_WALLET_CARD"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "wallet_tool",
+      "wallet_tool"
+    ]
+  },
+  "SMALL_TALK»NULL": {
+    "domain": "CHAT",
+    "intent": "SMALL_TALK",
+    "sub_intent": "SMALL_TALK",
+    "tool": "none",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [],
+    "planner_action_count": 0,
+    "tool_sequence": []
+  },
+  "SPLIT_BASKET»SPLIT_BASKET_ACROSS_MERCHANTS": {
+    "domain": "SHOPPING",
+    "intent": "SPLIT_BASKET",
+    "sub_intent": "SPLIT_BASKET",
+    "tool": "offerhopper_mcp",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": true,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SPLIT_BASKET_ACROSS_MERCHANTS"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offerhopper_mcp"
+    ]
+  },
+  "THANKS»NULL": {
+    "domain": "CHAT",
+    "intent": "THANKS",
+    "sub_intent": "THANKS",
+    "tool": "none",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [],
+    "planner_action_count": 0,
+    "tool_sequence": []
+  },
+  "UNKNOWN»NULL": {
+    "domain": "CHAT",
+    "intent": "UNKNOWN",
+    "sub_intent": "UNKNOWN",
+    "tool": "none",
+    "response_mode": "text",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [],
+    "planner_action_count": 0,
+    "tool_sequence": []
+  },
+  "VISITS»SHOW_VISIT_HISTORY": {
+    "domain": "ACCOUNT",
+    "intent": "VISITS",
+    "sub_intent": "VISITS",
+    "tool": "firestore",
+    "response_mode": "hybrid",
+    "requires_memory": true,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "SHOW_VISIT_HISTORY"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "firestore"
+    ]
+  },
+  "WEEKLY_FLYER»OPEN_WEEKLY_FLYER": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "WEEKLY_FLYER",
+    "tool": "offers_tool",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "single_step",
+    "planner_actions": [
+      "OPEN_WEEKLY_FLYER"
+    ],
+    "planner_action_count": 1,
+    "tool_sequence": [
+      "offers_tool"
+    ]
+  },
+  "WEEKLY_FLYER»OPEN_WEEKLY_FLYER|GET_DIRECTIONS": {
+    "domain": "OFFER",
+    "intent": "SEARCH",
+    "sub_intent": "WEEKLY_FLYER",
+    "tool": "offers_tool",
+    "response_mode": "hybrid",
+    "requires_memory": false,
+    "requires_rag": false,
+    "requires_recommendation": false,
+    "workflow_type": "multi_step",
+    "planner_actions": [
+      "OPEN_WEEKLY_FLYER",
+      "GET_DIRECTIONS"
+    ],
+    "planner_action_count": 2,
+    "tool_sequence": [
+      "offers_tool",
+      "maps_tool"
+    ]
+  }
+}

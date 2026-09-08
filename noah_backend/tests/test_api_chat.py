@@ -137,15 +137,21 @@ def test_chat_greeting_conversation():
     assert "noah" in data["response"].lower() or "help" in data["response"].lower()
 
 
-def test_rag_retriever_pdf_and_web():
+def test_rag_retriever_indexes_user_facing_documents_only():
+    """The corpus used to include Noah's own sprint plan, intent spec and API
+    cost sheet, all of which were quotable to end users.  Internal documents
+    must now retrieve nothing; the privacy policy and FAQ must still answer."""
     chunks = get_chunks()
     assert len(chunks) > 50
-    # Test PDF chunk retrieval
-    pdf_results = retrieve("hierarchical intent classification taxonomy Noah")
-    assert len(pdf_results) > 0
-    # Test Web FAQ chunk retrieval
-    web_results = retrieve("Does Payto store my payment details?")
-    assert len(web_results) > 0
+    assert not any("Week 1 Plan" in chunk or "APIs and Subscriptions" in chunk
+                   or "noah_guide" in chunk for chunk in chunks)
+
+    assert retrieve("hierarchical intent classification taxonomy Noah") == []
+    assert retrieve("What are the API subscription tiers and costs?") == [] or all(
+        "Subscription" not in result for result in
+        retrieve("What are the API subscription tiers and costs?"))
+
+    assert len(retrieve("Does Payto store my payment details?")) > 0
 
 
 def test_chat_find_doner_under_5_euros():

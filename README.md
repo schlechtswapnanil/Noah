@@ -5,11 +5,11 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg?logo=fastapi&logoColor=white)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Classification-F7931E.svg?logo=scikit-learn&logoColor=white)
-![Sentence-Transformers](https://img.shields.io/badge/Embeddings-FAISS%20%2B%20SBERT-yellowgreen.svg)
+![Bilingual](https://img.shields.io/badge/Languages-EN%20%2B%20DE-yellowgreen.svg)
 ![MCP](https://img.shields.io/badge/MCP-Offerhopper%20Protocol-8A2BE2.svg)
 ![Flutter](https://img.shields.io/badge/Frontend-Flutter%20Ready-02569B.svg?logo=flutter&logoColor=white)
 
-**Noah** is an embedded conversational intelligence and action engine built for the **PayTo** mobile ecosystem. It combines multi-task NLP classification, deterministic action planning, live shopping route optimization via Offerhopper MCP, FAISS-powered document RAG, and LLM synthesis to deliver structured in-app interactions.
+**Noah** is an embedded conversational intelligence and action engine built for the **PayTo** mobile ecosystem. It combines calibrated route classification, deterministic action planning, live shopping route optimization via Offerhopper MCP, document-grounded retrieval, and LLM synthesis to deliver structured in-app interactions.
 
 </div>
 
@@ -34,20 +34,22 @@
 ## 🌟 Overview
 
 Noah bridges user intent with actionable PayTo application logic and real-world grocery intelligence. Rather than acting merely as a conversational chatbot, Noah:
-1. **Understands Intent**: Evaluates multi-target taxonomy parameters (domain, intent, sub-intent, entities, workflow, tool requirements) using scikit-learn models trained on 20,000+ domain utterances.
+1. **Understands Intent**: Predicts a single *route* — `(sub_intent, planner_actions)` — with a calibrated scikit-learn classifier, then derives every other taxonomy field (domain, intent, tool, response mode, workflow, tool sequence) from that route. Below a calibrated confidence floor it asks a clarifying question instead of acting.
 2. **Plans In-App Actions**: Translates intents into structured UI actions (e.g., barcode modals, card open triggers, offer carousels).
 3. **Optimizes Grocery Basket & Routes**: Connects to the **Offerhopper MCP server** (`https://mcp.offerhopper.ai/mcp`) to split shopping lists across German supermarkets (Aldi, Lidl, Rewe, Edeka, etc.) for maximum savings and minimal travel time.
-4. **Retrieves Grounded Knowledge**: Augments LLM answers with FAISS-based vector search over PayTo policies, guides, and subscription manuals.
+4. **Retrieves Grounded Knowledge**: Augments LLM answers with TF-IDF retrieval over an allowlist of user-facing documents (privacy policy, published FAQ). When nothing clears the relevance floor Noah says it does not have the answer rather than improvising.
 5. **Emits Structured JSON**: Returns machine-readable payloads directly consumable by the Flutter frontend.
 
 ---
 
 ## 🚀 Key Features
 
-* **Multi-Target Intent & Entity Classification**: Fast CPU-level inference using TF-IDF vectorizers and calibrated classifiers (`joblib` pipelines).
+* **Single-Route Intent Classification**: Fast CPU inference using word + character TF-IDF and a calibrated logistic-regression pipeline (`route.joblib`). Character n-grams carry typo and German-compound robustness; deriving the remaining fields from `route_registry.json` makes a self-contradictory response unrepresentable.
+* **Abstention**: Requests below the calibrated confidence threshold return zero planner actions and a clarifying question, rather than a guessed action.
+* **Bilingual**: English and German input, with replies in the language the user wrote in.
 * **Action Planner & Tool Sequencer**: Dynamically generates execution plans (`planner_actions`, `tool_sequence`, `response_mode`).
 * **Live Offerhopper MCP Integration**: Fetches real-time store splits, product prices, total savings, and interactive map URLs via JSON-RPC / Streamable HTTP.
-* **Document-Grounded RAG**: Semantic vector retrieval over internal PDFs (`sentence-transformers/all-MiniLM-L6-v2` + `faiss-cpu`) to eliminate hallucinations.
+* **Document-Grounded RAG**: TF-IDF retrieval over an explicit allowlist of *user-facing* documents (privacy policy, published FAQ) plus a relevance floor. Internal engineering documents are never indexed, so they cannot be quoted back to a user.
 * **Pluggable LLM Providers**: Unified interface supporting **Groq** (`llama-3.3-70b-versatile`), **Google Gemini**, and **Ollama**.
 * **Flutter-First Response Modes**:
   * `functional`: High-contrast barcode modal triggers with automatic screen brightness boosting.
@@ -73,7 +75,7 @@ flowchart TD
     MCP -->|plan_optimal_shopping_route| OH_Server[(Offerhopper Server\nAldi, Lidl, Rewe, Edeka...)]
     OH_Server -->|Store Split & Savings Map| MCP
     
-    Planner -->|requires_rag = true| RAG[FAISS Vector Retriever]
+    Planner -->|requires_rag = true| RAG[TF-IDF Retriever\nuser-facing docs only]
     RAG -->|Context Documents| LLM[LLM Response Generator\nGroq / Gemini / Ollama]
 
     MCP --> LLM
@@ -106,23 +108,27 @@ Noah/
 │   │   ├── models/
 │   │   │   └── noah_response.py      # Pydantic schemas & response models
 │   │   ├── nlp/
-│   │   │   ├── classifier.py         # Multi-target ML inference pipeline
+│   │   │   ├── classifier.py         # Route prediction, abstention, plan expansion
+│   │   │   ├── routing.py            # Shared route scoring (train + serve)
 │   │   │   ├── entity_extractor.py   # Pattern & keyword entity extraction
-│   │   │   ├── model_loader.py       # Joblib model caching
-│   │   │   └── train.py              # Training script for 20k dataset
+│   │   │   ├── model_loader.py       # Route model + registry loading
+│   │   │   └── train.py              # Trainer + leakage-free evaluation
 │   │   ├── planner/
 │   │   │   ├── action_registry.py    # Available app actions & tool maps
 │   │   │   └── planner.py            # Rule & model-based action sequencer
 │   │   ├── rag/
-│   │   │   └── retriever.py          # SentenceTransformers + FAISS retrieval
+│   │   │   └── retriever.py          # TF-IDF retrieval over allowlisted documents
 │   │   ├── tools/
 │   │   │   └── offerhopper.py        # Offerhopper MCP client (HTTP JSON-RPC)
 │   │   └── main.py                   # FastAPI initialization & health checks
-│   ├── dataset/                      # Training datasets & taxonomies (CSV)
+│   ├── dataset/                      # Corpora, plus noah_holdout_probes.csv
+│   ├── scripts/
+│   │   └── build_dataset.py          # Rebuilds noah_dataset_v3.csv from the legacy export
 │   ├── rag/                          # Reference PDFs & documents for RAG
 │   ├── tests/
-│   │   └── test_api_chat.py          # Pytest API & integration test suite
-│   ├── trained_models/               # Serialized .joblib classification models
+│   │   ├── test_api_chat.py          # Pytest API & integration test suite
+│   │   └── test_response_contract.py # Frozen /api/chat wire contract
+│   ├── trained_models/               # route.joblib, route_registry.json, evaluation.json
 │   ├── Dockerfile                    # Containerization specification
 │   ├── requirements.txt              # Python dependencies
 │   └── verify_live.py                # Live verification & interactive test script
@@ -184,19 +190,22 @@ PORT=8000
 
 ## 🧠 Model Training & NLP Pipeline
 
-Noah uses lightweight, low-latency scikit-learn models for real-time classification on CPU:
+Noah predicts one label — the **route**, `(sub_intent, planner_actions)` — and derives everything else from it. In the corpus that pair determines `domain`, `intent`, `tool`, `response_mode`, the `requires_*` flags and `tool_sequence` with no ambiguity, so a single model replaces the thirteen independent heads that used to disagree with one another.
 
-* **Intent & Sub-Intent Classification**
-* **Domain & Workflow Type Detection**
-* **Tool & Recommendation Requirements**
-* **Response Mode Determination**
-
-To re-train all models using the dataset:
+### Rebuilding the corpus
 ```bash
 cd noah_backend
+python -m scripts.build_dataset      # -> dataset/noah_dataset_v3.csv
+```
+The legacy export (`noah_dataset_20k_final.csv`) is 21,000 rows built from only 4,377 unique utterances, so a random row split placed 86% of the test set into training verbatim and scored 1.00. The builder de-duplicates, resolves conflicting label tuples, repairs the `single`/`single_step` taxonomy overlap, and adds German, out-of-scope negatives, cross-tool multi-intent utterances and typo/ASR noise. Every label value stays inside the legacy vocabulary — the wire contract does not move.
+
+### Training
+```bash
 python -m app.nlp.train
 ```
-Trained artifacts will be saved as `.joblib` files under `noah_backend/trained_models/` along with performance evaluation metrics in `evaluation.json`.
+Writes `trained_models/route.joblib` (pipeline + calibrated confidence threshold), `trained_models/route_registry.json` (route → all other fields) and `trained_models/evaluation.json`.
+
+Evaluation splits by **surface template**, not by row, so a paraphrase of a training utterance cannot land in the test set. It also scores `dataset/noah_holdout_probes.csv` — hand-written utterances that never enter the corpus, half used to calibrate the confidence threshold and half held back to report generalisation. The trainer fails if any probe leaks into training.
 
 ---
 
@@ -221,48 +230,88 @@ Trained artifacts will be saved as `.joblib` files under `noah_backend/trained_m
 ```
 
 #### Response Body
+
+The key set is frozen and identical for every request — see `noah_backend/tests/test_response_contract.py`.
+
 ```json
 {
   "instruction": "Find the cheapest basket for milk, eggs and bread in Hamburg",
-  "domain": "shopping",
-  "intent": "offerhopper_optimization",
-  "sub_intent": "find_cheapest_basket",
+  "domain": "SHOPPING",
+  "intent": "FIND_CHEAPEST_BASKET",
+  "sub_intent": "FIND_CHEAPEST_BASKET",
+  "tool": "offerhopper_mcp",
   "response_mode": "hybrid",
-  "workflow_type": "external_mcp",
+  "requires_memory": false,
   "requires_rag": false,
   "requires_recommendation": true,
-  "requires_memory": false,
-  "entity_product": "milk, eggs, bread",
+  "workflow_type": "single_step",
+  "planner_actions": ["FIND_CHEAPEST_BASKET"],
+  "planner_action_count": 1,
+  "tool_sequence": ["offerhopper_mcp"],
+  "entity_product": "Milk, Eggs, Bread",
+  "entity_merchant": null,
+  "entity_brand": null,
+  "entity_category": null,
+  "entity_price_min": null,
+  "entity_price_max": null,
   "entity_location": "Hamburg",
-  "planner_actions": [
-    "CALL_OFFERHOPPER_MCP",
-    "DISPLAY_STORE_SPLIT_CARD"
-  ],
-  "planner_action_count": 2,
-  "tool_sequence": [
-    "offerhopper_mcp"
-  ],
+  "entity_radius": null,
+  "entity_loyalty_card": null,
   "offerhopperData": {
-    "summary": "Save €4.20 across 2 stores (Lidl & Rewe)",
-    "stores": [
-      {
-        "store": "Lidl",
-        "items": ["Milk 1L (€0.99)", "Eggs 10pk (€1.69)"],
-        "subtotal": "€2.68"
-      },
-      {
-        "store": "Rewe",
-        "items": ["Toast Bread 500g (€1.19)"],
-        "subtotal": "€1.19"
-      }
-    ],
-    "total": "€3.87",
-    "total_savings": "€4.20",
-    "share_url": "https://offerhopper.ai/route/share/abc123xyz"
+    "success": true,
+    "optimized_route": {
+      "stores": ["..."],
+      "route_segments": [
+        {
+          "to_name": "Edeka",
+          "to_store": { "name": "Edeka" },
+          "distance_km": 1.4,
+          "duration_minutes": 6,
+          "estimated_cost_at_store": 5.09,
+          "products_to_buy": [
+            { "selected_product": "Frische Milch", "price": 1.11, "regular_price": 1.29, "discount_pct": 14, "quantity": 1 }
+          ]
+        }
+      ],
+      "estimated_total_cost": 10.44,
+      "estimated_total_savings": 0.48,
+      "total_distance_km": 3.2,
+      "total_duration_minutes": 14
+    },
+    "cost_analysis": { "product_cost": 5.09, "travel_cost": 1.86, "in_store_time_cost": 3.0, "verdict": "..." },
+    "total_estimated_cost": 10.44,
+    "total_estimated_savings": 0.48,
+    "share_url": "https://offerhopper.ai/s/OPfn_NeP",
+    "ai_description": "..."
   },
-  "response": "I've optimized your shopping list for Hamburg. Splitting between Lidl and Rewe saves you €4.20. You can review the split route card above."
+  "response": "Found Vollkorn at Edeka for €1.19, Frische Milch at Edeka for €1.11, Herzstücke Eier at Edeka for €2.79. (Estimated savings: €0.48)"
 }
 ```
+
+**Value vocabularies.** `domain` ∈ `ACCOUNT, CHAT, KNOWLEDGE, MERCHANT, NAVIGATION, OFFER, PRODUCT, RECOMMENDATION, SHOPPING, SYSTEM, WALLET`. `response_mode` ∈ `functional, hybrid, navigation, text`. `workflow_type` ∈ `single_step, multi_step, sequential`. `planner_actions` are keys of `app/planner/action_registry.py`, and `tool_sequence[i]` is always the tool that action `i` maps to.
+
+#### When Noah is unsure
+
+Below the calibrated confidence threshold, or for a request outside PayTo's scope, the response keeps the same shape but carries no actions — the client should render `response` as a chat bubble and dispatch nothing:
+
+```json
+{
+  "instruction": "transfer 50 euros to my brother",
+  "domain": "CHAT",
+  "intent": "UNKNOWN",
+  "sub_intent": "UNKNOWN",
+  "tool": "none",
+  "response_mode": "text",
+  "workflow_type": "single_step",
+  "planner_actions": [],
+  "planner_action_count": 0,
+  "tool_sequence": [],
+  "offerhopperData": null,
+  "response": "I'm not sure what you need there. I can find products and offers, open your loyalty cards, or plan a cheaper shopping trip - which would you like?"
+}
+```
+
+If the OfferHopper call fails, `offerhopperData` is `null` and `response` says the price service was unreachable — it never reports prices that were not returned.
 
 ---
 
@@ -286,6 +335,10 @@ Noah is designed to power the Flutter conversational interface:
    * **Route & Split Cards**: Tappable store cards with interactive navigation links.
    * **Offer Carousels**: Horizontal scrollable product deal cards.
 
+> **Client gap to close:** `NoahActionDispatcher` switches on `PLAN_ROUTE` and `OPEN_GOOGLE_MAPS`, but not on `GET_DIRECTIONS`, which is a valid `maps_tool` action in the registry. "Take me to / drive me to / navigate to X" is trained onto `PLAN_ROUTE` so the common phrasings work today, but "How do I get to Rewe?" still returns `GET_DIRECTIONS` and the app will silently do nothing. Add it to the same `case` group.
+
+> Requests with no actions (`planner_actions: []`) are Noah asking a clarifying question or answering conversationally — render `response` and dispatch nothing.
+
 *For complete implementation details and Dart widget architecture, refer to [`noah_flutter_implementation_plan.md`](./noah_flutter_implementation_plan.md).*
 
 ---
@@ -297,6 +350,9 @@ Noah is designed to power the Flutter conversational interface:
 cd noah_backend
 pytest tests/ -v
 ```
+`tests/test_response_contract.py` pins the `/api/chat` request shape, response key set, value types and label vocabularies. It must stay green across any retraining or refactor — the Flutter client dispatches on `planner_actions`, `entities.*`, `response_mode` and `offerhopperData`.
+
+Note: `tests/test_api_chat.py` calls the live Offerhopper MCP server and will fail with `429 Too Many Requests` if run repeatedly in quick succession.
 
 ### Run Live Interactive CLI Verification
 ```bash

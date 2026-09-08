@@ -124,12 +124,16 @@ def split(df: pd.DataFrame, test_size: float, seed: int):
 # costs the user a tap.  These weights encode that ratio and are what the
 # confidence threshold is tuned against.
 # Business dial: raise CLARIFYING_QUESTION_COST to make Noah act more often and
-# ask less, lower it to make it more cautious.  0.35 says one wrong action is
-# worth about three unnecessary clarifying questions - a wrong action can open
-# the wrong card, launch maps, or spend an OfferHopper MCP call, while a
-# clarifying question costs the user one tap.
+# ask less, lower it to make it more cautious.  0.5 says one wrong action is
+# worth two unnecessary clarifying questions.
+#
+# Noah is not moving money: the worst wrong action opens the wrong screen or
+# spends one price lookup, while a refusal on a perfectly reasonable request is
+# the more visible failure to someone using the assistant.  Note that 0.35 and
+# 0.5 currently select the same threshold on the calibration probes - the dial
+# is here to be adjusted deliberately, not because it is presently load-bearing.
 WRONG_ACTION_COST = 1.0
-CLARIFYING_QUESTION_COST = 0.35
+CLARIFYING_QUESTION_COST = 0.5
 
 
 def load_probes(split: str | None = None) -> pd.DataFrame:

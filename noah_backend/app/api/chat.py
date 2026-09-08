@@ -7,7 +7,7 @@ from ..nlp.model_loader import load_models
 from ..nlp.classifier import classify
 from ..planner.planner import create_plan
 from ..llm.response_generator import generate_response
-from ..rag.retriever import retrieve
+from ..rag.retriever import retrieve, SCOPE_CAPABILITIES, SCOPE_PAYTO
 
 router = APIRouter(
     prefix="/chat",
@@ -74,9 +74,14 @@ def chat(
     # RAG: only document-grounded context from backend/rag is passed on.
     # --------------------------------------------------------
 
+    # Questions about Noah itself are answered from the capability document;
+    # questions about PayTo from PayTo's own documentation. Searching one pool
+    # for both lets an unrelated FAQ fragment outrank the real answer.
     rag_context = []
     if prediction.get("requires_rag"):
-        rag_context = retrieve(instruction)
+        actions = plan.get("planner_actions", [])
+        scope = SCOPE_CAPABILITIES if "PROVIDE_APP_HELP" in actions else SCOPE_PAYTO
+        rag_context = retrieve(instruction, scope=scope)
 
     response_text = generate_response(
         instruction,

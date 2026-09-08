@@ -427,7 +427,7 @@ def german_rows(factory: RouteFactory) -> list[dict]:
                  "Danke schön!", "Super, danke!", "Das hat geholfen, danke.",
                  "Tausend Dank!", "Merci!"]:
         add(text, "THANKS", "NULL")
-    for text in ["Wie geht es dir?", "Wer bist du?", "Was kannst du?",
+    for text in ["Wie geht es dir?", "Wer bist du?",
                  "Bist du ein Roboter?", "Erzähl mir einen Witz.", "Wie heißt du?",
                  "Was machst du gerade?", "Alles gut bei dir?", "Magst du Kaffee?"]:
         add(text, "SMALL_TALK", "NULL")
@@ -541,7 +541,7 @@ ENGLISH_CHAT = {
     ],
     "SMALL_TALK": [
         "How are you doing?", "Hey, how are you?", "What's up?", "Who are you?",
-        "What can you do?", "Are you a robot?", "What's your name?",
+        "Are you a robot?", "What's your name?",
         "Tell me a joke.", "Are you human?", "How was your day?",
         "Do you ever sleep?", "What are you up to?", "Are you real?",
         "Do you like shopping?", "How old are you?", "Are you doing okay?",
@@ -858,6 +858,31 @@ FRAMES: dict[tuple[str, str], list[tuple[str, str]]] = {
         ("de", "Wie füge ich eine Treuekarte hinzu?"), ("de", "Wie scanne ich einen Barcode?"),
         ("de", "Wo finde ich meine Einkaufsliste?"), ("de", "Wie benutze ich diese App?"),
         ("de", "Wie aktiviere ich den Standortzugriff?"),
+        # Questions about Noah itself. These are answered from
+        # app/rag/Noah_Capabilities.md, which retrieval reaches by scoping on
+        # this action - see SCOPE_CAPABILITIES in app/rag/retriever.py.
+        ("en", "What can you do?"), ("en", "What are you capable of?"),
+        ("en", "How do you work?"), ("en", "How do you understand my request?"),
+        ("en", "Do you use RAG?"), ("en", "Do you serve from real time data and RAG systems?"),
+        ("en", "Are you using AI?"), ("en", "Do you use machine learning?"),
+        ("en", "Are your prices live?"), ("en", "Is your price data real time?"),
+        ("en", "Where do your prices come from?"), ("en", "What data do you have access to?"),
+        ("en", "Which languages do you support?"), ("en", "Do you speak German?"),
+        ("en", "Can you remember our conversation?"), ("en", "Do you keep any chat history?"),
+        ("en", "What can you not do?"), ("en", "What are your limits?"),
+        ("en", "Can you transfer money?"), ("en", "What happens if you don't understand me?"),
+        ("en", "How accurate are you?"), ("en", "Which supermarkets do you cover?"),
+        ("de", "Was kannst du?"), ("de", "Was kannst du alles?"),
+        ("de", "Wie funktionierst du?"), ("de", "Wie verstehst du meine Anfrage?"),
+        ("de", "Nutzt du RAG?"), ("de", "Nutzt du künstliche Intelligenz?"),
+        ("de", "Nutzt du maschinelles Lernen?"), ("de", "Sind deine Preise aktuell?"),
+        ("de", "Sind das Echtzeitdaten?"), ("de", "Woher kommen deine Preise?"),
+        ("de", "Auf welche Daten hast du Zugriff?"), ("de", "Welche Sprachen sprichst du?"),
+        ("de", "Sprichst du Deutsch?"), ("de", "Merkst du dir unser Gespräch?"),
+        ("de", "Speicherst du den Verlauf?"), ("de", "Was kannst du nicht?"),
+        ("de", "Wo sind deine Grenzen?"), ("de", "Kannst du Geld überweisen?"),
+        ("de", "Was passiert, wenn du mich nicht verstehst?"),
+        ("de", "Welche Supermärkte deckst du ab?"),
     ],
     ("PERSONALIZED", "GET_PERSONALIZED_RECOMMENDATIONS"): [
         ("en", "What do you recommend for me?"), ("en", "Any suggestions today?"),
@@ -908,7 +933,7 @@ GERMAN_CHAT = {
                 "Ciao!", "Mach's gut!", "Schönen Tag noch!", "Gute Nacht!"],
     "THANKS": ["Danke!", "Vielen Dank!", "Danke dir!", "Besten Dank!",
                "Danke schön!", "Super, danke!", "Tausend Dank!"],
-    "SMALL_TALK": ["Wie geht es dir?", "Wer bist du?", "Was kannst du?",
+    "SMALL_TALK": ["Wie geht es dir?", "Wer bist du?",
                    "Bist du ein Roboter?", "Erzähl mir einen Witz.",
                    "Wie heißt du?", "Alles gut bei dir?"],
 }

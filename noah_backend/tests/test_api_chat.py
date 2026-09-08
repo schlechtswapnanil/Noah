@@ -146,12 +146,34 @@ def test_rag_retriever_indexes_user_facing_documents_only():
     assert not any("Week 1 Plan" in chunk or "APIs and Subscriptions" in chunk
                    or "noah_guide" in chunk for chunk in chunks)
 
-    assert retrieve("hierarchical intent classification taxonomy Noah") == []
-    assert retrieve("What are the API subscription tiers and costs?") == [] or all(
-        "Subscription" not in result for result in
-        retrieve("What are the API subscription tiers and costs?"))
+    # The property is "no internal document is reachable", not "no answer at
+    # all": a question about how Noah classifies intents is legitimately
+    # answered by the user-facing capability document.
+    INTERNAL = ("Week 1 Plan", "APIs and Subscriptions", "noah_guide",
+                "Intent and Data Format", "dataset and output Update",
+                "OfferHopper Integration", "Flutter App Integration")
+    for query in ("hierarchical intent classification taxonomy Noah",
+                  "What are the API subscription tiers and costs?",
+                  "What is in the week 1 sprint plan?"):
+        for result in retrieve(query):
+            assert not any(name in result for name in INTERNAL), \
+                f"internal document leaked for {query!r}: {result[:80]}"
 
     assert len(retrieve("Does Payto store my payment details?")) > 0
+
+
+def test_rag_scopes_capability_questions_away_from_payto_docs():
+    """"What can you do?" and "What is PayTo's policy?" are different shelves."""
+    from app.rag.retriever import SCOPE_CAPABILITIES, SCOPE_PAYTO
+
+    for query in ("Where do your prices come from?", "Can you remember our conversation?",
+                  "Woher kommen deine Preise?", "Which languages do you support?"):
+        results = retrieve(query, scope=SCOPE_CAPABILITIES)
+        assert results, f"no capability answer for {query!r}"
+        assert all("Noah_Capabilities" in r for r in results)
+
+    for result in retrieve("Does PayTo store my payment details?", scope=SCOPE_PAYTO):
+        assert "Noah_Capabilities" not in result
 
 
 def test_chat_find_doner_under_5_euros():

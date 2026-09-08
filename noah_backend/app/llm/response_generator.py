@@ -160,9 +160,7 @@ def _generate_fallback_response(
 
     if requires_rag:
         if rag_context:
-            clean = re.sub(r"^\[.*?\]:\s*", "", rag_context[0]).strip()
-            sentences = re.split(r"(?<=[.!?])\s+", clean)
-            return sentences[0] if sentences else clean[:200]
+            return _quote_context(rag_context[0])
         return NO_DOCS[language]
 
     if not actions:
@@ -194,6 +192,24 @@ def _generate_fallback_response(
     if len(described) == 2:
         return f"I'm {described[0]}, and then {described[1]}."
     return f"I'm {', '.join(described[:-1])}, and then {described[-1]}."
+
+
+def _quote_context(chunk: str, max_characters: int = 320) -> str:
+    """Quote the retrieved passage as an answer.
+
+    Two sentences rather than one: a single sentence usually states the fact but
+    drops the qualifier that makes it useful ("...prices are live" without
+    "...if the service is unreachable, Noah says so").
+    """
+    clean = re.sub(r"^\[.*?\]:\s*", "", chunk).strip()
+    sentences = re.split(r"(?<=[.!?])\s+", clean)
+    answer = ""
+    for sentence in sentences[:2]:
+        candidate = f"{answer} {sentence}".strip()
+        if answer and len(candidate) > max_characters:
+            break
+        answer = candidate
+    return answer or clean[:max_characters]
 
 
 def _tool_unavailable_reply(language, actions, brand, merchant, location,

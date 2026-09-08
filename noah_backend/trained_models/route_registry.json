@@ -26,7 +26,7 @@
     "requires_memory": false,
     "requires_rag": false,
     "requires_recommendation": false,
-    "workflow_type": "sequential",
+    "workflow_type": "multi_step",
     "planner_actions": [
       "ADD_LOYALTY_CARD",
       "LIST_WALLET_CARDS"
@@ -264,7 +264,7 @@
     "requires_memory": false,
     "requires_rag": false,
     "requires_recommendation": true,
-    "workflow_type": "sequential",
+    "workflow_type": "multi_step",
     "planner_actions": [
       "FIND_CHEAPEST_BASKET",
       "OPTIMIZE_SHOPPING_ROUTE"
@@ -812,7 +812,7 @@
     "requires_memory": false,
     "requires_rag": false,
     "requires_recommendation": false,
-    "workflow_type": "sequential",
+    "workflow_type": "multi_step",
     "planner_actions": [
       "SEARCH_PRODUCT_BY_PRICE",
       "OPEN_GOOGLE_MAPS"
@@ -980,7 +980,7 @@
     "requires_memory": false,
     "requires_rag": false,
     "requires_recommendation": false,
-    "workflow_type": "multi_step",
+    "workflow_type": "sequential",
     "planner_actions": [
       "SEARCH_OFFERS",
       "OPEN_WALLET_CARD"
@@ -1056,7 +1056,7 @@
     "requires_memory": false,
     "requires_rag": false,
     "requires_recommendation": false,
-    "workflow_type": "sequential",
+    "workflow_type": "multi_step",
     "planner_actions": [
       "DISPLAY_REWARDS",
       "OPEN_WALLET_CARD"
@@ -1172,7 +1172,7 @@
     "requires_memory": false,
     "requires_rag": false,
     "requires_recommendation": false,
-    "workflow_type": "multi_step",
+    "workflow_type": "sequential",
     "planner_actions": [
       "OPEN_WEEKLY_FLYER",
       "GET_DIRECTIONS"

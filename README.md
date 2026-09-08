@@ -346,7 +346,23 @@ Noah is designed to power the Flutter conversational interface:
 
 ## 🚀 Deployment
 
-### Hugging Face Spaces (free)
+### Render (free, currently the recommended host)
+
+[`render.yaml`](./render.yaml) defines the `noah-backend` service (Docker, Frankfurt,
+`plan: free`) and redeploys automatically on every push to `main`. Free web services
+spin down after ~15 minutes idle, so the first request after a quiet spell takes
+roughly 50 seconds; set the client HTTP timeout to 60s or more.
+
+First-time setup: Render dashboard → **New** → **Blueprint** → pick this repo. Render
+reads `render.yaml` and creates the service. Then set `LLM_API_KEY` under the service's
+**Environment** tab (it is `sync: false` in the blueprint, so it is never committed).
+
+### Hugging Face Spaces (needs PRO as of 2026-09)
+
+> **Docker Spaces are no longer free.** `create_repo` returns
+> `402 Payment Required`: "Static Spaces are free for everyone, but hosting Gradio
+> and Docker Spaces on free cpu-basic requires a PRO subscription." A static Space
+> cannot run this API. The scripts below still work on a PRO account.
 
 ```bash
 # 1. Create the Space first: https://huggingface.co/new-space -> SDK: Docker -> Blank
@@ -370,12 +386,6 @@ curl -s https://<username>-noah-payto-api.hf.space/health
 > secret, every public request spends your Groq quota — for an unattended demo,
 > leaving it unset is safer. Routing and grounding are identical either way;
 > only the phrasing of `response` changes.
-
-### Render
-
-[`render.yaml`](./render.yaml) defines the `noah-backend` service (Docker, Frankfurt)
-and deploys automatically on push to `main`. Free web services spin down after
-~15 minutes of inactivity, so the first request after a quiet spell is slow.
 
 ---
 

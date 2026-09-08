@@ -5,16 +5,15 @@
 # artifacts, the FAQ cache and requirements.txt.  Training corpora, the legacy
 # .joblib heads and the test suite stay out, which keeps the Space a few MB.
 #
-# Prerequisites
-#   1. Create the Space first (it must exist before you can push to it):
-#        https://huggingface.co/new-space  ->  SDK: Docker  ->  Blank template
-#   2. Have a write token: https://huggingface.co/settings/tokens
+# Authenticate once, either way:
+#   hf auth login                      # stores a token; nothing to pass here
+#   export HF_TOKEN=hf_xxx             # or pass it in the environment
+# Write tokens come from https://huggingface.co/settings/tokens
+#
+# The Space is created if it does not exist, so this is the only step.
 #
 # Usage
-#   HF_TOKEN=hf_xxx deploy/huggingface/publish.sh <hf-username> [space-name]
-#
-# Without HF_TOKEN, git will prompt; use your username and paste the token as
-# the password (Hugging Face does not accept account passwords over git).
+#   deploy/huggingface/publish.sh <hf-username> [space-name]
 
 set -euo pipefail
 
@@ -57,6 +56,17 @@ if [ "${DRY_RUN:-0}" = "1" ]; then
   cp -R "$BUILD" "$REPO_ROOT/hf-space-preview"
   exit 0
 fi
+
+# Create the Space if it is not there yet. exist_ok makes this a no-op on
+# every deploy after the first.
+echo "Ensuring the Space exists..."
+python3 - "$HF_USER/$SPACE" <<'PYEOF'
+import sys
+from huggingface_hub import create_repo
+repo_id = sys.argv[1]
+url = create_repo(repo_id, repo_type="space", space_sdk="docker", exist_ok=True)
+print(f"  Space ready: {url}")
+PYEOF
 
 REMOTE="https://huggingface.co/spaces/$HF_USER/$SPACE"
 if [ -n "${HF_TOKEN:-}" ]; then

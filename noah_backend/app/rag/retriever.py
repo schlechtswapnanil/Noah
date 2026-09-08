@@ -266,8 +266,11 @@ def get_chunks(reload: bool = False) -> List[str]:
             # different tokens to a word-level vectoriser.
             _VECTORIZER = FeatureUnion([
                 ("word", TfidfVectorizer(stop_words=stop_words, sublinear_tf=True)),
+                # min_df=1: the corpus is a few hundred short chunks, so a stem
+                # that appears once ("merk-" in the memory section) is exactly
+                # the discriminative signal, not noise to be pruned away.
                 ("char", TfidfVectorizer(analyzer="char_wb", ngram_range=(4, 5),
-                                         sublinear_tf=True, min_df=2)),
+                                         sublinear_tf=True, min_df=1)),
             ])
             _MATRIX = _VECTORIZER.fit_transform(_CHUNKS_CACHE)
             _WEIGHTS = np.array([

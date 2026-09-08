@@ -50,13 +50,52 @@ OFFERHOPPER_ACTIONS = {
     "COMPARE_PRODUCTS", "CHECK_PRODUCT_AVAILABILITY",
 }
 
+# Language detection for the deterministic replies.  A single German word list
+# was not enough: "Woher kommen deine Preise?" contains no umlaut and none of
+# the obvious markers, so it was answered in English.  Scoring German function
+# words against English ones handles short questions and code-switched phrasing
+# ("zeig mir meine Payback card") far better than any single list.
 _GERMAN_MARKERS = re.compile(
-    r"[äöüß]|\b(?:ich|mir|mich|mein|meine|meinen|meiner|zeig|zeige|öffne|oeffne|"
-    r"wo|wie|was|wer|wann|welche|welcher|gibt|hat|ist|sind|bitte|danke|und|"
-    r"oder|nicht|kein|keine|dann|noch|mal|brauche|brauch|möchte|moechte|"
-    r"kannst|kann|für|fuer|bei|von|zu|auf|der|die|das|den|dem|einen|eine)\b",
+    r"\b(?:ich|mir|mich|mein|meine|meinen|meinem|meiner|du|dir|dich|dein|deine|"
+    r"deinen|deinem|deiner|wir|uns|unser|unsere|ihr|euch|euer|sie|er|es|"
+    r"wo|woher|wohin|wie|was|wer|wen|wem|wann|warum|weshalb|welche|welcher|"
+    r"welches|welchen|ob|"
+    r"der|die|das|den|dem|des|ein|eine|einen|einem|einer|eines|kein|keine|"
+    r"keinen|nicht|nichts|und|oder|aber|denn|weil|dass|wenn|als|auch|noch|"
+    r"schon|nur|mal|sehr|mehr|viel|etwas|alles|immer|jetzt|heute|morgen|"
+    r"gestern|hier|dort|dann|danach|zuerst|bitte|danke|gern|gerne|"
+    r"ist|sind|bin|bist|war|waren|hat|habe|haben|hast|hatte|wird|werden|"
+    r"kann|kannst|k(?:ö|oe)nnen|muss|m(?:ü|ue)ssen|soll|sollen|will|willst|"
+    r"wollen|m(?:ö|oe)chte|m(?:ö|oe)chten|darf|d(?:ü|ue)rfen|mach|machst|"
+    r"machen|geht|gibt|gibts|kommen|kommt|zeig|zeige|zeigen|(?:ö|oe)ffne|"
+    r"(?:ö|oe)ffnen|brauche|brauch|suche|such|finde|find|hol|hole|"
+    r"f(?:ü|ue)r|bei|von|vom|zu|zum|zur|auf|aus|mit|nach|(?:ü|ue)ber|unter|"
+    r"vor|hinter|neben|zwischen|ohne|gegen|um|im|in|am|an|beim|"
+    r"hallo|tsch(?:ü|ue)ss|guten|moin|servus)\b",
     re.IGNORECASE,
 )
+_ENGLISH_MARKERS = re.compile(
+    r"\b(?:the|a|an|is|are|am|was|were|do|does|did|can|could|will|would|"
+    r"should|my|your|our|their|his|her|its|me|you|we|they|i|"
+    r"what|where|when|why|how|which|who|whom|"
+    r"and|or|but|not|no|yes|please|thanks|thank|hello|hi|hey|bye|"
+    r"show|open|find|search|take|get|give|need|want|buy|near|nearest|"
+    r"for|from|with|about|into|onto|at|on|of|to|in|by|"
+    r"card|barcode|offers|prices|store|shop)\b",
+    re.IGNORECASE,
+)
+_UMLAUT = re.compile(r"[äöüßÄÖÜ]")
+
+
+def _language(instruction: str) -> str:
+    """Return "de" or "en" for `instruction`."""
+    text = instruction or ""
+    german = len(_GERMAN_MARKERS.findall(text))
+    english = len(_ENGLISH_MARKERS.findall(text))
+    if _UMLAUT.search(text):
+        german += 2
+    return "de" if german > english else "en"
+
 
 CLARIFY = {
     "en": "I'm not sure what you need there. I can find products and offers, "
@@ -114,10 +153,6 @@ def _card_name(value: Optional[str]) -> Optional[str]:
     if not value:
         return None
     return CARD_DISPLAY_NAMES.get(value.upper(), value.replace("_", " ").title())
-
-
-def _language(instruction: str) -> str:
-    return "de" if _GERMAN_MARKERS.search(instruction or "") else "en"
 
 
 def _offerhopper_summary(plan: dict) -> str:
@@ -337,8 +372,8 @@ ENTITIES:
 {json.dumps(plan.get("entities", {}), indent=2, ensure_ascii=False)}
 {offerhopper_section}{document_section}
 
-Write Noah's reply in {"German" if language == "de" else "English"}, naming any \
-prices and stores above.
+Write Noah's reply in the same language as the text inside <user_request> \
+(German or English), naming any prices and stores above.
 """
 
     try:

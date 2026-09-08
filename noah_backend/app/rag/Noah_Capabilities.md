@@ -87,9 +87,11 @@ request is handled on its own, so a follow-up such as "and then navigate there"
 or "the cheapest one" has no previous turn to refer to, and Noah will ask you to
 say it in full.
 
-Noah merkt sich frühere Nachrichten nicht und speichert keinen Verlauf. Jede
-Anfrage steht für sich. Bei Rückbezügen wie "und dann dorthin navigieren" fragt
-Noah nach der vollständigen Anfrage.
+Nein, Noah merkt sich frühere Nachrichten nicht und speichert kein Gespräch und
+keinen Verlauf. Merkst du dir unser Gespräch? Nein — jede Anfrage steht für
+sich. Bei Rückbezügen wie "und dann dorthin navigieren" oder "das billigste"
+fehlt der vorherige Zusammenhang, und Noah fragt nach der vollständigen
+Anfrage.
 
 ## Limits: what Noah cannot do
 

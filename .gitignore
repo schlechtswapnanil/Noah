@@ -12,3 +12,6 @@ env/
 # Python cache files
 __pycache__/
 *.py[cod]
+
+# Assembled Hugging Face Space (deploy/huggingface/publish.sh DRY_RUN=1)
+hf-space-preview/

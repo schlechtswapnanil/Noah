@@ -27,6 +27,7 @@
 - [API Reference](#-api-reference)
 - [Offerhopper MCP Integration](#-offerhopper-mcp-integration)
 - [Flutter App Integration](#-flutter-app-integration)
+- [Deployment](#-deployment)
 - [Testing & Verification](#-testing--verification)
 
 ---
@@ -340,6 +341,41 @@ Noah is designed to power the Flutter conversational interface:
 > Requests with no actions (`planner_actions: []`) are Noah asking a clarifying question or answering conversationally — render `response` and dispatch nothing.
 
 *For complete implementation details and Dart widget architecture, refer to [`noah_flutter_implementation_plan.md`](./noah_flutter_implementation_plan.md).*
+
+---
+
+## 🚀 Deployment
+
+### Hugging Face Spaces (free)
+
+```bash
+# 1. Create the Space first: https://huggingface.co/new-space -> SDK: Docker -> Blank
+# 2. Get a write token:      https://huggingface.co/settings/tokens
+HF_TOKEN=hf_xxx deploy/huggingface/publish.sh <your-hf-username> noah-payto-api
+```
+
+`publish.sh` assembles a Space containing only the request path — `app/`, the two
+trained-model artifacts, the FAQ cache and `requirements.txt` (~9 MB). Training
+corpora, the legacy `.joblib` heads and the test suite are left out. Run it with
+`DRY_RUN=1` to inspect the assembled tree without pushing.
+
+The Space serves on port 7860 as uid 1000, per
+[`deploy/huggingface/Dockerfile`](./deploy/huggingface/Dockerfile). Once built:
+
+```bash
+curl -s https://<username>-noah-payto-api.hf.space/health
+```
+
+> The Space is public and CORS is open. If you set `LLM_API_KEY` as a Space
+> secret, every public request spends your Groq quota — for an unattended demo,
+> leaving it unset is safer. Routing and grounding are identical either way;
+> only the phrasing of `response` changes.
+
+### Render
+
+[`render.yaml`](./render.yaml) defines the `noah-backend` service (Docker, Frankfurt)
+and deploys automatically on push to `main`. Free web services spin down after
+~15 minutes of inactivity, so the first request after a quiet spell is slow.
 
 ---
 

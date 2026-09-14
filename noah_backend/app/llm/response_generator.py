@@ -37,8 +37,9 @@ FACTS
 only facts you have. Never invent a product, price, discount, store, opening \
 time, loyalty card or action that is not in them.
 - If live results with prices are supplied, name the products, prices and \
-stores you were given, exactly as given. If they include a travel verdict, \
-reflect it honestly.
+stores you were given, exactly as given. If any requested item is listed as \
+not found, say so plainly. If they include a travel verdict, reflect it \
+honestly.
 - If DOCUMENT CONTEXT is supplied, answer from it and nothing else. Every claim \
 in your reply must be traceable to a sentence in the context. Do not add \
 security, encryption, storage, legal or policy details that are not written \
@@ -192,6 +193,95 @@ def _offerhopper_summary(plan: dict) -> str:
     return format_offerhopper_summary(data)
 
 
+def _requested_items(plan: dict) -> List[str]:
+    product = (plan.get("entities") or {}).get("product") or ""
+    return [i.strip() for i in product.split(",") if i.strip()]
+
+
+def _missing_items(plan: dict) -> List[str]:
+    """Requested items that no store in the result carries."""
+    data = plan.get("offerhopperData")
+    if not data or not isinstance(data, dict):
+        return []
+    found = []
+    for segment in (data.get("optimized_route") or {}).get("route_segments") or []:
+        for product in segment.get("products_to_buy") or []:
+            if product.get("name"):
+                found.append(str(product["name"]).lower())
+    return [i for i in _requested_items(plan)
+            if not any(i.lower() in f or f in i.lower() for f in found)]
+
+
+def _offerhopper_context(plan: dict) -> str:
+    """Compact, structured view of the OfferHopper result for the LLM.
+
+    The raw payload is 7-25 KB of JSON - route segments, per-store candidate
+    comparisons, image URLs - and dumping it into the prompt pushed a
+    single-item query past Groq's free-tier token limit, which silently
+    dropped the reply to the deterministic template. This is the part the
+    reply actually needs, including which requested items came back empty.
+    """
+    data = plan.get("offerhopperData")
+    if not data or not isinstance(data, dict):
+        return ""
+    route = data.get("optimized_route") or {}
+    lines: List[str] = []
+    found_names: List[str] = []
+
+    for segment in route.get("route_segments") or []:
+        store = (segment.get("to_store") or {}).get("name") or segment.get("to_name")
+        if not store or store in ("user_location", "user_end_location"):
+            continue
+        address = (segment.get("to_store") or {}).get("formatted_address")
+        lines.append(f"Store: {store}" + (f" ({address})" if address else ""))
+        for product in segment.get("products_to_buy") or []:
+            requested = product.get("name")
+            chosen = product.get("selected_product") or requested
+            price = product.get("price")
+            if requested:
+                found_names.append(str(requested).lower())
+            if chosen is None or price is None:
+                continue
+            line = f"  - {requested}: {chosen} at €{price:.2f}"
+            regular = product.get("regular_price")
+            discount = product.get("discount_pct") or 0
+            if discount and regular:
+                line += f" (was €{regular:.2f}, -{discount}%)"
+            if product.get("is_synthetic"):
+                line += " [estimated price - no verified offer, say so]"
+            lines.append(line)
+
+    missing = _missing_items(plan)
+    if missing:
+        lines.append("Not found at any store: " + ", ".join(missing))
+
+    total = data.get("total_estimated_cost") or route.get("estimated_total_cost")
+    savings = data.get("total_estimated_savings") or route.get("estimated_total_savings")
+    analysis = data.get("cost_analysis") or {}
+    if analysis.get("product_cost") is not None:
+        lines.append(f"Product cost: €{analysis['product_cost']:.2f}")
+    if analysis.get("travel_cost") is not None:
+        lines.append(f"Travel cost: €{analysis['travel_cost']:.2f}")
+    if total is not None:
+        lines.append(f"Total including travel and time: €{total:.2f}")
+    if savings is not None:
+        lines.append(f"Savings vs market average: €{savings:.2f}")
+
+    verdict = (analysis.get("verdict") or {}).get("headline")
+    hints = data.get("mcp_hints") or {}
+    worthwhile = (hints.get("trip_verdict") or {}).get("trip_worthwhile")
+    if verdict:
+        lines.append(f"Trip verdict: {verdict}"
+                     + ("" if worthwhile is None else f" (worth the trip: {'yes' if worthwhile else 'no'})"))
+    distance = route.get("total_distance_km")
+    minutes = route.get("total_duration_minutes")
+    if distance is not None and minutes is not None:
+        lines.append(f"Route: {distance:.1f} km, about {round(minutes)} min travel")
+    if data.get("share_url"):
+        lines.append("A map link is shown to the user in the app.")
+    return "\n".join(lines)
+
+
 def _tool_call_failed(plan: dict) -> bool:
     """True when the plan promised live prices but nothing came back."""
     actions = set(plan.get("planner_actions") or [])
@@ -238,6 +328,10 @@ def _generate_fallback_response(
 
     summary = _offerhopper_summary(plan)
     if summary:
+        missing = _missing_items(plan)
+        if missing:
+            summary += (f" Ich konnte {', '.join(missing)} nirgends finden." if language == "de"
+                        else f" I couldn't find {', '.join(missing)} anywhere nearby.")
         remaining = [a for a in actions if a not in OFFERHOPPER_ACTIONS]
         extras = [_describe(a, brand, merchant, location, product, price_str,
                             loc_str, merchant_str) for a in remaining]
@@ -384,18 +478,22 @@ def generate_response(
 
     document_section = ("\nDOCUMENT CONTEXT:\n" + "\n".join(rag_context)
                         if rag_context else "No document context supplied.")
-    summary = _offerhopper_summary(plan)
-    offerhopper_section = (f"\nLIVE OFFERHOPPER STORE & PRICE RESULTS:\n{summary}\n"
-                           if summary else "")
+    offerhopper_context = _offerhopper_context(plan)
+    offerhopper_section = (f"\nLIVE OFFERHOPPER RESULTS:\n{offerhopper_context}\n"
+                           if offerhopper_context else "")
 
-    # The plan is trusted data; the instruction is not, so it is fenced.
+    # The plan is trusted data; the instruction is not, so it is fenced. The
+    # raw OfferHopper payload is left out - it goes in as the compact block
+    # above, not as 20 KB of route geometry.
+    plan_for_prompt = {k: v for k, v in plan.items()
+                       if k not in ("entities", "offerhopperData")}
     user_prompt = f"""USER REQUEST:
 <user_request>
 {instruction}
 </user_request>
 
 PAYTO ACTION PLAN:
-{json.dumps({k: v for k, v in plan.items() if k != "entities"}, indent=2, ensure_ascii=False)}
+{json.dumps(plan_for_prompt, indent=2, ensure_ascii=False)}
 
 ENTITIES:
 {json.dumps(plan.get("entities", {}), indent=2, ensure_ascii=False)}

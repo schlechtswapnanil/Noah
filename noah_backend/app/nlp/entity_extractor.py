@@ -117,6 +117,56 @@ def _clean_product(value: str) -> Optional[str]:
     return " ".join(words).title()
 
 
+
+
+_LIST_TAIL = (
+    r"\s+([a-zA-Z0-9äöüÄÖÜß'\-\s,&]+?)"
+    r"(?=\s+(?:in|at|near|around|under|below|within|to|for\s+less|bei|um|unter|nach|"
+    r"und\s+dann|and\s+then|then|dann)\b|[.!?]|$)"
+)
+# Specific list lead-ins are tried before generic verbs, otherwise "Fetch me
+# the cheapest basket for X, Y and Z" matches at "fetch me" and the captured
+# phrase starts with "basket for".
+_LIST_LEAD_SPECIFIC = re.compile(
+    r"(?:basket\s+(?:for|with|of)|list\s+(?:for|with|of)|items?\s*:?|products?\s*:?|"
+    r"prices?\s+(?:of|for)|"
+    r"einkaufskorb\s+(?:für|fuer|mit)|warenkorb\s+(?:für|fuer|mit)|korb\s+(?:für|fuer|mit)|"
+    r"einkaufsliste\s+(?:für|fuer|mit)|liste\s+(?:für|fuer|mit)|preise\s+(?:von|für|fuer))"
+    + _LIST_TAIL, re.IGNORECASE)
+_LIST_LEAD_VERB = re.compile(
+    r"\b(?:buy|get|find|fetch|need|want|add|put|kaufen|besorgen|brauche|hol)(?:\s+me)?"
+    + _LIST_TAIL, re.IGNORECASE)
+_LIST_SPLIT = re.compile(r"\s*,\s*|\s+(?:and|und|&)\s+", re.IGNORECASE)
+_LIST_NOISE = {"the", "a", "an", "some", "my", "me", "cheapest", "cheap", "best",
+               "lowest", "günstigsten", "guenstigsten", "billigsten", "den", "die",
+               "das", "einen", "eine", "meine", "meinen", "mir", "and", "und"}
+
+
+def _explicit_list(working: str) -> Optional[str]:
+    """Return a comma-joined product list when the sentence spells one out.
+
+    Fires for a clear list lead-in ("basket for ...") or, after a verb, for a
+    genuine multi-item list (a comma or "and"/"und" between items). A bare
+    "find milk" is left to the known-product and command-prefix paths.
+    """
+    match = _LIST_LEAD_SPECIFIC.search(working)
+    has_lead = match is not None
+    if match is None:
+        match = _LIST_LEAD_VERB.search(working)
+    if match is None:
+        return None
+
+    phrase = match.group(1).strip(" ,.")
+    items = []
+    for raw in _LIST_SPLIT.split(phrase):
+        words = [w for w in raw.strip(" ,.").split() if w.lower() not in _LIST_NOISE]
+        if words and not all(w.lower() in _NON_PRODUCT_TERMS for w in words):
+            items.append(" ".join(words))
+    if not items or not (has_lead or len(items) > 1):
+        return None
+    return ", ".join(i.title() for i in items)
+
+
 def extract_entities(instruction: str, planner_actions: Optional[list] = None) -> dict:
     """Return the slots literally present in `instruction`.
 
@@ -233,6 +283,15 @@ def extract_entities(instruction: str, planner_actions: Optional[list] = None) -
     if planner_actions is not None and not planner_actions:
         return entities
     if planner_actions and set(planner_actions).issubset(wallet_or_navigation):
+        return entities
+
+    # An explicit list wins over everything else. "basket for currywurst,
+    # dulano snackis and spezi" must yield all three items - matching the
+    # known-product list first and returning early kept only "currywurst" and
+    # asked OfferHopper for a one-item basket.
+    listed = _explicit_list(working)
+    if listed:
+        entities["product"] = listed
         return entities
 
     found = []

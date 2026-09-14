@@ -16,6 +16,7 @@ from __future__ import annotations
 import logging
 import re
 
+from ..planner.action_registry import ACTION_TO_TOOL
 from .entity_extractor import extract_entities
 from .model_loader import UNKNOWN_ROUTE
 from .routing import score_routes
@@ -79,6 +80,12 @@ def classify(instruction: str, models: dict) -> dict:
         result["tool_sequence"] = list(entry["tool_sequence"])
         result["planner_action_count"] = len(result["planner_actions"])
         result["workflow_type"] = _workflow_type(instruction, result["planner_actions"])
+        # The action registry is the source of truth for which tool an action
+        # uses; the registry JSON only records what the corpus said at training
+        # time. Deriving `tool` here keeps it equal to tool_sequence[0] even
+        # when a mapping changes (recommendations moved to OfferHopper).
+        if result["planner_actions"]:
+            result["tool"] = ACTION_TO_TOOL.get(result["planner_actions"][0], result["tool"])
 
     # The plan tells the extractor what kind of request this is: a wallet or
     # navigation action has no product to read out of the sentence.

@@ -2,6 +2,7 @@
 
 import logging
 import json
+import time
 from typing import Any, Dict, Optional
 # pyrefly: ignore [missing-import]
 import httpx
@@ -150,49 +151,85 @@ def call_offerhopper_mcp(
         "User-Agent": "payto-noah-backend/1.0"
     }
 
-    try:
-        with httpx.Client(timeout=30.0) as client:
-            # Initialize session for streamable HTTP transport
-            init_resp = client.post(
-                OFFERHOPPER_MCP_URL,
-                json={
-                    "jsonrpc": "2.0",
-                    "id": 0,
-                    "method": "initialize",
-                    "params": {
-                        "protocolVersion": "2025-03-26",
-                        "clientInfo": {"name": "payto-noah-backend", "version": "1.0"},
+    # One retry on the failures that clear themselves - a 429 from a burst of
+    # requests, a gateway hiccup, a slow response - so a single blip does not
+    # turn into "the price service is unavailable" in front of the user.
+    for attempt in range(2):
+        try:
+            with httpx.Client(timeout=25.0) as client:
+                init_resp = client.post(
+                    OFFERHOPPER_MCP_URL,
+                    json={
+                        "jsonrpc": "2.0",
+                        "id": 0,
+                        "method": "initialize",
+                        "params": {
+                            "protocolVersion": "2025-03-26",
+                            "clientInfo": {"name": "payto-noah-backend", "version": "1.0"},
+                        },
                     },
-                },
-                headers=headers
-            )
-            session_id = init_resp.headers.get("mcp-session-id")
-            
-            call_headers = dict(headers)
-            if session_id:
-                call_headers["mcp-session-id"] = session_id
+                    headers=headers,
+                )
+                call_headers = dict(headers)
+                session_id = init_resp.headers.get("mcp-session-id")
+                if session_id:
+                    call_headers["mcp-session-id"] = session_id
 
-            resp = client.post(OFFERHOPPER_MCP_URL, json=payload, headers=call_headers)
-            resp.raise_for_status()
-            
-            # OfferHopper remote MCP server returns a text/event-stream
-            # We parse the event stream to retrieve the final jsonrpc result
-            for line in resp.text.splitlines():
-                if line.startswith("data:"):
-                    try:
-                        event_data = json.loads(line[5:].strip())
-                        if "result" in event_data:
-                            result_data = event_data["result"]
-                            if isinstance(result_data, dict) and "content" in result_data:
-                                for item in result_data["content"]:
-                                    if item.get("type") == "text":
-                                        return json.loads(item["text"])
-                            return result_data
-                    except Exception:
-                        continue
-    except Exception as e:
-        logger.exception(f"Failed to communicate with Offerhopper MCP: {e}")
+                resp = client.post(OFFERHOPPER_MCP_URL, json=payload, headers=call_headers)
+                if resp.status_code in (429, 502, 503, 504) and attempt == 0:
+                    wait = min(float(resp.headers.get("retry-after") or 2), 5.0)
+                    logger.warning("Offerhopper returned %s; retrying in %.0fs", resp.status_code, wait)
+                    time.sleep(wait)
+                    continue
+                resp.raise_for_status()
+                return _parse_tool_response(resp.text)
+        except (httpx.TimeoutException, httpx.TransportError) as error:
+            if attempt == 0:
+                logger.warning("Offerhopper transport error (%s); retrying", error)
+                time.sleep(2)
+                continue
+            logger.exception("Failed to communicate with Offerhopper MCP")
+        except Exception:
+            logger.exception("Failed to communicate with Offerhopper MCP")
+            break
 
+    return {}
+
+
+def _parse_tool_response(body: str) -> Dict[str, Any]:
+    """Read the JSON-RPC result out of the event stream.
+
+    Three outcomes, and the caller has to tell them apart:
+      * a route  -> the parsed result dict (``success`` is True);
+      * the tool declining, e.g. no item could be matched -> OfferHopper sends
+        ``result.isError: true`` with a plain-text message such as
+        "Optimization failed: error_invalid_list". Returned as
+        ``{"success": False, "error": <text>}``. This used to raise inside
+        json.loads, get swallowed, and come back as an empty dict - so "nothing
+        matched" was reported to the user as "the price service is down";
+      * nothing usable -> ``{}``, meaning the transport failed.
+    """
+    for line in body.splitlines():
+        if not line.startswith("data:"):
+            continue
+        try:
+            event = json.loads(line[5:].strip())
+        except ValueError:
+            continue
+        if "error" in event:
+            return {"success": False, "error": str(event["error"].get("message", event["error"]))}
+        result = event.get("result")
+        if not isinstance(result, dict):
+            continue
+        texts = [c.get("text", "") for c in result.get("content", []) if c.get("type") == "text"]
+        if result.get("isError"):
+            return {"success": False, "error": " ".join(texts).strip() or "tool error"}
+        for text in texts:
+            try:
+                return json.loads(text)
+            except ValueError:
+                continue
+        return result
     return {}
 
 

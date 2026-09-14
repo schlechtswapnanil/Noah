@@ -83,10 +83,13 @@ these cases `domain` is `CHAT`, `response_mode` is `text`, `offerhopperData` is
 (`ANSWER_FAQ`, `ANSWER_PAYTO_QUESTION`, `PROVIDE_APP_HELP`) carry one action but
 nothing for the UI to open — render `response`.
 
-**c. `offerhopperData` is null when the price service failed.** In that case
-`response` already says so ("I couldn't reach the price service just now…" /
-"Ich konnte den Preisdienst gerade nicht erreichen…"). Render the text and do
-not open the route card. Do not treat it as an app error.
+**c. `offerhopperData` is null whenever there are no results**, and `response`
+already explains which of three things happened: nothing matched the items
+("I couldn't find anything matching X at the stores near you"), the request
+named nothing to search for ("what kind of thing are you after?"), or the
+price service was genuinely unreachable ("I couldn't reach the price service
+just now…"). Render the text and do not open the route card. None of these is
+an app error; only the last one is worth a retry.
 
 **d. Timeouts.** Set the HTTP client timeout to **at least 60 seconds**. The
 service is on a free tier that spins down after ~15 min idle and takes ~50 s to
@@ -160,10 +163,10 @@ typically the first produces data and the second opens something.
 | `ADD_LOYALTY_CARD` `REMOVE_LOYALTY_CARD` `LIST_WALLET_CARDS` | open the wallet screen |
 | `PLAN_ROUTE` `OPEN_GOOGLE_MAPS` **`GET_DIRECTIONS`** | launch maps for `entity_merchant` ?? `entity_location`. **`GET_DIRECTIONS` was missing from the old dispatcher — add it to the same case group.** |
 | `FIND_CHEAPEST_BASKET` `OPTIMIZE_SHOPPING_ROUTE` `SPLIT_BASKET_ACROSS_MERCHANTS` | if `offerhopperData != null`, open the route card (§4) |
-| `SEARCH_PRODUCT` `SEARCH_PRODUCT_BY_PRICE` `SEARCH_PRODUCT_BY_BRAND` `SEARCH_PRODUCT_BY_CATEGORY` `SEARCH_OFFERS` `COMPARE_PRODUCTS` `CHECK_PRODUCT_AVAILABILITY` | if `offerhopperData != null`, show the products from §4 as result tiles (same data, list layout rather than route layout) |
+| `SEARCH_PRODUCT` `SEARCH_PRODUCT_BY_PRICE` `SEARCH_PRODUCT_BY_BRAND` `SEARCH_PRODUCT_BY_CATEGORY` `SEARCH_OFFERS` `COMPARE_PRODUCTS` `CHECK_PRODUCT_AVAILABILITY` **`RECOMMEND_PRODUCTS` `RECOMMEND_OFFERS` `GET_PERSONALIZED_RECOMMENDATIONS`** | if `offerhopperData != null`, show the products from §4 as result tiles (same data, list layout rather than route layout). Recommendations use the same live OfferHopper data — there is no separate recommendation engine — so render their `alternatives[]` too |
 | `SEARCH_DISCOUNTS` `SEARCH_CASHBACK` `OPEN_WEEKLY_FLYER` | open the offers / flyer screen for `entity_merchant` |
 | `GET_OPENING_HOURS` `GET_MERCHANT_CONTACT` `GET_MERCHANT_DETAILS` `SEARCH_MERCHANT` `SEARCH_NEARBY_MERCHANTS` | open the merchant screen for `entity_merchant` if the app has one; otherwise just render `response` |
-| `RECOMMEND_PRODUCTS` `RECOMMEND_OFFERS` `RECOMMEND_MERCHANTS` `GET_PERSONALIZED_RECOMMENDATIONS` | open the recommendations screen if one exists; otherwise render `response` |
+| `RECOMMEND_MERCHANTS` | render `response` (no live data for this one) |
 | `SHOW_PROFILE` `OPEN_SETTINGS` `SHOW_PURCHASE_HISTORY` `SHOW_VISIT_HISTORY` | navigate to that screen |
 | `BUILD_SHOPPING_LIST` | open the shopping list, pre-filled with `entity_product` if set |
 | `SHOW_HELP` `REPORT_BUG` `SUBMIT_FEEDBACK` | navigate to that screen |

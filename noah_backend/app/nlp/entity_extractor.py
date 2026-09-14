@@ -62,7 +62,8 @@ _NON_PRODUCT_TERMS = {
     "einstellungen", "history", "historie", "list", "liste", "route", "weg",
     "map", "karte", "store", "markt", "shop", "laden", "supermarkt", "filiale",
     "result", "ergebnis", "help", "hilfe", "balance", "guthaben", "stand",
-    "way", "place", "thing", "something", "etwas", "alles", "nothing",
+    "way", "place", "thing", "something", "anything", "etwas", "was", "alles",
+    "nothing", "nice", "good", "gutes", "schönes", "schoenes", "to", "me", "mir",
     "cheapest", "cheaper", "billigste", "billigsten", "günstigste",
     "guenstigste", "one", "ones", "eine", "eins", "andere", "second", "first",
     "zweite", "erste", "yes", "no", "ja", "nein", "ok", "okay",
@@ -79,6 +80,8 @@ _LEADING_STOPWORDS = re.compile(
 _COMMAND_PREFIX = re.compile(
     r"^.*?\b(?:find(?:\s+me)?|search(?:\s+for)?|look\s+for|fetch(?:\s+me)?|"
     r"get(?:\s+me)?|show(?:\s+me)?|buy|need|want|add|put|note\s+down|stick|"
+    r"recommend(?:\s+me)?|suggest(?:\s+me)?|empfiehl(?:\s+mir)?|empfehle(?:\s+mir)?|"
+    r"schlag(?:\s+mir)?|"
     r"where\s+(?:can|do)\s+i\s+(?:buy|find|get)|is\s+there|do\s+they\s+have|"
     r"has\s+\w+\s+got|"
     r"suche?|such|finde?|zeig(?:e|en)?|brauche?|will|möchte|moechte|kaufen|"

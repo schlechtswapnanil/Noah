@@ -83,6 +83,7 @@ OFFERHOPPER_ACTIONS = {
     "SEARCH_PRODUCT_BY_CATEGORY", "SEARCH_OFFERS", "FIND_CHEAPEST_BASKET",
     "OPTIMIZE_SHOPPING_ROUTE", "SPLIT_BASKET_ACROSS_MERCHANTS",
     "COMPARE_PRODUCTS", "CHECK_PRODUCT_AVAILABILITY",
+    "RECOMMEND_PRODUCTS", "RECOMMEND_OFFERS", "GET_PERSONALIZED_RECOMMENDATIONS",
 }
 
 # Language detection for the deterministic replies.  A single German word list
@@ -168,6 +169,18 @@ TOOL_UNAVAILABLE = {
           "prices for that. Please try again in a moment.",
     "de": "Ich konnte den Preisdienst gerade nicht erreichen, daher habe ich "
           "keine aktuellen Preise. Bitte versuch es gleich noch einmal.",
+}
+NO_MATCH = {
+    "en": "I couldn't find anything matching {items} at the stores near you. "
+          "Try a different name for it, or a broader one.",
+    "de": "Ich konnte {items} bei den Märkten in deiner Nähe nicht finden. "
+          "Versuch es mit einer anderen oder allgemeineren Bezeichnung.",
+}
+NO_TERMS = {
+    "en": "Happy to suggest something - what kind of thing are you after? "
+          "Sweet, savoury, a drink, something for breakfast?",
+    "de": "Gern - was für etwas soll es denn sein? Süß, salzig, ein Getränk, "
+          "etwas fürs Frühstück?",
 }
 
 CONVERSATIONAL = {
@@ -325,6 +338,18 @@ def _tool_call_failed(plan: dict) -> bool:
     return not _offerhopper_summary(plan)
 
 
+def _failure_message(plan: dict, language: str) -> str:
+    """The honest reason there are no results: nothing matched, nothing was
+    asked for, or the service really was unreachable."""
+    kind = plan.get("offerhopper_failure")
+    if kind == "no_terms":
+        return NO_TERMS[language]
+    if kind == "no_match":
+        items = (plan.get("entities") or {}).get("product") or ("that" if language == "en" else "das")
+        return NO_MATCH[language].format(items=items)
+    return TOOL_UNAVAILABLE[language]
+
+
 def _generate_fallback_response(
     instruction: str,
     plan: dict,
@@ -357,7 +382,7 @@ def _generate_fallback_response(
         return CONVERSATIONAL.get(sub_intent, CLARIFY)[language]
 
     if _tool_call_failed(plan):
-        return _tool_unavailable_reply(language, actions, brand, merchant,
+        return _tool_unavailable_reply(plan, language, actions, brand, merchant,
                                        location, product, price_str, loc_str,
                                        merchant_str)
 
@@ -405,10 +430,10 @@ def _quote_context(chunk: str, max_characters: int = 320) -> str:
     return answer or clean[:max_characters]
 
 
-def _tool_unavailable_reply(language, actions, brand, merchant, location,
+def _tool_unavailable_reply(plan, language, actions, brand, merchant, location,
                             product, price_str, loc_str, merchant_str) -> str:
     """Say the price lookup failed, but still carry out the rest of the plan."""
-    message = TOOL_UNAVAILABLE[language]
+    message = _failure_message(plan, language)
     others = [_describe(a, brand, merchant, location, product, price_str,
                         loc_str, merchant_str)
               for a in actions if a not in OFFERHOPPER_ACTIONS]
@@ -472,9 +497,10 @@ def _describe(action, brand, merchant, location, product, price_str, loc_str,
         return f"pulling up details for {merchant.title() if merchant else 'the store'}"
     if action in ("SEARCH_MERCHANT", "SEARCH_NEARBY_MERCHANTS"):
         return f"looking for {merchant.title() if merchant else 'stores'}{loc_str}"
-    if action in ("RECOMMEND_PRODUCTS", "RECOMMEND_OFFERS", "RECOMMEND_MERCHANTS",
-                  "GET_PERSONALIZED_RECOMMENDATIONS"):
-        return "putting together some recommendations for you"
+    if action in ("RECOMMEND_PRODUCTS", "RECOMMEND_OFFERS", "GET_PERSONALIZED_RECOMMENDATIONS"):
+        return f"looking for {product_name or 'something you might like'}{price_str}{loc_str}"
+    if action == "RECOMMEND_MERCHANTS":
+        return "putting together some store recommendations for you"
     if action == "SHOW_PURCHASE_HISTORY":
         return "pulling up your purchase history"
     if action == "SHOW_VISIT_HISTORY":

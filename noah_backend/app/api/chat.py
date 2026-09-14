@@ -99,14 +99,29 @@ def chat(
     if "offerhopper_mcp" in plan.get("tool_sequence", []):
         from ..tools.offerhopper import call_offerhopper_mcp
         entities_dict = prediction.get("entities", {})
-        items = entities_dict.get("product") or instruction
+        items = entities_dict.get("product")
         location, plan["location_basis"] = _resolve_location(
             entities_dict.get("location"), request.location)
-        # An empty dict means the MCP call failed.  Emit null instead so the
-        # Flutter dispatcher does not open an empty route card, and so the
-        # response layer says the price service was unreachable rather than
-        # promising results that never arrived.
-        offerhopper_data = call_offerhopper_mcp(items=items, location=location) or None
+
+        if not items:
+            # "Recommend me something" with no kind of thing named: there is
+            # nothing to search for, and sending the whole sentence produces
+            # error_invalid_list. Ask instead of guessing.
+            offerhopper_data = None
+            plan["offerhopper_failure"] = "no_terms"
+        else:
+            result = call_offerhopper_mcp(items=items, location=location)
+            if result and result.get("success") is not False:
+                offerhopper_data = result
+            else:
+                # offerhopperData stays null for every failure so the client
+                # never opens a route card on an error object; the *kind* of
+                # failure rides on the plan so the reply can be honest about it:
+                # nothing matched versus the service being unreachable.
+                offerhopper_data = None
+                plan["offerhopper_failure"] = "no_match" if result else "unavailable"
+                if result:
+                    plan["offerhopper_error"] = result.get("error")
         plan["offerhopperData"] = offerhopper_data
 
     # --------------------------------------------------------

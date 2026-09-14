@@ -1,9 +1,11 @@
 """The action vocabulary and tool mapping used by noah_dataset_20k_final.csv."""
 
-# Offerhopper exposes one MCP tool, ``plan_optimal_shopping_route``.  It is a
-# good fit only for basket-aware actions: it needs a shopping list and a
-# German starting location, then returns a cheapest basket / store split /
-# route recommendation.  Do not use it for a generic product or deal search.
+# Offerhopper exposes one MCP tool, ``plan_optimal_shopping_route``: give it a
+# shopping list and a German starting location and it returns the cheapest
+# basket, the store(s), the route and - per item - three alternatives. It is
+# the *only* live product and price source the backend has, so anything that
+# has to name a real product or price goes through it, including "recommend
+# me something": there is no separate recommendation engine to call.
 OFFERHOPPER_MCP_TOOL = "offerhopper_mcp"
 
 ACTION_TO_TOOL = {
@@ -14,13 +16,13 @@ ACTION_TO_TOOL = {
     "DISPLAY_REWARDS": "wallet_tool", "FIND_CHEAPEST_BASKET": OFFERHOPPER_MCP_TOOL,
     "GET_DIRECTIONS": "maps_tool", "GET_MERCHANT_CONTACT": "merchant_api",
     "GET_MERCHANT_DETAILS": "merchant_api", "GET_OPENING_HOURS": "merchant_api",
-    "GET_PERSONALIZED_RECOMMENDATIONS": "recommendation_engine",
+    "GET_PERSONALIZED_RECOMMENDATIONS": OFFERHOPPER_MCP_TOOL,
     "LIST_WALLET_CARDS": "wallet_tool", "OPEN_GOOGLE_MAPS": "maps_tool",
     "OPEN_SETTINGS": "planner", "OPEN_WALLET_CARD": "wallet_tool",
     "OPEN_WEEKLY_FLYER": "offers_tool", "OPTIMIZE_SHOPPING_ROUTE": OFFERHOPPER_MCP_TOOL,
     "PLAN_ROUTE": "maps_tool", "PROVIDE_APP_HELP": "rag_engine",
-    "RECOMMEND_MERCHANTS": "recommendation_engine", "RECOMMEND_OFFERS": "offers_tool",
-    "RECOMMEND_PRODUCTS": "recommendation_engine", "REMOVE_LOYALTY_CARD": "wallet_tool",
+    "RECOMMEND_MERCHANTS": "recommendation_engine", "RECOMMEND_OFFERS": OFFERHOPPER_MCP_TOOL,
+    "RECOMMEND_PRODUCTS": OFFERHOPPER_MCP_TOOL, "REMOVE_LOYALTY_CARD": "wallet_tool",
     "REPORT_BUG": "planner", "SEARCH_CASHBACK": "offers_tool",
     "SEARCH_DISCOUNTS": "offers_tool", "SEARCH_MERCHANT": "merchant_api",
     "SEARCH_NEARBY_MERCHANTS": "merchant_api", "SEARCH_OFFERS": OFFERHOPPER_MCP_TOOL,

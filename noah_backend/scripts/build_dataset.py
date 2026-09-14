@@ -1207,6 +1207,150 @@ def top_up_routes(factory: RouteFactory, corpus: pd.DataFrame,
 
 
 # ---------------------------------------------------------------------------
+# 6c. Rewrite targets for the follow-up resolver (app/nlp/follow_up.py)
+# ---------------------------------------------------------------------------
+
+# The resolver turns "take me there" into "Take me to REWE in Hamburg" and
+# "wann öffnet es?" into "Wann öffnet REWE in Hamburg?".  Those sentences must
+# route on their own; the ones below were measured at or under the confidence
+# floor (or misrouted - "Navigate me to REWE in Hamburg" went to a price
+# search) before these rows existed.  Bare follow-ups themselves are *not*
+# here: without history they are ambiguous and stay in the holdout probes.
+
+FOLLOW_UP_FRAMES: dict[tuple[str, str], list[tuple[str, str]]] = {
+    ("ROUTE", "PLAN_ROUTE"): [
+        ("en", "Take me to {MERCHANT} in {CITY}."),
+        ("en", "Navigate me to {MERCHANT} in {CITY}."),
+        ("en", "Navigate to {MERCHANT} in {CITY}."),
+        ("en", "Drive me to {MERCHANT} in {CITY}."),
+        ("en", "Start navigation to {MERCHANT} in {CITY}."),
+        ("en", "Get me to {MERCHANT} in {CITY}."),
+        ("en", "I want to go to {MERCHANT} in {CITY}."),
+        ("en", "Take me to the {MERCHANT} in {CITY}."),
+        ("de", "Bring mich zu {MERCHANT} in {CITY}."),
+        ("de", "Navigiere mich zu {MERCHANT} in {CITY}."),
+        ("de", "Fahr mich zu {MERCHANT} in {CITY}."),
+        ("de", "Bring mich zum {MERCHANT} in {CITY}."),
+        ("de", "Navigiere zu {MERCHANT} in {CITY}."),
+        ("de", "Ich will zu {MERCHANT} in {CITY}."),
+        ("de", "Bring mich zu {MERCHANT}."),
+        ("de", "Fahr mich zu {MERCHANT}."),
+        ("de", "Bring mich bitte zum {MERCHANT}."),
+    ],
+    ("DIRECTIONS", "GET_DIRECTIONS"): [
+        ("de", "Wie komme ich zu {MERCHANT}?"),
+        ("de", "Wie komme ich zu {MERCHANT} in {CITY}?"),
+        ("de", "Zeig mir den Weg zu {MERCHANT}."),
+        ("de", "Zeig mir den Weg zu {MERCHANT} in {CITY}."),
+        ("de", "Wie komme ich am schnellsten zu {MERCHANT} in {CITY}?"),
+        ("de", "Welcher Weg führt zu {MERCHANT}?"),
+        ("de", "Wie komm ich zum {MERCHANT}?"),
+    ],
+    ("OPENING_HOURS", "GET_OPENING_HOURS"): [
+        ("en", "When does {MERCHANT} in {CITY} open?"),
+        ("en", "What are the opening hours of {MERCHANT} in {CITY}?"),
+        ("en", "When does {MERCHANT} in {CITY} close?"),
+        ("en", "Is {MERCHANT} in {CITY} open right now?"),
+        ("en", "Until when is {MERCHANT} in {CITY} open?"),
+        ("en", "What time does {MERCHANT} in {CITY} open today?"),
+        ("de", "Wann öffnet {MERCHANT}?"),
+        ("de", "Wann öffnet {MERCHANT} in {CITY}?"),
+        ("de", "Öffnungszeiten von {MERCHANT}."),
+        ("de", "Öffnungszeiten von {MERCHANT} in {CITY}."),
+        ("de", "Wann macht {MERCHANT} auf?"),
+        ("de", "Wann macht {MERCHANT} in {CITY} auf?"),
+        ("de", "Wann hat {MERCHANT} in {CITY} geöffnet?"),
+        ("de", "Hat {MERCHANT} in {CITY} gerade offen?"),
+        ("de", "Wie lange hat {MERCHANT} in {CITY} heute auf?"),
+        ("de", "Wann schließt {MERCHANT} in {CITY}?"),
+        ("de", "Bis wann hat {MERCHANT} auf?"),
+    ],
+    ("SEARCH", "SEARCH_PRODUCT"): [
+        ("en", "Where can I buy {PRODUCT} in {CITY}?"),
+        ("en", "Where can I buy {PRODUCT} near me?"),
+        ("en", "Find {PRODUCT} offers near me."),
+        ("en", "Find {PRODUCT} offers in {CITY}."),
+        ("en", "Search for {PRODUCT} near me."),
+        ("en", "Search for {PRODUCT} in {CITY}."),
+        ("en", "Where can I get {PRODUCT} in {CITY}?"),
+        ("en", "Find {PRODUCT} in {CITY}."),
+        ("en", "Where do I get {PRODUCT} near me?"),
+        ("en", "Look for {PRODUCT} in {CITY}."),
+        ("de", "Wo kann ich {PRODUCT} in {CITY} kaufen?"),
+        ("de", "Wo kann ich {PRODUCT} in meiner Nähe kaufen?"),
+        ("de", "Suche {PRODUCT} in {CITY}."),
+        ("de", "Finde {PRODUCT} in {CITY}."),
+        ("de", "Wo gibt es {PRODUCT} in {CITY}?"),
+        ("de", "Wo bekomme ich {PRODUCT} in {CITY}?"),
+        ("de", "Wo finde ich {PRODUCT} in meiner Nähe?"),
+        ("de", "Such {PRODUCT} in meiner Nähe."),
+        ("de", "Wo gibt es {PRODUCT} in meiner Nähe?"),
+    ],
+    ("BUILD_LIST", "BUILD_SHOPPING_LIST"): [
+        ("en", "Add {PRODUCT}, {PRODUCT2} and {PRODUCT3} to my shopping list."),
+        ("en", "Put {PRODUCT}, {PRODUCT2} and {PRODUCT3} on my shopping list."),
+        ("en", "Add {PRODUCT} and {PRODUCT2} to my list."),
+        ("de", "Setz {PRODUCT}, {PRODUCT2} und {PRODUCT3} auf meine Liste."),
+        ("de", "Setze {PRODUCT}, {PRODUCT2} und {PRODUCT3} auf meine Einkaufsliste."),
+        ("de", "Füge {PRODUCT}, {PRODUCT2} und {PRODUCT3} zu meiner Einkaufsliste hinzu."),
+        ("de", "Schreib {PRODUCT} und {PRODUCT2} auf meine Einkaufsliste."),
+        ("de", "Pack {PRODUCT}, {PRODUCT2} und {PRODUCT3} auf meine Liste."),
+        ("de", "Füge {PRODUCT} zu meiner Liste hinzu."),
+        ("de", "Setze {PRODUCT} und {PRODUCT2} auf meine Einkaufsliste."),
+    ],
+    ("DETAILS", "GET_MERCHANT_DETAILS"): [
+        ("en", "How far is {MERCHANT}?"),
+        ("en", "How far is {MERCHANT} from here?"),
+        ("en", "How far away is {MERCHANT} in {CITY}?"),
+        ("en", "How far is it to {MERCHANT}?"),
+        ("en", "What's the distance to {MERCHANT} in {CITY}?"),
+        ("en", "Is {MERCHANT} far from here?"),
+        ("de", "Wie weit ist {MERCHANT} entfernt?"),
+        ("de", "Wie weit ist es bis {MERCHANT}?"),
+        ("de", "Wie weit ist {MERCHANT} in {CITY} von hier entfernt?"),
+        ("de", "Wie weit ist es zu {MERCHANT} in {CITY}?"),
+        ("de", "Ist {MERCHANT} weit weg?"),
+        ("de", "Wie weit ist {MERCHANT} weg?"),
+    ],
+}
+
+# Rows per template.  Two or three fills of each template gives every route
+# in the table the 10-20 paraphrases the resolver's targets need.
+FOLLOW_UP_FILLS = 3
+
+
+def follow_up_rewrite_rows(factory: RouteFactory, seen: set[str] | None = None) -> list[dict]:
+    """Rows for the sentences the follow-up resolver produces."""
+    rng = random.Random(20260914)
+    seen = set(seen or ())
+    rows: list[dict] = []
+    for (sub_intent, actions), frames in FOLLOW_UP_FRAMES.items():
+        for language, template in frames:
+            for _ in range(FOLLOW_UP_FILLS):
+                merchant = rng.choice(MERCHANTS)
+                city = rng.choice(CITIES)
+                products = rng.sample(DE_PRODUCTS if language == "de" else EN_PRODUCTS, 3)
+                text = template.format(MERCHANT=merchant, CITY=city, PRODUCT=products[0],
+                                       PRODUCT2=products[1], PRODUCT3=products[2])
+                if text in seen:
+                    continue
+                seen.add(text)
+                entities = {}
+                if "{MERCHANT}" in template:
+                    entities["entity_merchant"] = merchant.upper()
+                if "{CITY}" in template:
+                    entities["entity_location"] = city
+                elif re.search(r"near me|in meiner Nähe|from here|von hier", template):
+                    entities["entity_location"] = "CURRENT_LOCATION"
+                if "{PRODUCT}" in template:
+                    used = [p for key, p in (("{PRODUCT}", products[0]), ("{PRODUCT2}", products[1]),
+                                             ("{PRODUCT3}", products[2])) if key in template]
+                    entities["entity_product"] = ", ".join(used)
+                rows.append(factory.make(text, sub_intent, actions, **entities))
+    return rows
+
+
+# ---------------------------------------------------------------------------
 # 7. Typo / speech-to-text noise
 # ---------------------------------------------------------------------------
 
@@ -1287,6 +1431,11 @@ def build() -> pd.DataFrame:
     combined = pd.concat([combined, pd.DataFrame(noisy)], ignore_index=True)
     combined = combined.drop_duplicates("instruction", keep="first")
     print(f"after noise variants   : {len(combined):>6}")
+
+    follow_up = follow_up_rewrite_rows(factory, set(combined.instruction))
+    combined = pd.concat([combined, pd.DataFrame(follow_up)], ignore_index=True)
+    combined = combined.drop_duplicates("instruction", keep="first")
+    print(f"follow-up rewrite rows : {len(follow_up):>6}")
 
     combined = enforce_route_consistency(
         canonicalise_workflow(collapse_repeated_actions(combined)))

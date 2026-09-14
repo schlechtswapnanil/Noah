@@ -30,10 +30,12 @@ contradictory; make sensible Flutter decisions and note them in your summary.
 
 `instruction` is required. `location` is optional but **the app should always
 send it when it has a fix** — see §2g. It accepts `latitude` + `longitude`
-(preferred) or `postal_code` (a 5-digit German PLZ). No session id, no history:
-every call is independent. Blank input returns
-`200 {"error": "Instruction cannot be empty."}`; a missing `instruction` or a
-malformed `location` returns `422`.
+(preferred) or `postal_code` (a 5-digit German PLZ). `history` is optional and
+carries the previous turns so that follow-ups ("take me there", "add them to my
+list", "which one is cheapest?") work — see §7. There is no session id: the
+server keeps nothing between calls, the app sends what it stored. Blank input
+returns `200 {"error": "Instruction cannot be empty."}`; a missing
+`instruction`, a malformed `location` or a malformed `history` returns `422`.
 
 **Response** — always exactly these 24 keys, in every case (success, decline,
 tool failure). Never assume a key is absent; assume nullable values instead.
@@ -286,8 +288,8 @@ Modelling rules:
 6. **Route card / result tiles** — built from the §4 model; `share_url` opens
    in the external browser.
 
-Keep the request body exactly `{"instruction": ...}`. Do not add fields the
-server will ignore, and do not depend on fields not listed here.
+Keep the request body to `instruction`, `location` and `history`. Do not add
+fields the server will ignore, and do not depend on fields not listed here.
 
 ---
 
@@ -344,3 +346,86 @@ timeout under 60 s.
 
 When done, summarise which files you changed and any UI decisions you made
 where the app did not already have a matching screen.
+
+---
+
+## 7. Conversation context: send `history`
+
+The server is context-aware when the request carries the previous turns.
+Follow-ups are resolved server-side, so **delete
+`lib/noah/services/noah_follow_up_resolver.dart` and any client-side
+rewriting**: send what the user typed, plus `history`.
+
+```json
+{
+  "instruction": "Take me there",
+  "location": { "latitude": 52.5219, "longitude": 13.4132 },
+  "history": [
+    {
+      "instruction": "Find the cheapest basket for milk, eggs and bread in Hamburg",
+      "response": "REWE on Ballindamm has the cheapest basket … https://offerhopper.ai/s/VcEZiHHo",
+      "planner_actions": ["FIND_CHEAPEST_BASKET"],
+      "entities": {
+        "product": "Milk, Eggs, Bread", "merchant": null, "brand": null,
+        "category": null, "price_min": null, "price_max": null,
+        "location": "Hamburg", "radius": null, "loyalty_card": null
+      },
+      "results": [
+        { "name": "Weihenstephan Barista Milch 1l", "store": "REWE", "price": 0.99 },
+        { "name": "REWE Beste Wahl Eier Freilandhaltung 4 Stück", "store": "REWE", "price": 1.49 },
+        { "name": "Harry Kürbiskernbrot 750g", "store": "REWE", "price": 1.99 }
+      ],
+      "share_url": "https://offerhopper.ai/s/VcEZiHHo",
+      "stores": [
+        { "name": "REWE", "address": "Ballindamm, 40, 20095, Hamburg",
+          "latitude": 53.55127, "longitude": 9.99681 }
+      ]
+    }
+  ]
+}
+```
+
+Rules:
+
+- One entry per previous exchange, **oldest first, newest last**. Send the
+  last 6 at most (older ones are ignored anyway).
+- Build each entry from the stored response: `instruction` is what the user
+  typed, `response`, `planner_actions` and `entities` are copied straight from
+  the response (`entities` = the nine `entity_*` fields without the prefix).
+  Everything except `instruction` is optional.
+- `results`, `stores` and `share_url` are a **compact summary** of that turn's
+  `offerhopperData`, never the payload itself: for every stop
+  (`route_segments[]` with `to_name != "user_location"`) and every
+  `products_to_buy[]` entry, `{name: selected_product ?? name, store:
+  to_store.name, price}`; for every `optimized_route.stores[]` entry
+  `{name, address: formatted_address, latitude, longitude}`; `share_url` as is.
+  At most 10 results per turn (the server truncates the rest).
+- Turns with an empty `planner_actions` (greetings, clarifying questions) can
+  be sent or skipped; the server ignores them.
+- The response shape does not change: still the 24 keys, and `instruction`
+  still echoes what the user typed, not the resolved sentence.
+
+What the server does with it:
+
+| user says (after a basket search in Hamburg at REWE) | server acts as if the user said | result |
+|---|---|---|
+| take me there / navigate there / bring mich dorthin | Take me to REWE in Hamburg | `PLAN_ROUTE`, `entity_merchant` REWE, `entity_location` Hamburg |
+| when does it open? / wann öffnet es? | When does REWE in Hamburg open? | `GET_OPENING_HOURS` |
+| add them to my shopping list / setz sie auf meine Liste | Add milk, eggs and bread to my shopping list | `BUILD_SHOPPING_LIST`, `entity_product` "Milk, Eggs, Bread" |
+| what about butter? / und Butter? | Find the cheapest basket for butter in Hamburg | `FIND_CHEAPEST_BASKET` (a price search or plain search is continued the same way) |
+| which one is cheapest? / what's the total? / is it worth the trip? / lohnt sich die Fahrt? | answered from the `results` you sent | `planner_actions []`, `domain CHAT`, `intent FOLLOW_UP`, `sub_intent RESULT_QUESTION`, `offerhopperData null`, `response` names the item and price and ends with the map link. No OfferHopper call, answered in well under a second plus the LLM reply. Render as plain text like any empty plan |
+| show the barcode / Zeig mir die Karte (after a wallet turn) | Show my Payback barcode / Zeig mir meine Payback Karte | `DISPLAY_BARCODE` / `OPEN_WALLET_CARD`, `entity_loyalty_card` PAYBACK |
+
+A bare follow-up **without** `history` ("Take me there" as the first message)
+returns the empty plan with a clarifying question ("Happy to get you there -
+which store do you mean?") instead of a navigation action with no merchant.
+
+Verify:
+
+```bash
+U=https://noah-z7qr.onrender.com/api/chat; H='Content-Type: application/json'
+curl -s $U -H "$H" -d '{"instruction":"Take me there","history":[{"instruction":"Find the cheapest basket for milk, eggs and bread in Hamburg","planner_actions":["FIND_CHEAPEST_BASKET"],"entities":{"product":"Milk, Eggs, Bread","location":"Hamburg"},"stores":[{"name":"REWE","address":"Ballindamm, 40, 20095, Hamburg","latitude":53.55127,"longitude":9.99681}]}]}'
+#   -> PLAN_ROUTE, entity_merchant REWE, entity_location Hamburg, instruction "Take me there"
+curl -s $U -H "$H" -d '{"instruction":"Which one is cheapest?","history":[{"instruction":"Find the cheapest basket for milk, eggs and bread in Hamburg","planner_actions":["FIND_CHEAPEST_BASKET"],"entities":{"product":"Milk, Eggs, Bread","location":"Hamburg"},"results":[{"name":"Weihenstephan Barista Milch 1l","store":"REWE","price":0.99},{"name":"REWE Beste Wahl Eier Freilandhaltung 4 Stück","store":"REWE","price":1.49}],"share_url":"https://offerhopper.ai/s/VcEZiHHo"}]}'
+#   -> planner_actions [], response names the €0.99 milk, map link last
+```

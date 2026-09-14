@@ -123,14 +123,27 @@ _ENGLISH_MARKERS = re.compile(
 _UMLAUT = re.compile(r"[äöüßÄÖÜ]")
 
 
-def _language(instruction: str) -> str:
-    """Return "de" or "en" for `instruction`."""
-    text = instruction or ""
+def language_of(text: str, fallback: Optional[str] = None) -> str:
+    """Return "de" or "en" for `text`.
+
+    `fallback` is used when the text carries no language marker at all
+    ("cheapest?", "directions") - a follow-up that short takes the language of
+    the turn before it rather than defaulting to English.
+    """
+    text = text or ""
     german = len(_GERMAN_MARKERS.findall(text))
     english = len(_ENGLISH_MARKERS.findall(text))
-    if _UMLAUT.search(text):
+    umlaut = bool(_UMLAUT.search(text))
+    if fallback in ("de", "en") and not german and not english and not umlaut:
+        return fallback
+    if umlaut:
         german += 2
     return "de" if german > english else "en"
+
+
+def _language(instruction: str) -> str:
+    """Return "de" or "en" for `instruction`."""
+    return language_of(instruction)
 
 
 CLARIFY = {
@@ -186,6 +199,45 @@ NO_TERMS = {
 CONVERSATIONAL = {
     "GREETING": GREETING, "THANKS": THANKS, "GOODBYE": GOODBYE,
     "SMALL_TALK": SMALL_TALK, "UNKNOWN": CLARIFY,
+}
+
+# A follow-up frame the resolver recognised but could not fill: "take me
+# there" with no history. The question names what is missing.
+FOLLOW_UP_CLARIFY = {
+    "navigation": {
+        "en": "Happy to get you there - which store do you mean?",
+        "de": "Gern - zu welchem Markt soll es gehen?",
+    },
+    "hours": {
+        "en": "Which store's opening hours would you like?",
+        "de": "Von welchem Markt möchtest du die Öffnungszeiten wissen?",
+    },
+    "distance": {
+        "en": "Which store do you mean?",
+        "de": "Welchen Markt meinst du?",
+    },
+    "list": {
+        "en": "Sure - which items should I put on your shopping list?",
+        "de": "Klar - was soll ich auf deine Einkaufsliste setzen?",
+    },
+    "product": {
+        "en": "Happy to look that up - should I find the cheapest price nearby, "
+              "or add it to your shopping list?",
+        "de": "Gern - soll ich den günstigsten Preis in der Nähe finden oder es "
+              "auf deine Einkaufsliste setzen?",
+    },
+    "results": {
+        "en": "I don't have a previous search to compare. Tell me what you're "
+              "looking for and I'll find prices.",
+        "de": "Ich habe noch keine Suche, auf die ich mich beziehen kann. Sag "
+              "mir, was du suchst, dann finde ich Preise.",
+    },
+}
+NO_PREVIOUS_RESULTS = {
+    "en": "I don't have the previous results to hand any more - ask me for the "
+          "search again and I'll pull up fresh prices.",
+    "de": "Die vorherigen Ergebnisse habe ich nicht mehr - frag mich noch einmal "
+          "nach der Suche, dann hole ich aktuelle Preise.",
 }
 
 
@@ -350,14 +402,78 @@ def _failure_message(plan: dict, language: str) -> str:
     return TOOL_UNAVAILABLE[language]
 
 
+def _previous_results_reply(context, language: str) -> str:
+    """Deterministic answer to a result question: the carried results with
+    prices, the cheapest, the total and the map link. Never a clarification."""
+    results = list(getattr(context, "results", None) or [])
+    priced = [(float(r["price"]), str(r.get("name")), r.get("store"))
+              for r in results if r.get("name") and r.get("price") is not None]
+    if not priced:
+        return NO_PREVIOUS_RESULTS[language]
+    cheapest = min(priced)
+    total = sum(p for p, _, _ in priced)
+    if language == "de":
+        listed = "; ".join(f"{n} bei {s} für €{p:.2f}" if s else f"{n} für €{p:.2f}"
+                           for p, n, s in priced)
+        reply = f"Das hatte ich gefunden: {listed}. Am günstigsten ist {cheapest[1]} für €{cheapest[0]:.2f}"
+        reply += f"; zusammen sind das €{total:.2f}." if len(priced) > 1 else "."
+    else:
+        listed = "; ".join(f"{n} at {s} for €{p:.2f}" if s else f"{n} for €{p:.2f}"
+                           for p, n, s in priced)
+        reply = f"From what I found: {listed}. The cheapest is {cheapest[1]} at €{cheapest[0]:.2f}"
+        reply += f"; together they come to €{total:.2f}." if len(priced) > 1 else "."
+    share_url = getattr(context, "share_url", None)
+    if share_url:
+        reply += f"\n{share_url}"
+    return reply
+
+
+def _answer_result_question(instruction: str, context, language: str) -> str:
+    """Answer "which one is cheapest?" from the carried results, not a new search."""
+    block = context.results_block() if context is not None else ""
+    if not block:
+        return _previous_results_reply(context, language)
+
+    user_prompt = f"""USER REQUEST:
+<user_request>
+{instruction}
+</user_request>
+
+The person is asking about the results you showed them a moment ago. Answer \
+the question from PREVIOUS RESULTS only: name the products, prices and stores \
+exactly as listed, do not search again, do not say you are searching, and do \
+not add anything that is not in the list. One to three sentences. If there is \
+a map link, end with it on its own line.
+
+PREVIOUS RESULTS:
+{block}
+
+{"Antworte auf Deutsch, mit du." if language == "de" else "Reply in English."}
+"""
+    try:
+        response = generate_text(SYSTEM_PROMPT, user_prompt, temperature=GROUNDED_TEMPERATURE)
+        if response:
+            return response
+    except Exception:
+        logger.warning("LLM result-question answer failed; listing the previous results.",
+                       exc_info=True)
+    return _previous_results_reply(context, language)
+
+
 def _generate_fallback_response(
     instruction: str,
     plan: dict,
     rag_context: Optional[List[str]] = None,
     requires_rag: bool = False,
+    context=None,
 ) -> str:
     """Deterministic reply used whenever the LLM is unavailable."""
-    language = _language(instruction)
+    follow_up = plan.get("follow_up") or {}
+    language = follow_up.get("language") or _language(instruction)
+    if follow_up.get("kind") == "result_question":
+        return _previous_results_reply(context, language)
+    if follow_up.get("kind") == "unresolved":
+        return FOLLOW_UP_CLARIFY.get(follow_up.get("family"), CLARIFY)[language]
     actions = plan.get("planner_actions", []) or []
     entities = plan.get("entities", {}) or {}
 
@@ -523,10 +639,27 @@ def generate_response(
     plan: dict,
     rag_context: Optional[List[str]] = None,
     requires_rag: bool = False,
+    context=None,
 ) -> str:
-    """Return the user-facing reply for a completed plan."""
+    """Return the user-facing reply for a completed plan.
+
+    `context` is the ``ConversationContext`` built from the request's
+    ``history`` (app/nlp/follow_up.py). Only two things are read from it: the
+    carried results, for a question about what was just shown, and nothing
+    else - earlier turns' text never enters the prompt. ``plan["follow_up"]``
+    says how the message was resolved: ``rewritten`` (the prompt shows the
+    original message and the sentence it was resolved to, so the reply
+    acknowledges what the person actually said), ``result_question`` or
+    ``unresolved``.
+    """
     rag_context = rag_context or []
-    language = _language(instruction)
+    follow_up = plan.get("follow_up") or {}
+    language = follow_up.get("language") or _language(instruction)
+
+    if follow_up.get("kind") == "result_question":
+        return _answer_result_question(instruction, context, language)
+    if follow_up.get("kind") == "unresolved":
+        return FOLLOW_UP_CLARIFY.get(follow_up.get("family"), CLARIFY)[language]
 
     # Cases the LLM must not be asked to improvise on.
     if requires_rag and not rag_context:
@@ -535,7 +668,7 @@ def generate_response(
         sub_intent = plan.get("sub_intent") or "UNKNOWN"
         return CONVERSATIONAL.get(sub_intent, CLARIFY)[language]
     if _tool_call_failed(plan):
-        return _generate_fallback_response(instruction, plan, rag_context, requires_rag)
+        return _generate_fallback_response(instruction, plan, rag_context, requires_rag, context)
 
     document_section = ("\nDOCUMENT CONTEXT:\n" + "\n".join(rag_context)
                         if rag_context else "No document context supplied.")
@@ -547,10 +680,15 @@ def generate_response(
     # raw OfferHopper payload is left out - it goes in as the compact block
     # above, not as 20 KB of route geometry.
     plan_for_prompt = {k: v for k, v in plan.items()
-                       if k not in ("entities", "offerhopperData")}
+                       if k not in ("entities", "offerhopperData", "follow_up")}
+    # A rewritten follow-up shows both: the reply should answer "take me
+    # there", not read out the template it was resolved to.
+    request_block = instruction
+    if follow_up.get("kind") == "rewritten" and follow_up.get("resolved"):
+        request_block += f"\nResolved as: {follow_up['resolved']}"
     user_prompt = f"""USER REQUEST:
 <user_request>
-{instruction}
+{request_block}
 </user_request>
 
 PAYTO ACTION PLAN:
@@ -578,5 +716,5 @@ Name any prices and stores above.
 
     return _generate_fallback_response(
         instruction=instruction, plan=plan, rag_context=rag_context,
-        requires_rag=requires_rag,
+        requires_rag=requires_rag, context=context,
     )

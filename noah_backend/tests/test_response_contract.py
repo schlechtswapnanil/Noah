@@ -180,3 +180,84 @@ def test_device_location_is_optional_and_additive(client):
     assert client.post("/api/chat", json={
         "instruction": instruction, "location": {"latitude": "north"},
     }).status_code == 422
+
+HISTORY_BASKET = [{
+    "instruction": "Find the cheapest basket for milk, eggs and bread in Hamburg",
+    "response": "REWE on Ballindamm has the cheapest basket. https://offerhopper.ai/s/VcEZiHHo",
+    "planner_actions": ["FIND_CHEAPEST_BASKET"],
+    "entities": {"product": "Milk, Eggs, Bread", "merchant": None, "brand": None,
+                 "category": None, "price_min": None, "price_max": None,
+                 "location": "Hamburg", "radius": None, "loyalty_card": None},
+    "results": [
+        {"name": "Weihenstephan Barista Milch 1l", "store": "REWE", "price": 0.99},
+        {"name": "REWE Beste Wahl Eier Freilandhaltung 4 Stück", "store": "REWE", "price": 1.49},
+        {"name": "Harry Kürbiskernbrot 750g", "store": "REWE", "price": 1.99},
+    ],
+    "share_url": "https://offerhopper.ai/s/VcEZiHHo",
+    "stores": [{"name": "REWE", "address": "Ballindamm, 40, 20095, Hamburg",
+                "latitude": 53.55127, "longitude": 9.99681}],
+}]
+
+
+def test_history_is_optional_and_additive(client):
+    """`history` may be sent; it must not change the response key set, the
+    echoed `instruction`, or how a request without it behaves."""
+    instruction = "Take me there"
+    with_history = client.post("/api/chat", json={
+        "instruction": instruction, "history": HISTORY_BASKET,
+    }).json()
+    without = client.post("/api/chat", json={"instruction": instruction}).json()
+    question = client.post("/api/chat", json={
+        "instruction": "Which one is cheapest?", "history": HISTORY_BASKET,
+    }).json()
+
+    for payload in (with_history, without, question):
+        assert set(payload) == RESPONSE_KEYS
+    # `instruction` echoes what was typed, never the resolved sentence
+    assert with_history["instruction"] == instruction
+    assert without["instruction"] == instruction
+    assert question["instruction"] == "Which one is cheapest?"
+
+    # with history the follow-up is the navigation the user meant
+    assert "PLAN_ROUTE" in with_history["planner_actions"]
+    assert with_history["entity_merchant"] == "REWE"
+    assert with_history["entity_location"] == "Hamburg"
+
+    # without it a bare follow-up is a clarifying question, not an action
+    assert without["planner_actions"] == []
+    assert without["domain"] == "CHAT" and without["response_mode"] == "text"
+
+    # a result question is the empty-plan shape with the carried entities
+    assert question["planner_actions"] == [] and question["tool_sequence"] == []
+    assert question["domain"] == "CHAT" and question["response_mode"] == "text"
+    assert question["tool"] == "none" and question["offerhopperData"] is None
+    assert question["intent"] == "FOLLOW_UP" and question["sub_intent"] == "RESULT_QUESTION"
+    assert question["entity_product"] == "Milk, Eggs, Bread"
+    assert question["entity_location"] == "Hamburg"
+
+    # every other probe is unchanged by an unrelated history
+    for probe in PROBES:
+        payload = client.post("/api/chat", json={
+            "instruction": probe, "history": HISTORY_BASKET,
+        }).json()
+        assert set(payload) == RESPONSE_KEYS
+        assert payload["instruction"] == probe
+
+    # malformed history is rejected, not silently ignored
+    assert client.post("/api/chat", json={
+        "instruction": instruction, "history": "yesterday",
+    }).status_code == 422
+    assert client.post("/api/chat", json={
+        "instruction": instruction,
+        "history": [{"instruction": "x", "results": [{"name": "Milch", "price": "cheap"}]}],
+    }).status_code == 422
+    assert client.post("/api/chat", json={
+        "instruction": instruction, "history": [{"response": "no instruction"}],
+    }).status_code == 422
+    # the full OfferHopper payload is not part of the contract: unknown keys
+    # are dropped, so sending it neither fails nor changes the answer
+    with_payload = client.post("/api/chat", json={
+        "instruction": instruction,
+        "history": [{**HISTORY_BASKET[0], "offerhopperData": {"optimized_route": {}}}],
+    }).json()
+    assert with_payload["planner_actions"] == with_history["planner_actions"]

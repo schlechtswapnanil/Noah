@@ -143,6 +143,13 @@ def load_probes(split: str | None = None) -> pd.DataFrame:
     are the only realistic sample available: the corpus itself is
     template-generated, so its own held-out split understates how uncertain the
     model is on phrasing it has never seen.
+
+    A third split, ``follow_up``, holds bare follow-ups ("take me there",
+    "which one is cheapest?").  They are deliberately absent from the corpus:
+    without history they are ambiguous, and with it ``app/nlp/follow_up.py``
+    rewrites them before the model ever sees them.  They are reported, never
+    tuned on, so the number says how often the model alone would have acted on
+    one.
     """
     if not PROBE_PATH.exists():
         return pd.DataFrame()
@@ -261,13 +268,26 @@ def evaluate_probes(model, registry: dict, threshold: float) -> dict:
         for t, e, p, c, ok in zip(probes.instruction, expected, predicted_sub_intent,
                                   confidence, correct) if not ok
     ]
-    return {
+    report = {
         "probe_utterances": int(len(probes)),
         "in_scope_sub_intent_accuracy": float(correct[in_scope].mean()),
         "in_scope_wrongly_declined": float(declined[in_scope].mean()),
         "out_of_scope_declined": float(declined[~in_scope].mean()),
         "misses": misses,
     }
+
+    bare = load_probes(split="follow_up")
+    if not bare.empty:
+        predicted, confidence = score_routes(model, registry, bare["instruction"])
+        predicted_sub_intent = np.array([registry[r]["sub_intent"] for r in predicted])
+        declined = (confidence < threshold) | (predicted_sub_intent == OUT_OF_SCOPE_SUB_INTENT)
+        report["bare_follow_ups"] = {
+            "utterances": int(len(bare)),
+            "declined_by_model_alone": float(declined.mean()),
+            "note": "resolved from history by app/nlp/follow_up.py before classification; "
+                    "without history the resolver declines them itself",
+        }
+    return report
 
 
 def train_models() -> dict:
@@ -302,7 +322,22 @@ def train_models() -> dict:
     metrics = evaluate(model, registry, test_df, threshold)
     metrics["holdout_probes"] = evaluate_probes(model, registry, threshold)
 
-    joblib.dump({"model": model, "threshold": threshold}, ROUTE_MODEL_PATH)
+    # The numbers above describe a model that never saw 30% of the surface
+    # templates.  The model that ships is refit on the whole corpus: a template
+    # the split happened to strand in the holdout ("Zeig mir {M} auf der
+    # Karte") would otherwise be missing from production, and *which*
+    # templates those are changes every time a row is added.  The threshold
+    # stays the one calibrated on the split model, which is slightly
+    # conservative for the refit.  The hand-written probes are re-scored on
+    # the shipped model because they are outside the corpus either way.
+    shipped = make_model().fit(df["instruction"].fillna(""), df["route"])
+    metrics["shipped_model"] = {
+        "note": "refit on the full corpus after evaluation; the split metrics above "
+                "are a lower bound for it",
+        "holdout_probes": evaluate_probes(shipped, registry, threshold),
+    }
+
+    joblib.dump({"model": shipped, "threshold": threshold}, ROUTE_MODEL_PATH)
     REGISTRY_PATH.write_text(json.dumps(registry, indent=2, ensure_ascii=False),
                              encoding="utf-8")
     METRICS_PATH.write_text(json.dumps(metrics, indent=2, ensure_ascii=False),
@@ -321,6 +356,16 @@ def train_models() -> dict:
         print(f"  in-scope sub_intent accuracy      {probe['in_scope_sub_intent_accuracy']:.4f}")
         print(f"  in-scope wrongly declined         {probe['in_scope_wrongly_declined']:.4f}")
         print(f"  out-of-scope declined             {probe['out_of_scope_declined']:.4f}")
+        bare = probe.get("bare_follow_ups")
+        if bare:
+            print(f"  bare follow-ups declined by model {bare['declined_by_model_alone']:.4f} "
+                  f"({bare['utterances']} utterances; the resolver handles these)")
+    shipped_probe = (metrics.get("shipped_model") or {}).get("holdout_probes") or {}
+    if shipped_probe:
+        print("\nsame probes on the shipped model (refit on the full corpus):")
+        print(f"  in-scope sub_intent accuracy      {shipped_probe['in_scope_sub_intent_accuracy']:.4f}")
+        print(f"  in-scope wrongly declined         {shipped_probe['in_scope_wrongly_declined']:.4f}")
+        print(f"  out-of-scope declined             {shipped_probe['out_of_scope_declined']:.4f}")
     print("\nabstention (test split):")
     for key, value in metrics["abstention"].items():
         print(f"  {key:<38s} {value}")

@@ -202,6 +202,149 @@ def test_chat_kebab_search_price():
     assert data["entity_location"] == "CURRENT_LOCATION"
 
 
+
+# --------------------------------------------------------------------------
+# Conversation context (`history`)
+# --------------------------------------------------------------------------
+
+def _summarise_offerhopper(data):
+    """What the client stores from `offerhopperData` for the next request:
+    (results, stores, share_url) - name/store/price and name/address/position,
+    never the payload itself."""
+    route = (data or {}).get("optimized_route") or {}
+    results, stores = [], []
+    for segment in route.get("route_segments") or []:
+        store = (segment.get("to_store") or {}).get("name") or segment.get("to_name")
+        if not store or store in ("user_location", "user_end_location"):
+            continue
+        for product in segment.get("products_to_buy") or []:
+            results.append({"name": product.get("selected_product") or product.get("name"),
+                            "store": store, "price": product.get("price")})
+    for store in route.get("stores") or []:
+        stores.append({"name": store.get("name"), "address": store.get("formatted_address"),
+                       "latitude": store.get("latitude"), "longitude": store.get("longitude")})
+    return results, stores, (data or {}).get("share_url")
+
+
+def _turn(instruction, payload):
+    """A `history` entry built from a previous response, as the client does."""
+    results, stores, share_url = _summarise_offerhopper(payload.get("offerhopperData"))
+    return {
+        "instruction": instruction,
+        "response": payload["response"],
+        "planner_actions": payload["planner_actions"],
+        "entities": {key[len("entity_"):]: value for key, value in payload.items()
+                     if key.startswith("entity_")},
+        "results": results, "stores": stores, "share_url": share_url,
+    }
+
+
+def test_follow_up_sequence_through_the_api(monkeypatch):
+    """basket -> take me there -> add them to my list -> when does it open? ->
+    what about butter? -> which one is cheapest? -> show my Payback card."""
+    import app.tools.offerhopper as offerhopper_module
+    from tests.conftest import fake_offerhopper
+
+    calls = []
+
+    def offerhopper(**kwargs):
+        calls.append(kwargs["items"])
+        # The butter search hits a service hiccup: a failed turn must be
+        # skipped, so the result question still sees the basket's prices.
+        if "butter" in kwargs["items"].lower():
+            return {}
+        return fake_offerhopper(**kwargs)
+
+    monkeypatch.setattr(offerhopper_module, "call_offerhopper_mcp", offerhopper)
+    history = []
+
+    def ask(instruction):
+        payload = client.post("/api/chat", json={"instruction": instruction, "history": history}).json()
+        assert payload["instruction"] == instruction
+        history.append(_turn(instruction, payload))
+        return payload
+
+    basket = ask("Find the cheapest basket for milk, eggs and bread in Hamburg")
+    assert "FIND_CHEAPEST_BASKET" in basket["planner_actions"]
+    assert basket["entity_product"] == "Milk, Eggs, Bread"
+    assert basket["offerhopperData"] is not None
+    assert calls == ["Milk, Eggs, Bread"]
+
+    there = ask("Take me there")
+    assert "PLAN_ROUTE" in there["planner_actions"]
+    assert there["entity_merchant"] == "REWE"
+    assert there["entity_location"] == "Hamburg"
+    assert there["offerhopperData"] is None
+
+    listed = ask("Add them to my shopping list")
+    assert "BUILD_SHOPPING_LIST" in listed["planner_actions"]
+    for item in ("milk", "eggs", "bread"):
+        assert item in listed["entity_product"].lower()
+
+    hours = ask("When does it open?")
+    assert "GET_OPENING_HOURS" in hours["planner_actions"]
+    assert hours["entity_merchant"] == "REWE"
+    assert hours["entity_location"] == "Hamburg"
+
+    butter = ask("What about butter?")
+    assert "FIND_CHEAPEST_BASKET" in butter["planner_actions"]
+    assert butter["entity_product"] == "Butter"
+    assert butter["entity_location"] == "Hamburg"
+    assert butter["offerhopperData"] is None          # the hiccup
+    assert calls == ["Milk, Eggs, Bread", "Butter"]
+
+    cheapest = ask("Which one is cheapest?")
+    assert cheapest["planner_actions"] == []
+    assert cheapest["planner_action_count"] == 0 and cheapest["tool_sequence"] == []
+    assert cheapest["domain"] == "CHAT" and cheapest["response_mode"] == "text"
+    assert cheapest["offerhopperData"] is None
+    assert "0.99" in cheapest["response"] and "Milch" in cheapest["response"]
+    assert cheapest["response"].rstrip().endswith("https://offerhopper.ai/s/VcEZiHHo")
+    assert calls == ["Milk, Eggs, Bread", "Butter"]   # no OfferHopper call
+
+    card = ask("Show my Payback card")
+    assert "OPEN_WALLET_CARD" in card["planner_actions"] or "DISPLAY_BARCODE" in card["planner_actions"]
+    assert card["entity_loyalty_card"] == "PAYBACK"
+
+
+def test_bare_follow_ups_without_history_ask_instead_of_acting():
+    for instruction in ("Take me there", "Add them to my shopping list", "When does it open?",
+                        "Which one is cheapest?", "bring mich dorthin"):
+        payload = client.post("/api/chat", json={"instruction": instruction}).json()
+        assert payload["planner_actions"] == [], instruction
+        assert payload["domain"] == "CHAT" and payload["offerhopperData"] is None
+        assert payload["entity_merchant"] is None and payload["entity_product"] is None
+        assert payload["response"].strip()
+
+
+def test_wallet_follow_up_in_german():
+    history = [{"instruction": "Show me my Payback barcode.",
+                "planner_actions": ["DISPLAY_BARCODE"],
+                "entities": {"loyalty_card": "PAYBACK", "brand": "PAYBACK", "category": "LOYALTY_CARD"}}]
+    payload = client.post("/api/chat", json={"instruction": "Zeig mir die Karte", "history": history}).json()
+    assert "OPEN_WALLET_CARD" in payload["planner_actions"] or "DISPLAY_BARCODE" in payload["planner_actions"]
+    assert payload["entity_loyalty_card"] == "PAYBACK"
+    assert payload["instruction"] == "Zeig mir die Karte"
+    assert "payback" in payload["response"].lower()
+    # (the reply's language is the LLM's job; the deterministic fallback used
+    # when it is stubbed describes wallet actions in English)
+
+
+def test_near_me_follow_up_uses_the_device_location(offline):
+    """A rewritten "near me" resolves through the device position exactly as
+    a typed "near me" does."""
+    history = [{"instruction": "Find the cheapest basket for milk near me",
+                "planner_actions": ["FIND_CHEAPEST_BASKET"],
+                "entities": {"product": "Milk", "location": "CURRENT_LOCATION"}}]
+    payload = client.post("/api/chat", json={
+        "instruction": "What about butter?", "history": history,
+        "location": {"latitude": 52.5219, "longitude": 13.4132},
+    }).json()
+    assert "FIND_CHEAPEST_BASKET" in payload["planner_actions"]
+    assert payload["entity_product"] == "Butter"
+    assert payload["entity_location"] == "CURRENT_LOCATION"
+    assert offline[-1]["location"] == "52.52190,13.41320"
+
 if __name__ == "__main__":
     tests = [
         test_health,

@@ -208,6 +208,10 @@ Writes `trained_models/route.joblib` (pipeline + calibrated confidence threshold
 
 Evaluation splits by **surface template**, not by row, so a paraphrase of a training utterance cannot land in the test set. It also scores `dataset/noah_holdout_probes.csv` — hand-written utterances that never enter the corpus, half used to calibrate the confidence threshold and half held back to report generalisation. The trainer fails if any probe leaks into training.
 
+The model that ships is refit on the whole corpus after evaluation. The split metrics describe a model that never saw 30% of the templates, and which templates those are changes whenever a row is added — a phrasing stranded in the holdout ("Zeig mir {Markt} auf der Karte") would otherwise be missing from production. The threshold stays the one calibrated on the split model; the probes are re-scored on the shipped model as `shipped_model.holdout_probes` in `evaluation.json`.
+
+To add rows without reshuffling the corpus (which turns a few dozen new rows into a 10,000-line diff), add them to `scripts/build_dataset.py` and run `python -m scripts.append_follow_up_rows`, then retrain.
+
 ---
 
 ## 📡 API Reference
@@ -232,6 +236,8 @@ Evaluation splits by **surface template**, not by row, so a paraphrase of a trai
 ```
 
 `location` is optional and additive — a request with only `instruction` behaves exactly as before. It carries the device position (`latitude` + `longitude`, or a 5-digit `postal_code`) and is used only when the instruction does not name a place: "near me", "nearby", or no location at all. A city or postcode typed by the user always wins. Without it, "near me" falls back to a fixed default area (Munich city centre) and the reply says so.
+
+`history` is optional and additive too — see [Conversation context](#conversation-context-history) below. It carries the previous turns so that "take me there", "add them to my list" and "which one is cheapest?" mean what the user meant.
 
 #### Response Body
 
@@ -317,6 +323,47 @@ Below the calibrated confidence threshold, or for a request outside PayTo's scop
 
 If the OfferHopper call fails, `offerhopperData` is `null` and `response` says the price service was unreachable — it never reports prices that were not returned.
 
+#### Conversation context (`history`)
+
+The server keeps nothing between calls. The client sends the previous turns, oldest first, newest last, built from the responses it stored:
+
+```json
+{
+  "instruction": "Take me there",
+  "location": { "latitude": 52.5219, "longitude": 13.4132 },
+  "history": [
+    {
+      "instruction": "Find the cheapest basket for milk, eggs and bread in Hamburg",
+      "response": "REWE on Ballindamm has the cheapest basket … https://offerhopper.ai/s/VcEZiHHo",
+      "planner_actions": ["FIND_CHEAPEST_BASKET"],
+      "entities": { "product": "Milk, Eggs, Bread", "location": "Hamburg" },
+      "results": [
+        { "name": "Weihenstephan Barista Milch 1l", "store": "REWE", "price": 0.99 },
+        { "name": "REWE Beste Wahl Eier Freilandhaltung 4 Stück", "store": "REWE", "price": 1.49 },
+        { "name": "Harry Kürbiskernbrot 750g", "store": "REWE", "price": 1.99 }
+      ],
+      "share_url": "https://offerhopper.ai/s/VcEZiHHo",
+      "stores": [ { "name": "REWE", "address": "Ballindamm, 40, 20095, Hamburg", "latitude": 53.55127, "longitude": 9.99681 } ]
+    }
+  ]
+}
+```
+
+Every field in a turn except `instruction` is optional. `entities` are the response's `entity_*` fields without the prefix; `results` / `stores` / `share_url` are a compact summary of that turn's `offerhopperData` (name, store, price; name, address, position) — the payload itself is never sent. The server keeps the last 6 turns, 10 results per turn and 2 000 characters per text field, and truncates rather than rejects; wrong types are a `422` like a malformed `location`.
+
+`app/nlp/follow_up.py` folds the history into a context (merchant, products, typed place, loyalty card, last results — newest value wins) and decides what the new message is:
+
+| message | resolved as | what happens |
+|---|---|---|
+| names a store, card, place, product or price ("Take me to the nearest Lidl") | **fresh** | classified exactly as before |
+| "take me there", "wann öffnet es?", "add them to my list", "und Butter?", "show the barcode" | **rewritten** to the sentence it stands for ("Take me to REWE in Hamburg", "Setze Milch, Eier und Brot auf meine Einkaufsliste") | the rewritten sentence is classified, so `planner_actions` and the `entity_*` fields are right; `instruction` still echoes what was typed |
+| "which one is cheapest?", "what's the total?", "lohnt sich die Fahrt?" | **result question** | no classifier, no OfferHopper: `domain CHAT`, `intent FOLLOW_UP`, `sub_intent RESULT_QUESTION`, `planner_actions []`, `offerhopperData null`, and `response` answers from the carried results, map link last |
+| a follow-up with nothing to resolve against ("Take me there" as the first message) | **unresolved** | the empty-plan shape with a clarifying question ("which store do you mean?") instead of a navigation action with no destination |
+
+The rewrite phrasings are the ones the route model is known to accept; the rows in `dataset/noah_dataset_v3.csv` that back them are generated by `scripts/build_dataset.py` (`follow_up_rewrite_rows`). Bare follow-ups are deliberately not in the corpus — without history they are ambiguous — and live in `dataset/noah_holdout_probes.csv` (split `follow_up`) so the trainer reports how often the model alone would have acted on one.
+
+Set `FOLLOW_UP_LLM_REWRITE=1` to let the Groq model rewrite anaphoric messages the rules do not cover (one short sentence, temperature 0). Off by default; measure the added latency before turning it on.
+
 ---
 
 ## 🛒 Offerhopper MCP Integration
@@ -395,13 +442,16 @@ curl -s https://<username>-noah-payto-api.hf.space/health
 ## 🧪 Testing & Verification
 
 ### Run Automated Unit & Integration Tests
+
+The suite is offline by default: `tests/conftest.py` stubs OfferHopper (which rate-limits hard) with a realistic payload and the LLM with the deterministic reply generator. `NOAH_LIVE_TESTS=1 pytest` runs against the real services.
+
 ```bash
 cd noah_backend
 pytest tests/ -v
 ```
 `tests/test_response_contract.py` pins the `/api/chat` request shape, response key set, value types and label vocabularies. It must stay green across any retraining or refactor — the Flutter client dispatches on `planner_actions`, `entities.*`, `response_mode` and `offerhopperData`.
 
-Note: `tests/test_api_chat.py` calls the live Offerhopper MCP server and will fail with `429 Too Many Requests` if run repeatedly in quick succession.
+With `NOAH_LIVE_TESTS=1`, `tests/test_api_chat.py` calls the live Offerhopper MCP server and will fail with `429 Too Many Requests` if run repeatedly in quick succession.
 
 ### Run Live Interactive CLI Verification
 ```bash

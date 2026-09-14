@@ -9748,3 +9748,237 @@ Where can I buy Nivea? and then show it.,PRODUCT,SEARCH,SEARCH_BY_BRAND,offerhop
 "Übrigens, wie komme ich am besten zu Rossmann?",NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,ROSSMANN,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
 Search for cereal under €3 near me.,PRODUCT,SEARCH,SEARCH_BY_PRICE,offerhopper_mcp,hybrid,cereal,,,,,3.0,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT_BY_PRICE,1,offerhopper_mcp
 suche tiefkühlpizza unter 20 €.,PRODUCT,SEARCH,SEARCH_BY_PRICE,offerhopper_mcp,hybrid,Tiefkühlpizza,,,,,20,,,False,False,False,single_step,SEARCH_PRODUCT_BY_PRICE,1,offerhopper_mcp
+Take me to Penny in Nürnberg.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,Nürnberg,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Take me to Edeka in Hannover.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,EDEKA,,,,,Hannover,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Take me to Kaufland in Dresden.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,Dresden,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigate me to Globus in Frankfurt.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,GLOBUS,,,,,Frankfurt,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigate me to Edeka in Köln.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,EDEKA,,,,,Köln,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigate me to Kaufland in Leipzig.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,Leipzig,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigate to Aldi in Dresden.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ALDI,,,,,Dresden,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigate to Penny in München.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,München,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigate to REWE in Düsseldorf.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,REWE,,,,,Düsseldorf,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Drive me to Müller in Dresden.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,MÜLLER,,,,,Dresden,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Drive me to Müller in Frankfurt.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,MÜLLER,,,,,Frankfurt,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Start navigation to REWE in Düsseldorf.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,REWE,,,,,Düsseldorf,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Start navigation to dm in Berlin.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,Berlin,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Start navigation to Kaufland in Stuttgart.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,Stuttgart,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Get me to Kaufland in Nürnberg.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,Nürnberg,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Get me to Lidl in Bremen.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,LIDL,,,,,Bremen,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Get me to Kaufland in Düsseldorf.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,Düsseldorf,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+I want to go to Edeka in Bremen.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,EDEKA,,,,,Bremen,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+I want to go to Penny in München.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,München,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+I want to go to dm in Stuttgart.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,Stuttgart,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Take me to the dm in Stuttgart.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,Stuttgart,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Take me to the Penny in Düsseldorf.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,Düsseldorf,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Take me to the dm in Hannover.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,Hannover,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zu Rossmann in Nürnberg.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ROSSMANN,,,,,Nürnberg,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zu Rossmann in München.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ROSSMANN,,,,,München,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zu Kaufland in Dresden.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,Dresden,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigiere mich zu Aldi in Hamburg.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ALDI,,,,,Hamburg,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigiere mich zu Rossmann in Dresden.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ROSSMANN,,,,,Dresden,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigiere mich zu Kaufland in München.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,München,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Fahr mich zu Penny in Hannover.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,Hannover,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Fahr mich zu Müller in Stuttgart.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,MÜLLER,,,,,Stuttgart,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Fahr mich zu dm in Köln.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,Köln,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zum Lidl in Hamburg.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,LIDL,,,,,Hamburg,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zum REWE in Dresden.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,REWE,,,,,Dresden,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zum Globus in München.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,GLOBUS,,,,,München,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigiere zu Rossmann in Bremen.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ROSSMANN,,,,,Bremen,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigiere zu Netto in Stuttgart.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,NETTO,,,,,Stuttgart,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Navigiere zu Penny in Düsseldorf.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,Düsseldorf,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Ich will zu Penny in Berlin.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,Berlin,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Ich will zu dm in Stuttgart.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,Stuttgart,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Ich will zu Netto in München.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,NETTO,,,,,München,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zu Kaufland.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zu Müller.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,MÜLLER,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich zu Edeka.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,EDEKA,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Fahr mich zu Penny.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,PENNY,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Fahr mich zu Lidl.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,LIDL,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Fahr mich zu dm.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,DM,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich bitte zum Edeka.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,EDEKA,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich bitte zum Kaufland.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,KAUFLAND,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Bring mich bitte zum Aldi.,NAVIGATION,ROUTE,ROUTE,maps_tool,navigation,,ALDI,,,,,,,False,False,False,single_step,PLAN_ROUTE,1,maps_tool
+Wie komme ich zu dm in Stuttgart?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,DM,,,,,Stuttgart,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komme ich zu Aldi in Düsseldorf?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,ALDI,,,,,Düsseldorf,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komme ich zu Kaufland in Hamburg?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,KAUFLAND,,,,,Hamburg,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Zeig mir den Weg zu Kaufland.,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,KAUFLAND,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Zeig mir den Weg zu Edeka.,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,EDEKA,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Zeig mir den Weg zu Lidl in Berlin.,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,LIDL,,,,,Berlin,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Zeig mir den Weg zu Kaufland in Berlin.,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,KAUFLAND,,,,,Berlin,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Zeig mir den Weg zu Aldi in Dresden.,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,ALDI,,,,,Dresden,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komme ich am schnellsten zu Rossmann in Berlin?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,ROSSMANN,,,,,Berlin,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komme ich am schnellsten zu Aldi in Nürnberg?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,ALDI,,,,,Nürnberg,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komme ich am schnellsten zu Müller in Hannover?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,MÜLLER,,,,,Hannover,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Welcher Weg führt zu Rossmann?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,ROSSMANN,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Welcher Weg führt zu dm?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,DM,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komm ich zum Lidl?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,LIDL,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komm ich zum Penny?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,PENNY,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+Wie komm ich zum Globus?,NAVIGATION,ROUTE,DIRECTIONS,maps_tool,navigation,,GLOBUS,,,,,,,False,False,False,single_step,GET_DIRECTIONS,1,maps_tool
+When does Penny in Düsseldorf open?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,PENNY,,,,,Düsseldorf,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+When does Kaufland in Frankfurt open?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,Frankfurt,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+When does Edeka in Stuttgart open?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,EDEKA,,,,,Stuttgart,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+What are the opening hours of dm in Hannover?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,DM,,,,,Hannover,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+What are the opening hours of Penny in Leipzig?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,PENNY,,,,,Leipzig,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+What are the opening hours of Rossmann in Hamburg?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Hamburg,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+When does REWE in Hannover close?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,REWE,,,,,Hannover,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+When does Rossmann in Leipzig close?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Leipzig,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+When does Kaufland in Hannover close?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,Hannover,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Is Rossmann in München open right now?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,München,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Is Netto in Nürnberg open right now?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,NETTO,,,,,Nürnberg,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Is Rossmann in Hamburg open right now?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Hamburg,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Until when is Müller in Stuttgart open?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,MÜLLER,,,,,Stuttgart,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Until when is Kaufland in Bremen open?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,Bremen,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Until when is Edeka in Hannover open?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,EDEKA,,,,,Hannover,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+What time does Penny in Nürnberg open today?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,PENNY,,,,,Nürnberg,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+What time does Kaufland in Köln open today?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,Köln,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+What time does Aldi in Hannover open today?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ALDI,,,,,Hannover,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann öffnet Globus?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,GLOBUS,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann öffnet dm?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,DM,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann öffnet Aldi?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ALDI,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann öffnet Aldi in Nürnberg?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ALDI,,,,,Nürnberg,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann öffnet Globus in München?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,GLOBUS,,,,,München,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann öffnet REWE in Düsseldorf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,REWE,,,,,Düsseldorf,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Öffnungszeiten von Aldi.,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ALDI,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Öffnungszeiten von Globus.,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,GLOBUS,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Öffnungszeiten von dm.,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,DM,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Öffnungszeiten von Netto in Frankfurt.,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,NETTO,,,,,Frankfurt,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Öffnungszeiten von dm in Frankfurt.,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,DM,,,,,Frankfurt,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Öffnungszeiten von Rossmann in Köln.,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Köln,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann macht REWE auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,REWE,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann macht dm auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,DM,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann macht Lidl in Leipzig auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,LIDL,,,,,Leipzig,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann macht REWE in Berlin auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,REWE,,,,,Berlin,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann macht Kaufland in Frankfurt auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,Frankfurt,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann hat Penny in Köln geöffnet?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,PENNY,,,,,Köln,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann hat Rossmann in Dresden geöffnet?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Dresden,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann hat Rossmann in Stuttgart geöffnet?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Stuttgart,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Hat Kaufland in München gerade offen?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,München,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Hat Lidl in Düsseldorf gerade offen?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,LIDL,,,,,Düsseldorf,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Hat Penny in Frankfurt gerade offen?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,PENNY,,,,,Frankfurt,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wie lange hat Kaufland in Nürnberg heute auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,KAUFLAND,,,,,Nürnberg,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wie lange hat Rossmann in Berlin heute auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,ROSSMANN,,,,,Berlin,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wie lange hat Netto in Leipzig heute auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,NETTO,,,,,Leipzig,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann schließt Lidl in Köln?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,LIDL,,,,,Köln,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann schließt Netto in Berlin?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,NETTO,,,,,Berlin,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Wann schließt Lidl in Hannover?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,LIDL,,,,,Hannover,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Bis wann hat Penny auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,PENNY,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Bis wann hat REWE auf?,MERCHANT,SHOW,OPENING_HOURS,merchant_api,hybrid,,REWE,,,,,,,False,False,False,single_step,GET_OPENING_HOURS,1,merchant_api
+Where can I buy olive oil in Stuttgart?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,olive oil,,,,,,Stuttgart,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I buy yogurt in Hamburg?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,yogurt,,,,,,Hamburg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I buy sugar in Köln?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,sugar,,,,,,Köln,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I buy frozen pizza near me?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,frozen pizza,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I buy cheese near me?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,cheese,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I buy toilet paper near me?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,toilet paper,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find minced meat offers near me.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,minced meat,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find bread offers near me.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,bread,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find nappies offers near me.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,nappies,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find nappies offers in Hamburg.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,nappies,,,,,,Hamburg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find rice offers in Köln.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,rice,,,,,,Köln,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find laundry detergent offers in Nürnberg.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,laundry detergent,,,,,,Nürnberg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Search for chocolate near me.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,chocolate,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Search for yogurt near me.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,yogurt,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Search for olive oil near me.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,olive oil,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Search for flour in Hamburg.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,flour,,,,,,Hamburg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Search for butter in München.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,butter,,,,,,München,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Search for yogurt in Leipzig.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,yogurt,,,,,,Leipzig,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I get sugar in Nürnberg?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,sugar,,,,,,Nürnberg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I get oat milk in Dresden?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,oat milk,,,,,,Dresden,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where can I get bread in Stuttgart?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,bread,,,,,,Stuttgart,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find eggs in Frankfurt.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,eggs,,,,,,Frankfurt,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find rice in Düsseldorf.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,rice,,,,,,Düsseldorf,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Find minced meat in Bremen.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,minced meat,,,,,,Bremen,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where do I get yogurt near me?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,yogurt,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where do I get minced meat near me?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,minced meat,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Where do I get milk near me?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,milk,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Look for beer in Hamburg.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,beer,,,,,,Hamburg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Look for milk in Bremen.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,milk,,,,,,Bremen,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Look for cheese in Berlin.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,cheese,,,,,,Berlin,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo kann ich Schokolade in Berlin kaufen?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Schokolade,,,,,,Berlin,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo kann ich Nudeln in Bremen kaufen?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Nudeln,,,,,,Bremen,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo kann ich Brot in meiner Nähe kaufen?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Brot,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo kann ich Käse in meiner Nähe kaufen?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Käse,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo kann ich Bier in meiner Nähe kaufen?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Bier,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Suche Bier in Frankfurt.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Bier,,,,,,Frankfurt,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Suche Milch in Bremen.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Milch,,,,,,Bremen,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Suche Wasser in Berlin.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Wasser,,,,,,Berlin,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Finde Reis in Dresden.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Reis,,,,,,Dresden,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Finde Mehl in Frankfurt.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Mehl,,,,,,Frankfurt,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Finde Bananen in Nürnberg.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Bananen,,,,,,Nürnberg,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo gibt es Hackfleisch in München?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Hackfleisch,,,,,,München,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo gibt es Zucker in Leipzig?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Zucker,,,,,,Leipzig,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo gibt es Hackfleisch in Düsseldorf?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Hackfleisch,,,,,,Düsseldorf,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo bekomme ich Nudeln in Dresden?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Nudeln,,,,,,Dresden,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo bekomme ich Toilettenpapier in Stuttgart?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Toilettenpapier,,,,,,Stuttgart,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo bekomme ich Olivenöl in Düsseldorf?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Olivenöl,,,,,,Düsseldorf,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo finde ich Milch in meiner Nähe?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Milch,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo finde ich Nudeln in meiner Nähe?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Nudeln,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo finde ich Schokolade in meiner Nähe?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Schokolade,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Such Tiefkühlpizza in meiner Nähe.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Tiefkühlpizza,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Such Mehl in meiner Nähe.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Mehl,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Such Käse in meiner Nähe.,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Käse,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo gibt es Joghurt in meiner Nähe?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Joghurt,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo gibt es Waschmittel in meiner Nähe?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Waschmittel,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+Wo gibt es Windeln in meiner Nähe?,PRODUCT,SEARCH,SEARCH,offerhopper_mcp,hybrid,Windeln,,,,,,CURRENT_LOCATION,,False,False,False,single_step,SEARCH_PRODUCT,1,offerhopper_mcp
+"Add milk, nappies and minced meat to my shopping list.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"milk, nappies, minced meat",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Add olive oil, butter and flour to my shopping list.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"olive oil, butter, flour",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Add toilet paper, olive oil and nappies to my shopping list.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"toilet paper, olive oil, nappies",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Put chocolate, bread and bananas on my shopping list.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"chocolate, bread, bananas",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Put cheese, sugar and flour on my shopping list.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"cheese, sugar, flour",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Put flour, bananas and cheese on my shopping list.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"flour, bananas, cheese",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Add rice and eggs to my list.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"rice, eggs",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Add flour and beer to my list.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"flour, beer",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Add water and sugar to my list.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"water, sugar",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Setz Milch, Äpfel und Bier auf meine Liste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Milch, Äpfel, Bier",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Setz Windeln, Hackfleisch und Tiefkühlpizza auf meine Liste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Windeln, Hackfleisch, Tiefkühlpizza",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Setz Butter, Joghurt und Eier auf meine Liste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Butter, Joghurt, Eier",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Setze Bier, Olivenöl und Käse auf meine Einkaufsliste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Bier, Olivenöl, Käse",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Setze Joghurt, Nudeln und Kaffee auf meine Einkaufsliste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Joghurt, Nudeln, Kaffee",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Setze Hackfleisch, Milch und Olivenöl auf meine Einkaufsliste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Hackfleisch, Milch, Olivenöl",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Füge Windeln, Joghurt und Toilettenpapier zu meiner Einkaufsliste hinzu.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Windeln, Joghurt, Toilettenpapier",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Füge Zucker, Windeln und Hafermilch zu meiner Einkaufsliste hinzu.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Zucker, Windeln, Hafermilch",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Füge Hafermilch, Zucker und Brot zu meiner Einkaufsliste hinzu.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Hafermilch, Zucker, Brot",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Schreib Nudeln und Eier auf meine Einkaufsliste.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Nudeln, Eier",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Schreib Joghurt und Hafermilch auf meine Einkaufsliste.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Joghurt, Hafermilch",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Schreib Milch und Brot auf meine Einkaufsliste.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Milch, Brot",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Pack Käse, Windeln und Toilettenpapier auf meine Liste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Käse, Windeln, Toilettenpapier",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Pack Toilettenpapier, Wasser und Windeln auf meine Liste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Toilettenpapier, Wasser, Windeln",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+"Pack Äpfel, Schokolade und Tiefkühlpizza auf meine Liste.",SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Äpfel, Schokolade, Tiefkühlpizza",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Füge Olivenöl zu meiner Liste hinzu.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,Olivenöl,,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Füge Windeln zu meiner Liste hinzu.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,Windeln,,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Füge Hafermilch zu meiner Liste hinzu.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,Hafermilch,,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Setze Wasser und Kaffee auf meine Einkaufsliste.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Wasser, Kaffee",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Setze Olivenöl und Kaffee auf meine Einkaufsliste.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Olivenöl, Kaffee",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+Setze Olivenöl und Tiefkühlpizza auf meine Einkaufsliste.,SHOPPING,BUILD_LIST,BUILD_LIST,planner,hybrid,"Olivenöl, Tiefkühlpizza",,,,,,,,False,False,True,single_step,BUILD_SHOPPING_LIST,1,planner
+How far is Lidl?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,LIDL,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is Kaufland?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,KAUFLAND,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is Aldi?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ALDI,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is Globus from here?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,GLOBUS,,,,,CURRENT_LOCATION,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is dm from here?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,DM,,,,,CURRENT_LOCATION,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is Rossmann from here?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ROSSMANN,,,,,CURRENT_LOCATION,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far away is Edeka in Hannover?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,EDEKA,,,,,Hannover,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far away is dm in Dresden?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,DM,,,,,Dresden,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far away is Aldi in München?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ALDI,,,,,München,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is it to Globus?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,GLOBUS,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is it to Rossmann?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ROSSMANN,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+How far is it to REWE?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,REWE,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+What's the distance to Netto in Leipzig?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,NETTO,,,,,Leipzig,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+What's the distance to Aldi in Bremen?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ALDI,,,,,Bremen,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+What's the distance to Lidl in Stuttgart?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,LIDL,,,,,Stuttgart,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Is Globus far from here?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,GLOBUS,,,,,CURRENT_LOCATION,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Is Penny far from here?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,PENNY,,,,,CURRENT_LOCATION,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Is Kaufland far from here?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,KAUFLAND,,,,,CURRENT_LOCATION,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Lidl entfernt?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,LIDL,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Penny entfernt?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,PENNY,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist REWE entfernt?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,REWE,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist es bis Penny?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,PENNY,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist es bis Rossmann?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ROSSMANN,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Lidl in Stuttgart von hier entfernt?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,LIDL,,,,,Stuttgart,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Kaufland in Hannover von hier entfernt?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,KAUFLAND,,,,,Hannover,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Aldi in Leipzig von hier entfernt?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ALDI,,,,,Leipzig,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist es zu REWE in Düsseldorf?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,REWE,,,,,Düsseldorf,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist es zu Penny in Hannover?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,PENNY,,,,,Hannover,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist es zu Penny in Leipzig?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,PENNY,,,,,Leipzig,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Ist REWE weit weg?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,REWE,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Ist Rossmann weit weg?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,ROSSMANN,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Netto weg?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,NETTO,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api
+Wie weit ist Lidl weg?,MERCHANT,SHOW,DETAILS,merchant_api,hybrid,,LIDL,,,,,,,False,False,False,single_step,GET_MERCHANT_DETAILS,1,merchant_api

@@ -53,6 +53,18 @@ def _unknown() -> dict:
     return result
 
 
+def decline(instruction: str) -> dict:
+    """The clarifying-question route, with empty entities.
+
+    Used by the follow-up resolver when a message is a follow-up frame with
+    nothing to fill it - "take me there" with no history - so the app gets a
+    question instead of a navigation action with no destination.
+    """
+    result = _unknown()
+    result["entities"] = extract_entities(instruction, [])
+    return result
+
+
 def classify(instruction: str, models: dict) -> dict:
     """Predict the route for `instruction` and expand it to response fields."""
     model = models.get("model")

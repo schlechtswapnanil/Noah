@@ -14,7 +14,8 @@ GROUNDED_TEMPERATURE = 0.2
 
 
 def generate_text(system_prompt: str, user_prompt: str,
-                  temperature: float = DEFAULT_TEMPERATURE) -> str:
+                  temperature: float = DEFAULT_TEMPERATURE,
+                  max_tokens: int = 220) -> str:
     if os.getenv("LLM_PROVIDER", "groq").lower() != "groq":
         raise RuntimeError("Only the configured Groq provider is supported.")
     api_key = os.getenv("LLM_API_KEY") or os.getenv("GROQ_API_KEY")
@@ -24,6 +25,6 @@ def generate_text(system_prompt: str, user_prompt: str,
     completion = Groq(api_key=api_key).chat.completions.create(
         model=os.getenv("LLM_MODEL", "qwen/qwen3.6-27b"),
         messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
-        temperature=temperature, max_completion_tokens=220, reasoning_effort="none",
+        temperature=temperature, max_completion_tokens=max_tokens, reasoning_effort="none",
     )
     return completion.choices[0].message.content.strip()

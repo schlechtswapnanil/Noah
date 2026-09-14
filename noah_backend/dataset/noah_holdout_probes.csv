@@ -120,3 +120,25 @@ wie hoch ist mein dispo,UNKNOWN,out of scope banking,calibration
 show me your training data,UNKNOWN,meta,report
 kfjghkdfjg,UNKNOWN,gibberish,calibration
 mach einfach irgendwas,UNKNOWN,German ambiguous,report
+bring mich zu rewe in hamburg,ROUTE,German navigation with city (follow-up rewrite target),report
+navigate me to aldi in berlin,ROUTE,navigation with city (follow-up rewrite target),report
+wie komm ich zum edeka in köln,DIRECTIONS,German directions with city (follow-up rewrite target),report
+wann öffnet lidl in leipzig,OPENING_HOURS,German hours with city (follow-up rewrite target),report
+öffnungszeiten penny bremen,OPENING_HOURS,German terse hours (follow-up rewrite target),report
+where can i buy butter in hamburg,SEARCH,plain product search with city (follow-up rewrite target),report
+search for oat milk near me,SEARCH,plain product search near me (follow-up rewrite target),report
+wo kann ich windeln in dresden kaufen,SEARCH,German plain product search with city (follow-up rewrite target),report
+how far is kaufland from here,DETAILS,distance (follow-up rewrite target),report
+wie weit ist der netto entfernt,DETAILS,German distance (follow-up rewrite target),report
+setz milch eier und brot auf meine liste,BUILD_LIST,German multi-item list (follow-up rewrite target),report
+take me there,UNKNOWN,bare follow-up: resolved from history by app/nlp/follow_up.py; ambiguous without it,follow_up
+which one is cheapest,UNKNOWN,bare follow-up: result question answered from history,follow_up
+add them to my shopping list,UNKNOWN,bare follow-up: products come from history,follow_up
+when does it open,UNKNOWN,bare follow-up: merchant comes from history,follow_up
+what about butter,UNKNOWN,bare follow-up: search kind comes from history,follow_up
+show the barcode,UNKNOWN,bare follow-up: card comes from history,follow_up
+bring mich dorthin,UNKNOWN,German bare follow-up: navigation,follow_up
+setz sie auf meine liste,UNKNOWN,German bare follow-up: list,follow_up
+wann öffnet es,UNKNOWN,German bare follow-up: hours,follow_up
+lohnt sich die fahrt,UNKNOWN,German bare follow-up: result question,follow_up
+und eis,UNKNOWN,German bare follow-up: what-about,follow_up

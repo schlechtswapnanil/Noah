@@ -22,12 +22,18 @@ contradictory; make sensible Flutter decisions and note them in your summary.
 **Request** — `POST /api/chat`, `Content-Type: application/json`
 
 ```json
-{ "instruction": "Zeig mir meine Payback-Karte" }
+{
+  "instruction": "Zeig mir meine Payback-Karte",
+  "location": { "latitude": 52.5219, "longitude": 13.4132 }
+}
 ```
 
-That is the whole request. No session id, no history: every call is independent.
-Blank input returns `200 {"error": "Instruction cannot be empty."}`; a missing
-field returns `422`.
+`instruction` is required. `location` is optional but **the app should always
+send it when it has a fix** — see §2g. It accepts `latitude` + `longitude`
+(preferred) or `postal_code` (a 5-digit German PLZ). No session id, no history:
+every call is independent. Blank input returns
+`200 {"error": "Instruction cannot be empty."}`; a missing `instruction` or a
+malformed `location` returns `422`.
 
 **Response** — always exactly these 24 keys, in every case (success, decline,
 tool failure). Never assume a key is absent; assume nullable values instead.
@@ -94,6 +100,50 @@ retry affordance. Never show a raw exception.
 
 **f. Language.** Nothing to do — `response` is already in whichever of
 English or German the user typed. Do not translate it.
+
+**g. Location is the app's job.** The backend cannot know where the phone is.
+When the user says "near me", "nearby", "in der Nähe", or names no place at
+all, the server searches from `location` if the request carries one and
+otherwise falls back to a fixed default (Munich city centre) — and the reply
+then says so ("I searched Munich city centre since no location was
+provided"). That is a poor demo, so:
+
+- Use `geolocator`. Request "while in use" permission the first time the chat
+  screen opens, with a short rationale ("Noah uses your location to find
+  prices and stores near you").
+- Get one fix with `LocationAccuracy.medium` (a few hundred metres is plenty
+  for supermarket search; faster and kinder to battery than `best`). Cache it
+  for the session and refresh in the background when the screen opens; never
+  block sending a message on a fresh fix — send the cached one.
+- Send `location: {latitude, longitude}` on **every** request when a fix is
+  available. It is cheap, and the server ignores it whenever the user typed a
+  city or postcode, so there is no need to detect "near me" client-side.
+- If permission is denied or no fix is available, send no `location`, and
+  show a one-time inline hint in the chat ("Tip: allow location, or say which
+  city you're in"). Do not nag on every message.
+- `entity_location` in the response still reports what the *text* said
+  (`CURRENT_LOCATION`, a city, or a PLZ) — it does not echo the device
+  position back. Do not read it as the search origin.
+- For map actions (§3), launch maps with the device position as the origin
+  and `entity_merchant` as the destination. If `entity_location` is a city or
+  PLZ, prefer it over the device position as the destination context.
+
+**h. Links in `response`.** When an OfferHopper result is present, `response`
+ends with the OfferHopper map link on its own line, e.g.
+`https://offerhopper.ai/s/oPYzIq_p`. Render URLs in `response` as tappable
+links (open in the external browser). The same URL is also in
+`offerhopperData.share_url`, which the route card should expose as a button.
+There are no per-product web links in the data — the map link is the only URL
+OfferHopper returns — so do not try to build product links.
+
+**i. Recommendation replies list several options.** "Recommend something sweet
+under a euro near me" returns a short list in `response` (three to five items
+with price and store, within the stated budget) rather than one product. Give
+the chat bubble room for multi-line text, and render the `offerhopperData`
+alternatives as result tiles: each `products_to_buy[]` entry carries an
+`alternatives[]` array (name, price, regular_price, discount_pct) at the same
+store, which is where the variety comes from. Filter tiles by
+`entity_price_max` when it is set.
 
 ---
 
@@ -166,7 +216,12 @@ are listed; parse leniently and ignore the rest.
             "quantity": 1.0,
             "unit": "pack",
             "total_cost": 0.99,
-            "market_average": 1.045
+            "market_average": 1.045,
+            "is_synthetic": false,                   // true = estimated price, no verified offer
+            "alternatives": [                        // same store, up to 3 - render as extra tiles
+              { "name": "Weihenstephan Frische Vollmilch 1l", "price": 1.19,
+                "regular_price": 1.19, "discount_pct": 0 }
+            ]
           }
         ]
       },
@@ -196,6 +251,9 @@ Modelling rules:
 - `cost_analysis.verdict.headline` is one of a small set of snake_case keys
   (`not_worth_travel`, `worth_it`, …). Surface it as a one-line badge if
   cheap to do; otherwise ignore — `response` already reflects it in prose.
+- `alternatives[]` are other products for the same request at the same
+  store; show them as secondary tiles. Mark `is_synthetic == true` items as
+  "estimated price".
 - All numbers are `num`; parse with `(x as num?)?.toDouble()`. Every field
   may be missing — default, never throw.
 
@@ -204,8 +262,12 @@ Modelling rules:
 ## 5. What to build or change
 
 1. **`NoahApiService`** — base URL from a single config constant
-   (`https://noah-z7qr.onrender.com`), `POST /api/chat`, 60 s timeout, a
-   `warmUp()` that GETs `/health`, and a typed error for network/timeout/non-200.
+   (`https://noah-z7qr.onrender.com`), `POST /api/chat` with the optional
+   `location` from §2g, 60 s timeout, a `warmUp()` that GETs `/health`, and a
+   typed error for network/timeout/non-200.
+1b. **`NoahLocationService`** — permission request with rationale, one
+   medium-accuracy fix cached per session and refreshed on screen open, and a
+   `current()` that returns `null` (never throws) when unavailable.
 2. **`NoahResponse` model** — all 24 keys from §1, every entity field nullable,
    `plannerActions` and `toolSequence` as `List<String>`, `offerhopperData` as
    `OfferhopperRouteResult?`.
@@ -214,8 +276,10 @@ Modelling rules:
 4. **`NoahActionDispatcher`** — the table in §3, including the empty-actions
    case, the `GET_DIRECTIONS` case, the `offerhopperData == null` guard, and
    ignoring unknown actions.
-5. **Chat screen** — always render `response`; call `warmUp()` on open; show
-   the friendly retry bubble from §2e on failure.
+5. **Chat screen** — always render `response` with URLs linkified (§2h) and
+   room for multi-line lists (§2i); call `warmUp()` and the location prefetch
+   on open; show the friendly retry bubble from §2e on failure and the
+   one-time location hint from §2g when no fix is available.
 6. **Route card / result tiles** — built from the §4 model; `share_url` opens
    in the external browser.
 
@@ -243,6 +307,15 @@ curl -s $U -H "$H" -d '{"instruction":"Take me to the nearest Lidl."}'
 # route card with live data (3-20 s)    -> FIND_CHEAPEST_BASKET, offerhopperData present
 curl -s $U -H "$H" -d '{"instruction":"Find the cheapest basket for milk, eggs and bread in Hamburg"}'
 
+# "near me" WITH device location        -> stores near Berlin Alexanderplatz, map link at end of response
+curl -s $U -H "$H" -d '{"instruction":"Fetch me the cheapest basket for currywurst and spezi near me","location":{"latitude":52.5219,"longitude":13.4132}}'
+
+# "near me" WITHOUT device location     -> response says it searched Munich city centre (what a user sees if permission is denied)
+curl -s $U -H "$H" -d '{"instruction":"Fetch me the cheapest basket for currywurst and spezi near me"}'
+
+# recommendation, several options       -> list of items under €1 with store, map link last
+curl -s $U -H "$H" -d '{"instruction":"Recommend something sweet or chocolatey for less than a euro near me","location":{"latitude":52.5219,"longitude":13.4132}}'
+
 # result tiles with live data           -> SEARCH_PRODUCT_BY_PRICE, entity_price_max=2
 curl -s $U -H "$H" -d '{"instruction":"Where can I buy frozen pizzas for less than 2 euros near me?"}'
 
@@ -260,9 +333,11 @@ curl -s $U -H "$H" -d '{"instruction":"transfer 50 euros to my brother"}'
 ```
 
 Acceptance: every response above parses without throwing, the right screen
-opens (or nothing opens, for the last three), the route card shows a real
-store, real product names and real prices, and no request uses a timeout
-under 60 s.
+opens (or nothing opens, for the conversational ones), the route card shows a
+real store, real product names and real prices, the map URL at the end of
+`response` is tappable, a "near me" query on a device with location granted
+returns stores near that device rather than Munich, and no request uses a
+timeout under 60 s.
 
 When done, summarise which files you changed and any UI decisions you made
 where the app did not already have a matching screen.

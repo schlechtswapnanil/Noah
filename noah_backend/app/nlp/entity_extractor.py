@@ -90,7 +90,21 @@ _COMMAND_PREFIX = re.compile(
 _CURRENCY = r"(?:€|eur(?:os?)?|euros?)?"
 
 
+_NUMBER_WORDS = {
+    "a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    "ein": 1, "einem": 1, "einen": 1, "eine": 1, "zwei": 2, "drei": 3,
+    "vier": 4, "fünf": 5, "fuenf": 5, "sechs": 6, "sieben": 7, "acht": 8,
+    "neun": 9, "zehn": 10,
+}
+_AMOUNT = (r"(\d+(?:[.,]\d+)?|a|an|one|two|three|four|five|six|seven|eight|nine|ten|"
+           r"ein|einem|einen|eine|zwei|drei|vier|fünf|fuenf|sechs|sieben|acht|neun|zehn)")
+
+
 def _number(value: str) -> float:
+    word = value.strip().lower()
+    if word in _NUMBER_WORDS:
+        return float(_NUMBER_WORDS[word])
     return float(value.replace(",", "."))
 
 
@@ -191,11 +205,11 @@ def extract_entities(instruction: str, planner_actions: Optional[list] = None) -
         entities["price_max"] = _number(between.group(2))
         consumed.append(re.escape(between.group(0)))
 
-    maximum = re.search(
-        rf"(?:under|below|less\s+than|no\s+more\s+than|up\s+to|max(?:imum)?|"
-        rf"unter|günstiger\s+als|guenstiger\s+als|weniger\s+als|bis\s+zu|"
-        rf"höchstens|hoechstens|für\s+unter|fuer\s+unter)\s*{_CURRENCY}\s*"
-        rf"(\d+(?:[.,]\d+)?)\s*{_CURRENCY}", text)
+    _LIMIT = (r"(?:under|below|less\s+than|no\s+more\s+than|up\s+to|max(?:imum)?|"
+              r"unter|günstiger\s+als|guenstiger\s+als|weniger\s+als|bis\s+zu|"
+              r"höchstens|hoechstens|für\s+unter|fuer\s+unter)")
+    maximum = (re.search(rf"{_LIMIT}\s*{_CURRENCY}\s*(\d+(?:[.,]\d+)?)\s*{_CURRENCY}", text)
+               or re.search(rf"{_LIMIT}\s+{_AMOUNT}\s+(?:€|euros?|eur|euro)\b", text))
     if maximum:
         entities["price_max"] = _number(maximum.group(1))
         consumed.append(re.escape(maximum.group(0)))
@@ -310,9 +324,52 @@ def extract_entities(instruction: str, planner_actions: Optional[list] = None) -
         entities["product"] = ", ".join(p.title() for p in dict.fromkeys(kept))
         return entities
 
+    # Descriptive requests name a kind of thing, not a product: "something
+    # sweet or chocolatey", "was Salziges". Map the descriptors to the search
+    # terms OfferHopper understands, before falling back to the raw remainder.
+    descriptors = _descriptor_terms(working)
+    if descriptors:
+        entities["product"] = ", ".join(descriptors)
+        return entities
+
     remainder = _COMMAND_PREFIX.sub("", working, count=1)
     remainder = re.split(
         r"\b(?:in|at|near|bei|für|fuer|von|zu|and\s+then|und\s+dann|then|dann|,)\b",
         remainder, maxsplit=1)[0]
     entities["product"] = _clean_product(remainder)
     return entities
+
+
+_DESCRIPTORS = [
+    (r"chocolat\w*|choc\b|schoko\w*|kakao", "chocolate"),
+    (r"sweet\w*|candy|candies|süß\w*|suess\w*|süssigkeit\w*|naschen|naschzeug|gummib\w*", "sweets"),
+    (r"salty|savou?ry|salzig\w*|chips|crisps|knabber\w*", "salty snacks"),
+    (r"\bsnacks?\b", "snacks"),
+    (r"biscuit\w*|cookies?|kekse?|gebäck|gebaeck", "biscuits"),
+    (r"ice\s*cream|eis\b|eiscreme", "ice cream"),
+    (r"\bdrinks?\b|beverage\w*|getränk\w*|getraenk\w*|soda|limo\w*", "drinks"),
+    (r"\bbeer\b|\bbier\b", "beer"),
+    (r"\bwine\b|\bwein\b", "wine"),
+    (r"coffee|kaffee", "coffee"),
+    (r"\btea\b|\btee\b", "tea"),
+    (r"fruit\w*|obst", "fruit"),
+    (r"vegetable\w*|veggies|gemüse|gemuese", "vegetables"),
+    (r"healthy|gesund\w*", "fruit"),
+    (r"breakfast|frühstück|fruehstueck|cereal|müsli|muesli", "cereal"),
+    (r"vegan\w*", "vegan"),
+    (r"baby|windel\w*|nappies|diapers", "nappies"),
+    (r"toiletr\w*|drogerie|shampoo|toothpaste|zahnpasta", "toiletries"),
+]
+
+
+def _descriptor_terms(working: str) -> list:
+    """Search terms implied by descriptive words, in the order they appear."""
+    hits = []
+    for pattern, term in _DESCRIPTORS:
+        match = re.search(pattern, working, re.IGNORECASE)
+        if match and term not in (t for _, t in hits):
+            hits.append((match.start(), term))
+    terms = [term for _, term in sorted(hits)]
+    if "salty snacks" in terms and "snacks" in terms:
+        terms.remove("snacks")
+    return terms

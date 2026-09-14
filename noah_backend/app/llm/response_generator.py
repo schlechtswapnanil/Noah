@@ -24,7 +24,11 @@ SYSTEM_PROMPT = """You are Noah, the assistant inside the PayTo shopping app. Yo
 Germany with loyalty cards, offers, prices, and finding and getting to stores.
 
 Speak like a helpful person, not a system log. Warm, brief, concrete: one to \
-three sentences. Acknowledge what the user wanted and say what is happening. \
+three sentences for an action. When the user asks for a recommendation, \
+suggestions or options and several are listed, give three to five of them as a \
+short list with price and store, staying strictly within any budget they \
+named (say so if nothing fits), and end with the map link on its own line. \
+Acknowledge what the user wanted and say what is happening. \
 When you are carrying out an action, you may add one useful next step ("hold \
 it up to the scanner"). When you are answering from DOCUMENT CONTEXT, add \
 nothing - restate what the context says and stop.
@@ -39,7 +43,8 @@ time, loyalty card or action that is not in them.
 - If live results with prices are supplied, name the products, prices and \
 stores you were given, exactly as given. If any requested item is listed as \
 not found, say so plainly. If they include a travel verdict, reflect it \
-honestly.
+honestly. If the search area was an assumed default rather than the user's \
+real position, say which area you assumed.
 - If DOCUMENT CONTEXT is supplied, answer from it and nothing else. Every claim \
 in your reply must be traceable to a sentence in the context. Do not add \
 security, encryption, storage, legal or policy details that are not written \
@@ -227,6 +232,8 @@ def _offerhopper_context(plan: dict) -> str:
     route = data.get("optimized_route") or {}
     lines: List[str] = []
     found_names: List[str] = []
+    options: List[tuple] = []
+    budget = (plan.get("entities") or {}).get("price_max")
 
     for segment in route.get("route_segments") or []:
         store = (segment.get("to_store") or {}).get("name") or segment.get("to_name")
@@ -250,10 +257,35 @@ def _offerhopper_context(plan: dict) -> str:
             if product.get("is_synthetic"):
                 line += " [estimated price - no verified offer, say so]"
             lines.append(line)
+            # The alternatives are where the variety is: three per item, same
+            # store. A "recommend me something" request needs them, not just
+            # the single cheapest pick.
+            for alt in product.get("alternatives") or []:
+                alt_name, alt_price = alt.get("name"), alt.get("price")
+                if alt_name and alt_price is not None:
+                    options.append((float(alt_price), f"{alt_name} at {store} for €{alt_price:.2f}"))
+            options.append((float(price), f"{chosen} at {store} for €{price:.2f}"))
 
     missing = _missing_items(plan)
     if missing:
         lines.append("Not found at any store: " + ", ".join(missing))
+
+    # Options list, deduplicated, cheapest first, split by the user's budget.
+    seen, within, over = set(), [], []
+    for price, text in sorted(options):
+        if text in seen:
+            continue
+        seen.add(text)
+        (within if budget is None or price <= float(budget) else over).append(text)
+    if budget is not None:
+        lines.append(f"User's budget: €{float(budget):.2f} per item")
+        lines.append(f"Options within budget ({len(within)}): "
+                     + ("; ".join(within[:6]) if within else "none"))
+        if over:
+            lines.append(f"Over budget, do not recommend ({len(over)}): "
+                         + "; ".join(over[:4]))
+    elif len(within) > 1:
+        lines.append(f"All options ({len(within)}): " + "; ".join(within[:8]))
 
     total = data.get("total_estimated_cost") or route.get("estimated_total_cost")
     savings = data.get("total_estimated_savings") or route.get("estimated_total_savings")
@@ -278,7 +310,10 @@ def _offerhopper_context(plan: dict) -> str:
     if distance is not None and minutes is not None:
         lines.append(f"Route: {distance:.1f} km, about {round(minutes)} min travel")
     if data.get("share_url"):
-        lines.append("A map link is shown to the user in the app.")
+        lines.append(f"Map link (include it at the end of the reply, on its own): {data['share_url']}")
+    basis = plan.get("location_basis")
+    if basis:
+        lines.append(f"Search area came from: {basis}")
     return "\n".join(lines)
 
 

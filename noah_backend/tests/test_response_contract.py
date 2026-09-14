@@ -142,9 +142,41 @@ def test_plan_is_internally_consistent(client, instruction):
 
 
 def test_request_shape_is_frozen(client):
-    """Only `instruction` is accepted; blank input keeps its legacy error body."""
+    """`instruction` alone must keep working; blank input keeps its legacy error body."""
     assert client.post("/api/chat", json={}).status_code == 422
     assert client.post("/api/chat", json={"instruction": "   "}).json() == {
         "error": "Instruction cannot be empty."
     }
     assert client.post("/api/chat", json={"instruction": "hi"}).status_code == 200
+
+
+def test_device_location_is_optional_and_additive(client):
+    """`location` may be sent; it must not change the response key set, and a
+    request without it must behave exactly as before."""
+    instruction = "Where can I buy frozen pizzas for less than €2 near me?"
+    with_gps = client.post("/api/chat", json={
+        "instruction": instruction,
+        "location": {"latitude": 52.5219, "longitude": 13.4132},
+    }).json()
+    with_plz = client.post("/api/chat", json={
+        "instruction": instruction, "location": {"postal_code": "10178"},
+    }).json()
+    without = client.post("/api/chat", json={"instruction": instruction}).json()
+
+    for payload in (with_gps, with_plz, without):
+        assert set(payload) == RESPONSE_KEYS
+        # entity_location still reports what the *text* said; the device
+        # position is used for the search, not echoed back as an entity.
+        assert payload["entity_location"] == "CURRENT_LOCATION"
+
+    # a place named in the text always beats the device position
+    named = client.post("/api/chat", json={
+        "instruction": "Find the cheapest basket for milk and bread in Hamburg",
+        "location": {"latitude": 52.5219, "longitude": 13.4132},
+    }).json()
+    assert named["entity_location"] == "Hamburg"
+
+    # malformed location is rejected, not silently ignored
+    assert client.post("/api/chat", json={
+        "instruction": instruction, "location": {"latitude": "north"},
+    }).status_code == 422

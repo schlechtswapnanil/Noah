@@ -226,9 +226,12 @@ Evaluation splits by **surface template**, not by row, so a paraphrase of a trai
 #### Request Body
 ```json
 {
-  "instruction": "Find the cheapest basket for milk, eggs and bread in Hamburg"
+  "instruction": "Find the cheapest basket for milk, eggs and bread in Hamburg",
+  "location": { "latitude": 52.5219, "longitude": 13.4132 }
 }
 ```
+
+`location` is optional and additive — a request with only `instruction` behaves exactly as before. It carries the device position (`latitude` + `longitude`, or a 5-digit `postal_code`) and is used only when the instruction does not name a place: "near me", "nearby", or no location at all. A city or postcode typed by the user always wins. Without it, "near me" falls back to a fixed default area (Munich city centre) and the reply says so.
 
 #### Response Body
 

@@ -267,6 +267,13 @@ def chat(
         actions = plan.get("planner_actions", [])
         scope = SCOPE_CAPABILITIES if "PROVIDE_APP_HELP" in actions else SCOPE_PAYTO
         rag_context = retrieve(text, scope=scope)
+    elif not plan["planner_actions"] and prediction.get("sub_intent") == "UNKNOWN":
+        # The router declined. Before the reply is left to the LLM, check
+        # whether the documentation answers it: "does PayTo track my
+        # location?" is a PayTo question whether or not the classifier
+        # recognised it as one. Both shelves, at the stricter unscoped floor,
+        # so a loose match does not masquerade as an answer.
+        rag_context = retrieve(text)
 
     response_text = generate_response(
         instruction,

@@ -61,16 +61,19 @@ statt zu raten.
 Noah uses machine learning to understand you. Every request is classified by a
 trained model into an intent and a plan of app actions, and the model returns a
 confidence score with its prediction. Below a set confidence threshold Noah does
-not act: it asks a clarifying question instead. Acting on a misread request
-means opening the wrong screen or spending a live price lookup, so an uncertain
-request is worth one extra question. A language model is used only to phrase the
-final reply from facts Noah already has — never to decide what action to take.
+not act: it replies in plain conversation instead — explaining what it can do,
+answering a general question briefly, or asking what you meant — and never
+opens a screen or spends a live price lookup on a guess. A language model
+phrases the reply from facts Noah already has; it never decides what action to
+take.
 
 Noah nutzt maschinelles Lernen und künstliche Intelligenz. Jede Anfrage wird von
 einem trainierten Modell einer Absicht und einem Handlungsplan zugeordnet, mit
 einem Konfidenzwert. Liegt dieser unter einem Schwellenwert, handelt Noah nicht,
-sondern stellt eine Rückfrage. Ein Sprachmodell formuliert nur die Antwort, es
-entscheidet nie über die Aktion.
+sondern antwortet im Gespräch: Noah erklärt, was es kann, beantwortet eine
+allgemeine Frage kurz oder fragt nach, was du meinst — öffnet aber nie auf
+Verdacht einen Bildschirm und löst keine Preisabfrage aus. Ein Sprachmodell
+formuliert nur die Antwort, es entscheidet nie über die Aktion.
 
 ## Languages Noah speaks
 
@@ -96,14 +99,16 @@ Anfrage.
 ## Limits: what Noah cannot do
 
 Noah cannot move money, make payments or transfers, change or close your
-account, or reset your password. Noah is not a general-purpose assistant: it
-does not answer questions about the weather, the news, translations, or any
-topic outside shopping and your PayTo wallet, and it says so rather than
-guessing. Noah does not see your name, email or payment details, and never
-stores payment information.
+account, or reset your password. Noah is built for shopping and your PayTo
+wallet. It can answer a general question briefly, but it has no live
+information outside PayTo — no weather, no news, and it cannot tell you where
+you are — and it says so rather than guessing. Noah does not see your name,
+email or payment details, and never stores payment information.
 
 Noah kann kein Geld überweisen, keine Zahlungen auslösen, dein Konto nicht
-ändern oder löschen und kein Passwort zurücksetzen. Noah ist kein
-Allzweck-Assistent: Fragen zu Wetter, Nachrichten oder Übersetzungen beantwortet
-Noah nicht, sondern sagt das offen. Noah sieht weder deinen Namen noch deine
-E-Mail oder Zahlungsdaten und speichert keine Zahlungsinformationen.
+ändern oder löschen und kein Passwort zurücksetzen. Noah ist für den Einkauf
+und deine PayTo-Wallet gebaut. Eine allgemeine Frage beantwortet Noah kurz, hat
+aber keine Live-Informationen außerhalb von PayTo — kein Wetter, keine
+Nachrichten, und Noah kann dir nicht sagen, wo du gerade bist — und sagt das
+offen, statt zu raten. Noah sieht weder deinen Namen noch deine E-Mail oder
+Zahlungsdaten und speichert keine Zahlungsinformationen.

@@ -1,0 +1,31 @@
+name: Keep the Render service warm
+
+# Render's free plan spins a web service down after 15 idle minutes, and the
+# next request then waits 30-60 s for a cold start (model load + RAG index).
+# One GET /health every 10 minutes keeps it up. The repository is public, so
+# these Actions minutes are free; a run takes a few seconds.
+#
+# Scheduled workflows run only on the default branch, and GitHub disables
+# them after 60 days without a push - push anything to re-arm. Set the
+# repository variable NOAH_BACKEND_URL to point this at another host.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: GET /health
+        env:
+          URL: ${{ vars.NOAH_BACKEND_URL || 'https://noah-z7qr.onrender.com' }}
+        run: |
+          curl --silent --show-error --fail --max-time 90 \
+               --retry 3 --retry-delay 15 --retry-all-errors \
+               "$URL/health"
+          echo

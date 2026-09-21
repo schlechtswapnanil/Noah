@@ -2,6 +2,8 @@
 
 import logging
 import os
+import sys
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,7 +17,14 @@ logging.basicConfig(
     format="%(levelname)s %(name)s: %(message)s",
 )
 
-from .api.chat import router as chat_router  # noqa: E402
+# ``uvicorn app.main:app`` imports this as part of the ``app`` package.  A
+# direct ``python app/main.py`` launch has no package parent, so add the
+# backend directory to the import path for that supported local-launch mode.
+if __package__:
+    from .api.chat import router as chat_router  # noqa: E402
+else:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from app.api.chat import router as chat_router  # noqa: E402
 
 
 app = FastAPI(

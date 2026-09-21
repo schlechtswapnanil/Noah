@@ -35,7 +35,7 @@
 ## 🌟 Overview
 
 Noah bridges user intent with actionable PayTo application logic and real-world grocery intelligence. Rather than acting merely as a conversational chatbot, Noah:
-1. **Understands Intent**: Predicts a single *route* — `(sub_intent, planner_actions)` — with a calibrated scikit-learn classifier, then derives every other taxonomy field (domain, intent, tool, response mode, workflow, tool sequence) from that route. Below a calibrated confidence floor it asks a clarifying question instead of acting.
+1. **Understands Intent**: Predicts a single *route* — `(sub_intent, planner_actions)` — with a calibrated scikit-learn classifier, then derives every other taxonomy field (domain, intent, tool, response mode, workflow, tool sequence) from that route. Below a calibrated confidence floor it does not act: the request is answered in conversation by the LLM under a constrained prompt, with any matching documentation as context, and a fixed clarifying question as the floor.
 2. **Plans In-App Actions**: Translates intents into structured UI actions (e.g., barcode modals, card open triggers, offer carousels).
 3. **Optimizes Grocery Basket & Routes**: Connects to the **Offerhopper MCP server** (`https://mcp.offerhopper.ai/mcp`) to split shopping lists across German supermarkets (Aldi, Lidl, Rewe, Edeka, etc.) for maximum savings and minimal travel time.
 4. **Retrieves Grounded Knowledge**: Augments LLM answers with TF-IDF retrieval over an allowlist of user-facing documents (privacy policy, published FAQ). When nothing clears the relevance floor Noah says it does not have the answer rather than improvising.
@@ -46,12 +46,12 @@ Noah bridges user intent with actionable PayTo application logic and real-world 
 ## 🚀 Key Features
 
 * **Single-Route Intent Classification**: Fast CPU inference using word + character TF-IDF and a calibrated logistic-regression pipeline (`route.joblib`). Character n-grams carry typo and German-compound robustness; deriving the remaining fields from `route_registry.json` makes a self-contradictory response unrepresentable.
-* **Abstention**: Requests below the calibrated confidence threshold return zero planner actions and a clarifying question, rather than a guessed action.
+* **Abstention**: Requests below the calibrated confidence threshold return zero planner actions - never a guessed action. The reply is conversational: the LLM answers under a constrained general prompt that spells out what Noah can and cannot do, with any documentation that clears the retrieval floor passed as context. If the LLM is switched off (`NOAH_GENERAL_CHAT=0`) or fails, the fixed clarifying question is returned.
 * **Bilingual**: English and German input, with replies in the language the user wrote in.
 * **Action Planner & Tool Sequencer**: Dynamically generates execution plans (`planner_actions`, `tool_sequence`, `response_mode`).
 * **Live Offerhopper MCP Integration**: Fetches real-time store splits, product prices, total savings, and interactive map URLs via JSON-RPC / Streamable HTTP.
 * **Document-Grounded RAG**: TF-IDF retrieval over an explicit allowlist of *user-facing* documents (privacy policy, published FAQ) plus a relevance floor. Internal engineering documents are never indexed, so they cannot be quoted back to a user.
-* **Pluggable LLM Providers**: Unified interface supporting **Groq** (`llama-3.3-70b-versatile`), **Google Gemini**, and **Ollama**.
+* **LLM provider chain**: each reply tries the primary Groq model, then a second Groq model (Groq's daily token budget is per model, so it is a separate 200K), then Gemini Flash-Lite. A step that answers 429 is skipped for its `retry-after`; if every step fails the deterministic reply is used, so a quota day-end never surfaces as an error.
 * **Flutter-First Response Modes**:
   * `functional`: High-contrast barcode modal triggers with automatic screen brightness boosting.
   * `hybrid`: Product comparison tiles, store-split savings cards, and offer carousels.
@@ -103,9 +103,9 @@ Noah/
 │   │   ├── api/
 │   │   │   └── chat.py               # Main POST /api/chat router
 │   │   ├── llm/
-│   │   │   ├── provider.py           # Abstract LLM provider interface
+│   │   │   ├── provider.py           # Provider chain: Groq -> second Groq model -> Gemini, with cooldowns
 │   │   │   ├── response_generator.py # Prompt template & context grounding
-│   │   │   └── gemini.py             # Gemini implementation
+│   │   │   └── gemini.py             # Gemini adapter (REST; AI Studio or Vertex express keys)
 │   │   ├── models/
 │   │   │   └── noah_response.py      # Pydantic schemas & response models
 │   │   ├── nlp/
@@ -173,11 +173,14 @@ pip install -r requirements.txt
 Create a `.env` file inside `noah_backend/` (or set environment variables):
 
 ```env
-# LLM Provider Configuration
-LLM_PROVIDER=groq                     # Options: groq, gemini, ollama
-GROQ_API_KEY=your_groq_api_key_here
-GEMINI_API_KEY=your_gemini_api_key_here
-GROQ_MODEL=llama-3.3-70b-versatile
+# LLM chain: primary Groq model -> second Groq model -> Gemini (app/llm/provider.py)
+LLM_PROVIDER=groq                     # groq (default) or gemini: which goes first
+LLM_API_KEY=gsk_...                   # Groq key (GROQ_API_KEY is also accepted)
+LLM_MODEL=qwen/qwen3.8-27b            # primary Groq model
+LLM_FALLBACK_MODEL=openai/gpt-oss-20b # second Groq model, own daily budget; leave empty to disable
+GEMINI_API_KEY=                       # AI Studio key ("AIza...") or Vertex AI express key ("AQ...."); unset = no Gemini step
+GEMINI_MODEL=gemini-2.5-flash-lite
+NOAH_GENERAL_CHAT=1                   # 0: unrecognised requests get the fixed clarifying question, no LLM call
 
 # Offerhopper MCP Server Endpoint
 OFFERHOPPER_MCP_URL=https://mcp.offerhopper.ai/mcp
@@ -406,6 +409,13 @@ roughly 50 seconds; set the client HTTP timeout to 60s or more.
 First-time setup: Render dashboard → **New** → **Blueprint** → pick this repo. Render
 reads `render.yaml` and creates the service. Then set `LLM_API_KEY` under the service's
 **Environment** tab (it is `sync: false` in the blueprint, so it is never committed).
+
+**Keeping it awake.** [`.github/workflows/keep-warm.yml`](./.github/workflows/keep-warm.yml)
+requests `/health` every 10 minutes from GitHub Actions, which is free for a public
+repository, so the service never idles long enough to spin down. Render's free plan
+allows 750 instance-hours a month; one always-on service uses about 720. Disable the
+workflow under **Actions** when the demo is over. If the service moves, set the
+repository variable `NOAH_BACKEND_URL` instead of editing the workflow.
 
 ### Hugging Face Spaces (needs PRO as of 2026-09)
 

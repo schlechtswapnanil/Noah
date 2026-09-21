@@ -10,7 +10,13 @@ services:
       - key: LLM_PROVIDER
         value: groq
       - key: LLM_MODEL
-        value: qwen/qwen3.6-27b
+        value: qwen/qwen3.8-27b
+      - key: LLM_FALLBACK_MODEL
+        value: openai/gpt-oss-20b
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash-lite
+      - key: NOAH_GENERAL_CHAT
+        value: "1"
       - key: LLM_API_KEY
         sync: false
       - key: GEMINI_API_KEY

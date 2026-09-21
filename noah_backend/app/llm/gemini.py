@@ -1,15 +1,13 @@
 """Gemini adapter: the last step in the provider chain (app/llm/provider.py).
 
 REST through httpx rather than the google-genai SDK: one endpoint, no new
-dependency. Two key formats reach two endpoints:
-
-* ``AIza...`` keys from Google AI Studio -> generativelanguage.googleapis.com
-* ``AQ....`` keys from Vertex AI express mode -> aiplatform.googleapis.com
-
-``GEMINI_API_URL`` (with ``{model}`` in it) overrides that choice. Thinking is
-switched off for the 2.5 models, where it is a token cost with nothing to
-show for it in a two-sentence reply; the parameter is not sent to other
-generations, which name it differently.
+dependency. Keys from Google AI Studio (https://aistudio.google.com/apikey)
+go to generativelanguage.googleapis.com in the ``x-goog-api-key`` header;
+Google's newer "auth keys" use the same endpoint and header. Set
+``GEMINI_API_URL`` (with ``{model}`` in it) to use another host, such as
+Vertex AI express mode. Thinking is switched off for the 2.5 models, where
+it is a token cost with nothing to show for it in a two-sentence reply; the
+parameter is not sent to other generations, which name it differently.
 
 Free-tier prompts may be used by Google to improve its models. The prompts
 carry the user's shopping message and any typed place, never their identity.
@@ -29,12 +27,9 @@ DEFAULT_MODEL = "gemini-2.5-flash-lite"
 TIMEOUT_SECONDS = 20.0
 
 
-def endpoint_for(api_key: str, model: str) -> str:
+def endpoint_for(model: str) -> str:
     override = os.getenv("GEMINI_API_URL", "").strip()
-    if override:
-        return override.format(model=model)
-    template = VERTEX_EXPRESS_URL if api_key.startswith("AQ.") else AI_STUDIO_URL
-    return template.format(model=model)
+    return (override or AI_STUDIO_URL).format(model=model)
 
 
 def request_body(system_prompt: str, user_prompt: str, temperature: float,
@@ -71,7 +66,7 @@ def generate_text(system_prompt: str, user_prompt: str,
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY is missing.")
     model = model or os.getenv("GEMINI_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
-    response = _post(endpoint_for(api_key, model),
+    response = _post(endpoint_for(model),
                      request_body(system_prompt, user_prompt, temperature, max_tokens, model),
                      api_key)
     response.raise_for_status()

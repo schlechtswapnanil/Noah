@@ -229,13 +229,16 @@ def test_gemini_request_shape_and_ai_studio_endpoint(monkeypatch):
         "temperature": 0.2, "maxOutputTokens": 99, "thinkingConfig": {"thinkingBudget": 0}}
 
 
-def test_gemini_vertex_express_key_uses_the_aiplatform_endpoint(monkeypatch):
-    monkeypatch.setenv("GEMINI_API_KEY", "AQ.test-key")
+def test_gemini_any_key_format_uses_the_ai_studio_endpoint(monkeypatch):
+    """Key prefixes are not documented and have changed; the endpoint is
+    chosen by GEMINI_API_URL alone, never guessed from the key."""
+    monkeypatch.setenv("GEMINI_API_KEY", "AQ.some-newer-format-key")
     seen = {}
-    monkeypatch.setattr(gemini, "_post", lambda url, body, key: seen.update(url=url) or _gemini_ok("ok"))
+    monkeypatch.setattr(gemini, "_post", lambda url, body, key: seen.update(url=url, key=key) or _gemini_ok("ok"))
     gemini.generate_text("s", "u", model="gemini-2.5-flash")
-    assert seen["url"] == ("https://aiplatform.googleapis.com/v1/publishers/google/models/"
+    assert seen["url"] == ("https://generativelanguage.googleapis.com/v1beta/models/"
                            "gemini-2.5-flash:generateContent")
+    assert seen["key"] == "AQ.some-newer-format-key"
 
 
 def test_gemini_url_override_and_thinking_config_only_for_2_5(monkeypatch):

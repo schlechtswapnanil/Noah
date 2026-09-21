@@ -14,7 +14,7 @@ services:
       - key: LLM_FALLBACK_MODEL
         value: openai/gpt-oss-20b
       - key: GEMINI_MODEL
-        value: gemini-2.5-flash-lite
+        value: gemini-3.5-flash-lite
       - key: NOAH_GENERAL_CHAT
         value: "1"
       - key: LLM_API_KEY

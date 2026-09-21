@@ -51,7 +51,7 @@ Noah bridges user intent with actionable PayTo application logic and real-world 
 * **Action Planner & Tool Sequencer**: Dynamically generates execution plans (`planner_actions`, `tool_sequence`, `response_mode`).
 * **Live Offerhopper MCP Integration**: Fetches real-time store splits, product prices, total savings, and interactive map URLs via JSON-RPC / Streamable HTTP.
 * **Document-Grounded RAG**: TF-IDF retrieval over an explicit allowlist of *user-facing* documents (privacy policy, published FAQ) plus a relevance floor. Internal engineering documents are never indexed, so they cannot be quoted back to a user.
-* **LLM provider chain**: each reply tries the primary Groq model, then a second Groq model (Groq's daily token budget is per model, so it is a separate 200K), then Gemini Flash-Lite. A step that answers 429 is skipped for its `retry-after`; if every step fails the deterministic reply is used, so a quota day-end never surfaces as an error.
+* **LLM provider chain**: each reply tries the primary Groq model, then a second Groq model (Groq's daily token budget is per model, so it is a separate 200K), then Gemini 3.5 Flash-Lite. A step that answers 429 is skipped for its `retry-after`; if every step fails the deterministic reply is used, so a quota day-end never surfaces as an error.
 * **Flutter-First Response Modes**:
   * `functional`: High-contrast barcode modal triggers with automatic screen brightness boosting.
   * `hybrid`: Product comparison tiles, store-split savings cards, and offer carousels.
@@ -179,7 +179,7 @@ LLM_API_KEY=gsk_...                   # Groq key (GROQ_API_KEY is also accepted)
 LLM_MODEL=qwen/qwen3.8-27b            # primary Groq model
 LLM_FALLBACK_MODEL=openai/gpt-oss-20b # second Groq model, own daily budget; leave empty to disable
 GEMINI_API_KEY=                       # AI Studio key ("AIza...") or Vertex AI express key ("AQ...."); unset = no Gemini step
-GEMINI_MODEL=gemini-2.5-flash-lite
+GEMINI_MODEL=gemini-3.5-flash-lite
 NOAH_GENERAL_CHAT=1                   # 0: unrecognised requests get the fixed clarifying question, no LLM call
 
 # Offerhopper MCP Server Endpoint

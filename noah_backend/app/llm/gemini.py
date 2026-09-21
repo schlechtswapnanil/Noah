@@ -23,7 +23,10 @@ AI_STUDIO_URL = ("https://generativelanguage.googleapis.com/v1beta/models/"
                  "{model}:generateContent")
 VERTEX_EXPRESS_URL = ("https://aiplatform.googleapis.com/v1/publishers/google/models/"
                       "{model}:generateContent")
-DEFAULT_MODEL = "gemini-2.5-flash-lite"
+# gemini-2.5-flash-lite is closed to new users (404 "no longer available to
+# new users" on 2026-09-21); 3.5 Flash-Lite defaults to "minimal" thinking
+# and needs no thinking config.
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 TIMEOUT_SECONDS = 20.0
 
 

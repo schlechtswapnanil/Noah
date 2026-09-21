@@ -48,7 +48,7 @@ DEFAULT_GROQ_MODEL = "qwen/qwen3.8-27b"
 # before it answers, which costs completion tokens; the Groq step allows for
 # that below.
 DEFAULT_GROQ_FALLBACK_MODEL = "openai/gpt-oss-20b"
-DEFAULT_GEMINI_MODEL = "gemini-2.5-flash-lite"
+DEFAULT_GEMINI_MODEL = "gemini-3.5-flash-lite"
 
 # How long a failed step is skipped. A 429 with a retry-after header uses that
 # value instead, capped so a "come back tomorrow" does not silence a model

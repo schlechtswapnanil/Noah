@@ -69,7 +69,7 @@ def test_default_chain_is_two_groq_models_and_no_gemini_without_a_key():
 def test_gemini_joins_the_chain_last_when_a_key_is_set(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "AIza-test")
     assert _names() == ["groq:qwen/qwen3.8-27b", "groq:openai/gpt-oss-20b",
-                        "gemini:gemini-2.5-flash-lite"]
+                        "gemini:gemini-3.5-flash-lite"]
 
 
 def test_chain_follows_the_environment(monkeypatch):
@@ -94,7 +94,7 @@ def test_fallback_equal_to_primary_is_not_tried_twice(monkeypatch):
 def test_gemini_first_when_it_is_the_configured_provider(monkeypatch):
     monkeypatch.setenv("LLM_PROVIDER", "gemini")
     monkeypatch.setenv("GEMINI_API_KEY", "AIza-test")
-    assert _names()[0] == "gemini:gemini-2.5-flash-lite"
+    assert _names()[0] == "gemini:gemini-3.5-flash-lite"
     assert _names()[1:] == ["groq:qwen/qwen3.8-27b", "groq:openai/gpt-oss-20b"]
 
 
@@ -221,12 +221,12 @@ def test_gemini_request_shape_and_ai_studio_endpoint(monkeypatch):
     monkeypatch.setattr(gemini, "_post", fake_post)
     assert gemini.generate_text("SYS", "USER", temperature=0.2, max_tokens=99) == "Hallo!"
     assert seen["url"] == ("https://generativelanguage.googleapis.com/v1beta/models/"
-                           "gemini-2.5-flash-lite:generateContent")
+                           "gemini-3.5-flash-lite:generateContent")
     assert seen["api_key"] == "AIza-test-key"
     assert seen["body"]["system_instruction"] == {"parts": [{"text": "SYS"}]}
     assert seen["body"]["contents"] == [{"role": "user", "parts": [{"text": "USER"}]}]
-    assert seen["body"]["generationConfig"] == {
-        "temperature": 0.2, "maxOutputTokens": 99, "thinkingConfig": {"thinkingBudget": 0}}
+    # 3.x models reject thinkingBudget (400); their default "minimal" thinking is used
+    assert seen["body"]["generationConfig"] == {"temperature": 0.2, "maxOutputTokens": 99}
 
 
 def test_gemini_any_key_format_uses_the_ai_studio_endpoint(monkeypatch):

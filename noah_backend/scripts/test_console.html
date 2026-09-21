@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noah test console</title>
+<!--
+  Browser test console for POST /api/chat. Open this file directly in a browser
+  (the backend allows any origin) or serve the folder with
+  `python3 -m http.server`. It keeps the conversation history the way the
+  Flutter app is meant to, so follow-ups ("take me there", "which one is
+  cheapest?") can be tested here even before the app sends history.
+-->
+<style>
+  :root { color-scheme: light dark; font: 14px/1.4 system-ui, sans-serif; }
+  body { margin: 0; padding: 16px; max-width: 900px; margin-inline: auto; }
+  header { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+  header input { flex: 1 1 320px; padding: 6px 8px; }
+  #log { display: flex; flex-direction: column; gap: 10px; min-height: 200px; }
+  .turn { padding: 10px 12px; border-radius: 10px; max-width: 85%; white-space: pre-wrap; word-break: break-word; }
+  .user { align-self: flex-end; background: #1f6feb; color: #fff; }
+  .noah { align-self: flex-start; background: #e6e8eb; color: #111; }
+  @media (prefers-color-scheme: dark) { .noah { background: #2b2f36; color: #eee; } }
+  .meta { font-size: 12px; opacity: .7; margin-top: 6px; }
+  details { font-size: 12px; margin-top: 4px; }
+  pre { overflow-x: auto; margin: 4px 0 0; }
+  form { display: flex; gap: 8px; margin-top: 14px; position: sticky; bottom: 0; background: inherit; padding-block: 8px; }
+  form input { flex: 1; padding: 10px; font-size: 15px; }
+  button { padding: 8px 14px; cursor: pointer; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .chips button { font-size: 12px; padding: 4px 8px; }
+  .err { color: #c0392b; }
+</style>
+</head>
+<body>
+<header>
+  <strong>Noah test console</strong>
+  <input id="base" value="https://noah-z7qr.onrender.com" title="backend base URL">
+  <label><input type="checkbox" id="gps"> send device GPS</label>
+  <button id="clear" type="button">clear history</button>
+</header>
+<div class="chips" id="chips"></div>
+<div id="log"></div>
+<form id="f"><input id="q" placeholder="Ask Noah anything" autofocus autocomplete="off"><button>Send</button></form>
+
+<script>
+const $ = s => document.querySelector(s);
+const log = $('#log'), form = $('#f'), input = $('#q');
+let history = [];          // as the Flutter app is meant to keep it (last 6 turns)
+let device = null;
+
+const samples = [
+  'Show me my Payback barcode.', 'Can you get my live location?', 'Wo bin ich gerade?',
+  'Does PayTo store my payment details?', 'What can you do?',
+  'Find the cheapest basket for milk, eggs and bread in Hamburg',
+  'Take me there', 'Which one is cheapest?', 'When does it open?', 'Tell me a joke',
+];
+for (const s of samples) {
+  const b = document.createElement('button'); b.type = 'button'; b.textContent = s;
+  b.onclick = () => { input.value = s; form.requestSubmit(); };
+  $('#chips').append(b);
+}
+
+function summarise(data) {           // compact summary of offerhopperData, never the payload
+  const route = (data && data.optimized_route) || {};
+  const results = [], stores = [];
+  for (const seg of route.route_segments || []) {
+    const store = (seg.to_store && seg.to_store.name) || seg.to_name;
+    if (!store || store === 'user_location' || store === 'user_end_location') continue;
+    for (const p of seg.products_to_buy || [])
+      results.push({ name: p.selected_product || p.name, store, price: p.price });
+  }
+  for (const s of route.stores || [])
+    stores.push({ name: s.name, address: s.formatted_address, latitude: s.latitude, longitude: s.longitude });
+  return { results: results.slice(0, 10), stores: stores.slice(0, 10), share_url: data ? data.share_url : null };
+}
+
+function add(kind, text, meta, raw) {
+  const el = document.createElement('div'); el.className = 'turn ' + kind; el.textContent = text;
+  if (meta) { const m = document.createElement('div'); m.className = 'meta'; m.textContent = meta; el.append(m); }
+  if (raw) { const d = document.createElement('details'); d.innerHTML = '<summary>raw JSON</summary>'; const p = document.createElement('pre'); p.textContent = JSON.stringify(raw, null, 2); d.append(p); el.append(d); }
+  log.append(el); el.scrollIntoView({ block: 'end' });
+  return el;
+}
+
+$('#clear').onclick = () => { history = []; log.innerHTML = ''; };
+$('#gps').onchange = e => {
+  if (!e.target.checked) { device = null; return; }
+  navigator.geolocation.getCurrentPosition(
+    p => { device = { latitude: p.coords.latitude, longitude: p.coords.longitude }; },
+    err => { e.target.checked = false; add('noah', 'GPS unavailable: ' + err.message).classList.add('err'); });
+};
+
+form.onsubmit = async e => {
+  e.preventDefault();
+  const instruction = input.value.trim(); if (!instruction) return;
+  input.value = ''; add('user', instruction);
+  const body = { instruction, history };
+  if (device) body.location = device;
+  const pending = add('noah', '…'); const t0 = performance.now();
+  try {
+    const r = await fetch($('#base').value.replace(/\/$/, '') + '/api/chat', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const d = await r.json(); pending.remove();
+    if (!r.ok || d.error) { add('noah', 'HTTP ' + r.status + ': ' + (d.error || JSON.stringify(d))).classList.add('err'); return; }
+    const ms = Math.round(performance.now() - t0);
+    add('noah', d.response,
+        `${d.sub_intent} · actions [${d.planner_actions.join(', ')}] · rag ${d.requires_rag} · offerhopper ${d.offerhopperData ? 'yes' : 'no'} · ${ms} ms`, d);
+    const entities = {}; for (const k in d) if (k.startsWith('entity_')) entities[k.slice(7)] = d[k];
+    history.push({ instruction, response: d.response, planner_actions: d.planner_actions, entities, ...summarise(d.offerhopperData) });
+    history = history.slice(-6);
+  } catch (err) { pending.remove(); add('noah', 'Request failed: ' + err.message).classList.add('err'); }
+};
+</script>
+</body>
+</html>
